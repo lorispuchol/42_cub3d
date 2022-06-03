@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:01:23 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/03 15:45:07 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/03 15:52:00 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	printf("coucou\n");
+	printf("coucou3\n");
 	return (0);
 }
