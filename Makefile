@@ -1,6 +1,9 @@
 NAME = cub3D
 
-SRCS = ./sources/cub3d.c
+SRCS = 	./sources/cub3d.c \
+		./sources/parsing/parsing.c \
+		./get_next_line/get_next_line.c \
+		./get_next_line/get_next_line_utils.c \
 
 OBJS = ${SRCS:.c=.o}
 

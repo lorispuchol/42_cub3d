@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/03 18:18:39 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/03 19:56:02 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,20 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 typedef struct s_graph
 {
+	char	*north;
+	char	*south;
+	char	*est;
+	char	*west;
 	void	*sprite_n;
 	void	*sprite_s;
 	void	*sprite_e;
 	void	*sprite_w;
+	char	*str_floor;
+	char	*str_ceiling;
 	int		floor;
 	int		ceiling;
 }				t_graph;
@@ -46,5 +53,14 @@ typedef struct s_game
 	int		w_height;
 	int		w_width;
 }				t_game;
+
+//cub3d.c
+void	ft_print_error(char *err);
+
+//parsing.c
+void	ft_parsing(int argc, char **argv);
+
+// get_next_line.c
+char	*get_next_line(int fd);
 
 #endif
