@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/07 19:35:27 by lpuchol          ###   ########.fr       */
+/*   Created: 2022/06/07 16:34:45 by lpuchol           #+#    #+#             */
+/*   Updated: 2022/06/07 17:58:40 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ft_print_error(char *err)
+void l_free_tab(char **tab)
 {
-	ft_putstr_fd(err, 2);
-	exit(EXIT_FAILURE);
+	int i;
+
+	i = -1;
+	if (!tab)
+		return ;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }
 
-void ft_free_game(t_game *game)
+void	*ft_xmalloc(size_t size)
 {
-	(void) game;
-}
+	void	*address;
 
-
-
-int main(int argc, char **argv)
-{
-	t_game game;
-
-	ft_init_game(&game);
-	ft_parsing(argc, argv);
-	ft_free_game(&game);
+	address = malloc(size);
+	if (!address)
+		ft_print_error("malloc error\n");
+	return (address);
 }

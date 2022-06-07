@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/03 19:18:43 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:49:58 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@ void	check_file_map(int argc, char **argv)
 		ft_print_error("Error\nThe map is not a '.cub' file\n");
 }
 
+int ft_assign_sprites(char *str)
+{
+	(void) str;
+	return (0);
+}
+
+/*
+int ft_get_header(int fd)
+{
+	int		i;
+	char	*str;
+	
+	i = 0;
+	str = get_next_line(fd);
+	while (str)
+	{
+		return (0);
+	}
+}
+*/
+
 void	check_valid_map(char *file)
 {
 	int fd;
@@ -31,10 +52,11 @@ void	check_valid_map(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_print_error("Error\nImpossible to open file\n");
-	
+	// ft_get_header(fd);
 }
 
 void	ft_parsing(int argc, char **argv)
 {
 	check_file_map(argc, argv);
+	check_valid_map(argv[1]);
 }

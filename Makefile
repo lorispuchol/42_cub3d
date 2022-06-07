@@ -1,7 +1,9 @@
 NAME = cub3D
 
 SRCS = 	./sources/cub3d.c \
-		./sources/parsing/parsing.c \
+		./sources/parsing/init_game.c \
+		./sources/utils.c \
+		./sources/parsing/check_file.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \
 
