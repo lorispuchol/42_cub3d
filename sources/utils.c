@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:34:45 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/07 17:58:40 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/08 21:33:00 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void l_free_tab(char **tab)
+void	l_free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!tab)

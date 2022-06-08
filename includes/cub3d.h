@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/07 19:36:11 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 01:09:30 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ typedef struct s_graph
 	void	*sprite_s;
 	void	*sprite_e;
 	void	*sprite_w;
-	char	*str_floor;
-	char	*str_ceiling;
 	int		floor;
 	int		ceiling;
 }				t_graph;
@@ -59,7 +57,7 @@ typedef struct s_game
 void	ft_print_error(char *err);
 
 //parsing.c
-void	ft_parsing(int argc, char **argv);
+void	ft_parsing(int argc, char **argv, t_game *game);
 
 // get_next_line.c
 char	*get_next_line(int fd);
@@ -69,7 +67,6 @@ void	l_free_tab(char **tab);
 void	*ft_xmalloc(size_t size);
 
 // init_game.c
-void ft_init_game(t_game *game);
-
+void	ft_init_game(t_game *game);
 
 #endif

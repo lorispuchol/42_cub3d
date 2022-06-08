@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/07 19:35:45 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/08 23:59:48 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-
-void ft_init_player(t_game *game)
+void	ft_init_player(t_game *game)
 {
-	t_player player;
+	t_player	player;
 
 	player.x = 0;
 	player.y = 0;
@@ -23,11 +22,10 @@ void ft_init_player(t_game *game)
 	game->player = &player;
 }
 
-
-void ft_init_graph(t_game *game)
+void	ft_init_graph(t_game *game)
 {
-	t_graph graph;
-	
+	t_graph	graph;
+
 	graph.north = NULL;
 	graph.south = NULL;
 	graph.est = NULL;
@@ -43,7 +41,7 @@ void ft_init_graph(t_game *game)
 	game->graph = &graph;
 }
 
-void ft_init_game(t_game *game)
+void	ft_init_game(t_game *game)
 {
 	game->map = NULL;
 	game->mlx_ptr = NULL;
