@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/08 23:59:48 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/09 14:19:55 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_init_graph(t_game *game)
 	graph.sprite_s = NULL;
 	graph.sprite_e = NULL;
 	graph.sprite_w = NULL;
-	graph.str_ceiling = NULL;
-	graph.str_floor = NULL;
 	graph.floor = 0;
 	graph.ceiling = 0;
 	game->graph = &graph;
