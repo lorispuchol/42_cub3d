@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 14:41:33 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 14:53:02 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	l_free_tab(char **tab);
 void	*ft_xmalloc(size_t size);
 char	*l_add_char(char *str, char c);
 
+// get_data_map.c
+void	ft_get_textures(char *line, t_game *game);
 
 // init_game.c
 void	ft_init_game(t_game *game);
