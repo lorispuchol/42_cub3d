@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 14:53:15 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 18:26:19 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,57 @@ void	check_file_map(int argc, char **argv)
 {
 	int	lenargv;
 
-	if (argc != 2)
-		exit(0);
+	if (argc < 2)
+		ft_print_error("Error\nMissing map file\n");
+	if (argc > 2)
+		ft_print_error("Error\nToo many parametres\n");
 	lenargv = ft_strlen(argv[1]);
 	if (argv[1][lenargv - 4] != '.' || argv[1][lenargv - 3] != 'c'
 			|| argv[1][lenargv - 2] != 'u' || argv[1][lenargv - 1] != 'b')
 		ft_print_error("Error\nThe map is not a '.cub' file\n");
 }
 
+int empty_line(char *line)
+{
+	int i;
+
+	i = -1;
+	while(line[++i])
+	{
+		if (line[i] != '\t'
+			&& line[i] != '\v'
+			&& line[i] != '\f'
+			&& line[i] != '\r'
+			&& line[i] != ' '
+			&& line[i] != '\n')
+			return(EXIT_FAILURE);
+	}
+	return(EXIT_SUCCESS);
+}
+
 void	ft_get_data(int fd, t_game *game)
 {
 	int		index;
 	char	*line;
-
+	
 	index = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
 		while (index < 6 && line)
 		{
-			ft_get_textures(line, game);
+			if (empty_line(line) == EXIT_FAILURE)
+			{
+				ft_get_textures(line, game);
+				index++;
+			}
 			free(line);
 			line = get_next_line(fd);
-			index++;
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	l_non_null_value(game);
 }
 
 void	check_valid_map(char *file, t_game *game)

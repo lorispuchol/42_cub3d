@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:34:45 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/09 14:47:30 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 17:32:26 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_xmalloc(size_t size)
 
 	address = malloc(size);
 	if (!address)
-		ft_print_error("malloc error\n");
+		ft_print_error("ft_xmalloc error\n");
 	return (address);
 }
 
@@ -43,12 +43,12 @@ char	*l_add_char(char *str, char c)
 		return (NULL);
 	if (!str)
 	{
-		str_out = malloc(sizeof(char) * 2);
+		str_out = ft_xmalloc(sizeof(char) * 2);
 		str_out[0] = c;
 		str_out[1] = '\0';
 		return (str_out);
 	}
-	str_out = malloc((ft_strlen(str) + 2) * sizeof(char));
+	str_out = ft_xmalloc((ft_strlen(str) + 2) * sizeof(char));
 	i = -1;
 	while (str[++i])
 		str_out[i] = str[i];

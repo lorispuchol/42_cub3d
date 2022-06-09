@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 14:53:02 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 15:40:13 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_graph
 {
 	char	*north;
 	char	*south;
-	char	*est;
+	char	*east;
 	char	*west;
 	void	*sprite_n;
 	void	*sprite_s;
@@ -68,7 +68,9 @@ void	*ft_xmalloc(size_t size);
 char	*l_add_char(char *str, char c);
 
 // get_data_map.c
-void	ft_get_textures(char *line, t_game *game);
+int		ft_get_textures(char *line, t_game *game);
+void	l_non_null_value(t_game *game);
+
 
 // init_game.c
 void	ft_init_game(t_game *game);
