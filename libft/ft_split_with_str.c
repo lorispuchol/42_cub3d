@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_with_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/12 15:24:01 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 20:45:47 by kmammeri         ###   ########.fr       */
+/*   Created: 2022/06/09 20:46:49 by kmammeri          #+#    #+#             */
+/*   Updated: 2022/06/09 22:10:02 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_countword(char const *str, char c)
+static int	ft_countword(char const *str, char *sep)
 {
 	int	i;
 	int	countword;
 
 	i = 0;
+	if (!sep)
+		return (1);
 	countword = 0;
 	while (str[i])
 	{
-		while (str[i] == c && str[i])
+		while (ft_strchr(sep, str[i]) && str[i])
 		{
 			i++;
 		}
-		while (str[i] != c && str[i])
+		while (!ft_strchr(sep, str[i]) && str[i])
 		{
 			i++;
 		}
-		if (str[i - 1] != c)
+		if (!ft_strchr(sep, str[i - 1]))
 			countword++;
-		while (str[i] == c && str[i])
+		while (ft_strchr(sep, str[i]) && str[i])
 		{
 			i++;
 		}
@@ -39,33 +41,41 @@ static int	ft_countword(char const *str, char c)
 	return (countword);
 }
 
-static int	ft_countchar(char const *str, char c, int startword)
+static int	ft_countchar(char const *str, char *sep, int startwd)
 {
 	int	lenword;
 
 	lenword = 0;
-	while (str[startword + lenword] != c && str[startword + lenword])
+	if (!sep)
+	{
+		while (str[startwd + lenword])
+			lenword++;
+		return (lenword);
+	}
+	while (!ft_strchr(sep, str[startwd + lenword]) && str[startwd + lenword])
 		lenword++;
 	return (lenword);
 }
 
-static int	ft_startword(char const *str, char c, int nbword)
+static int	ft_startword(char const *str, char *sep, int nbword)
 {
 	int	i;
 	int	word;
 
 	i = 0;
 	word = 0;
+	if (!sep)
+		return (0);
 	while (str[i])
 	{
-		while (str[i] == c && str[i])
+		while (ft_strchr(sep, str[i]) && str[i])
 			i++;
 		word++;
 		if (word == nbword + 1)
 			return (i);
-		while (str[i] != c && str[i])
+		while (!ft_strchr(sep, str[i]) && str[i])
 			i++;
-		while (str[i] == c && str[i])
+		while (ft_strchr(sep, str[i]) && str[i])
 			i++;
 	}
 	return (0);
@@ -84,7 +94,7 @@ static void	ft_freeall(char **str)
 	free(str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split_with_str(char const *s, char *sep)
 {
 	char	**strsplit;
 	int		i;
@@ -92,13 +102,13 @@ char	**ft_split(char const *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	strsplit = malloc(sizeof(char *) * (ft_countword(s, c) + 1));
+	strsplit = malloc(sizeof(char *) * (ft_countword(s, sep) + 1));
 	if (!strsplit)
 		return (NULL);
-	while (i < ft_countword(s, c))
+	while (i < ft_countword(s, sep))
 	{
-		strsplit[i] = ft_substr(s, ft_startword(s, c, i), \
-		ft_countchar(s, c, ft_startword(s, c, i)));
+		strsplit[i] = ft_substr(s, ft_startword(s, sep, i), \
+		ft_countchar(s, sep, ft_startword(s, sep, i)));
 		if (!strsplit[i])
 			ft_freeall(strsplit);
 		i++;

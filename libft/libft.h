@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 15:07:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/01/15 15:32:08 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/09 22:22:38 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_stack
 }				t_stack;
 
 int				ft_atoi(const char *str);
+unsigned int	ft_atoi_strict(const char *str);
 void			ft_bzero(void *pointer, size_t count);
 void			*ft_calloc(size_t elementCount, size_t elementSize);
 int				ft_isalnum(int a);
@@ -54,6 +55,7 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char *s1, char *s2);
 char			*ft_strtrim(char const *s1, char const *set);
 char			**ft_split(char const *s, char c);
+char			**ft_split_with_str(char const *s, char *sep);
 char			*ft_itoa(int n);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 15:40:13 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 22:17:48 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@
 
 typedef struct s_graph
 {
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	void	*sprite_n;
-	void	*sprite_s;
-	void	*sprite_e;
-	void	*sprite_w;
-	int		floor;
-	int		ceiling;
+	char				*north;
+	char				*south;
+	char				*east;
+	char				*west;
+	void				*sprite_n;
+	void				*sprite_s;
+	void				*sprite_e;
+	void				*sprite_w;
+	unsigned int		floor;
+	unsigned int		ceiling;
 }				t_graph;
 
 typedef struct s_player

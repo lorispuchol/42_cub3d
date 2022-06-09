@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 18:26:19 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/09 22:02:17 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	check_file_map(int argc, char **argv)
 		ft_print_error("Error\nThe map is not a '.cub' file\n");
 }
 
-int empty_line(char *line)
+int	empty_line(char *line)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while(line[++i])
+	while (line[++i])
 	{
 		if (line[i] != '\t'
 			&& line[i] != '\v'
@@ -39,16 +39,16 @@ int empty_line(char *line)
 			&& line[i] != '\r'
 			&& line[i] != ' '
 			&& line[i] != '\n')
-			return(EXIT_FAILURE);
+			return (EXIT_FAILURE);
 	}
-	return(EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }
 
 void	ft_get_data(int fd, t_game *game)
 {
 	int		index;
 	char	*line;
-	
+
 	index = 0;
 	line = get_next_line(fd);
 	while (line)
