@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:50:03 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/09 22:20:05 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/11 11:59:50 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	l_non_null_value(t_game *game)
 		|| !game->graph->south
 		|| !game->graph->east
 		|| !game->graph->west
-		|| game->graph->ceiling == -1
-		|| game->graph->floor == -1)
+		|| game->graph->ceiling < 0x00FFFFFF
+		|| game->graph->floor <= 0x00FFFFFF)
 		ft_print_error("Error\nMissing texture in the '.cub' file\n");
 }
 
@@ -59,13 +59,16 @@ int	ft_is_a_texture(char *line, char *initials, char **texture)
 
 int	ft_is_a_color(char *line, char *initials, unsigned int *color)
 {
-	int		i;
-	char	**colors;
-	int		r;
-	int		g;
-	int		b;
+	int				i;
+	char			**colors;
+	int				r;
+	int				g;
+	int				b;
+	unsigned long int	t;
 
 	i = 1;
+	t = 255 * 256 * 256;
+	t = t * 256;
 	if (ft_strncmp(line, initials, 1) == 0 && *color < 0xFF)
 	{
 		if (!ft_strchr(" \t\v\f\r\n", line[i]))
@@ -82,9 +85,9 @@ int	ft_is_a_color(char *line, char *initials, unsigned int *color)
 		r = ft_atoi_strict(colors[0]);
 		g = ft_atoi_strict(colors[1]);
 		b = ft_atoi_strict(colors[2]);
-		*color = r + g * 16 + b * 16 * 16 + 255 * 16 * 16 * 16;
-		dprintf(2, "color == %d\n", *color);
-		dprintf(2, "color == %d\n", 0xFFFFFFFF);
+		*color = r + g * 256 + b * 256 * 256 + t;
+		dprintf(2, "color == %u\n", *color);
+		dprintf(2, "color == %u\n", 0xFFFFFFFF);
 		l_free_tab(colors);
 		return (EXIT_SUCCESS);
 	}
