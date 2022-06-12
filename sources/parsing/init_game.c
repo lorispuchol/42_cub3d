@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/12 13:11:01 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:16:58 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_init_player(t_game *game)
 
 void	ft_init_graph(t_game *game)
 {
-
 	game->graph = ft_xmalloc(sizeof(t_graph));
 	game->graph->north = NULL;
 	game->graph->south = NULL;

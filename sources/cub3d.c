@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 13:14:53 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:17:43 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_free_game(t_game *game)
 {
 	if (game)
 	{
-		if(game->graph)
+		if (game->graph)
 		{
 			if (game->graph->east)
 				free(game->graph->east);
@@ -28,7 +28,7 @@ void	ft_free_game(t_game *game)
 				free(game->graph->south);
 			free(game->graph);
 		}
-		if(game->player)
+		if (game->player)
 		{
 			free(game->player);
 			game->player = NULL;
@@ -45,7 +45,6 @@ void	ft_print_error(char *err, t_game *game)
 	ft_free_game(game);
 	exit(EXIT_FAILURE);
 }
-
 
 int	main(int argc, char **argv)
 {
