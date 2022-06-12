@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 22:02:17 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/12 12:42:06 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	check_file_map(int argc, char **argv)
+void	check_file_map(int argc, char **argv, t_game *game)
 {
 	int	lenargv;
 
 	if (argc < 2)
-		ft_print_error("Error\nMissing map file\n");
+		ft_print_error("Error\nMissing map file\n", game);
 	if (argc > 2)
-		ft_print_error("Error\nToo many parametres\n");
+		ft_print_error("Error\nToo many parametres\n", game);
 	lenargv = ft_strlen(argv[1]);
 	if (argv[1][lenargv - 4] != '.' || argv[1][lenargv - 3] != 'c'
 			|| argv[1][lenargv - 2] != 'u' || argv[1][lenargv - 1] != 'b')
-		ft_print_error("Error\nThe map is not a '.cub' file\n");
+		ft_print_error("Error\nThe map is not a '.cub' file\n", game);
 }
 
 int	empty_line(char *line)
@@ -75,12 +75,12 @@ void	check_valid_map(char *file, t_game *game)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_print_error("Error\nImpossible to open file\n");
+		ft_print_error("Error\nImpossible to open file\n", game);
 	ft_get_data(fd, game);
 }
 
 void	ft_parsing(int argc, char **argv, t_game *game)
 {
-	check_file_map(argc, argv);
+	check_file_map(argc, argv, game);
 	check_valid_map(argv[1], game);
 }

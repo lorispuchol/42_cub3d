@@ -6,7 +6,7 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:34:45 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/09 17:32:26 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 12:39:44 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	*ft_xmalloc(size_t size)
 
 	address = malloc(size);
 	if (!address)
-		ft_print_error("ft_xmalloc error\n");
+		ft_print_error("ft_xmalloc error\n", NULL);
 	return (address);
 }
 

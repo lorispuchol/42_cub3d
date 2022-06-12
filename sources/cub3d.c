@@ -6,22 +6,46 @@
 /*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/09 17:47:27 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:14:53 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ft_print_error(char *err)
+void	ft_free_game(t_game *game)
 {
+	if (game)
+	{
+		if(game->graph)
+		{
+			if (game->graph->east)
+				free(game->graph->east);
+			if (game->graph->north)
+				free(game->graph->north);
+			if (game->graph->west)
+				free(game->graph->west);
+			if (game->graph->south)
+				free(game->graph->south);
+			free(game->graph);
+		}
+		if(game->player)
+		{
+			free(game->player);
+			game->player = NULL;
+		}
+		free(game);
+		game = NULL;
+	}
+}
+
+void	ft_print_error(char *err, t_game *game)
+{
+	(void)game;
 	ft_putstr_fd(err, 2);
+	ft_free_game(game);
 	exit(EXIT_FAILURE);
 }
 
-void	ft_free_game(t_game *game)
-{
-	(void) game;
-}
 
 int	main(int argc, char **argv)
 {
@@ -35,8 +59,8 @@ int	main(int argc, char **argv)
 	dprintf(2, "south : %s\n", game->graph->south);
 	dprintf(2, "east : %s\n", game->graph->east);
 	dprintf(2, "west : %s\n", game->graph->west);
-	dprintf(2, "ceiling : %d\n", game->graph->ceiling);
-	dprintf(2, "floor : %d\n", game->graph->floor);
+	dprintf(2, "ceiling : %u\n", game->graph->ceiling);
+	dprintf(2, "floor : %u\n", game->graph->floor);
 	*/
 	ft_free_game(game);
 }
