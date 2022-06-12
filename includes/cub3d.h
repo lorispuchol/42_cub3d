@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 12:39:23 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:25:00 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_parsing(int argc, char **argv, t_game *game);
 char	*get_next_line(int fd);
 
 // utils.c
-void	l_free_tab(char **tab);
+int		l_free_tab(char **tab);
 void	*ft_xmalloc(size_t size);
 char	*l_add_char(char *str, char c);
 

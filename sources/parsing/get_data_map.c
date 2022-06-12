@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:50:03 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/12 13:14:26 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:23:28 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	l_non_null_value(t_game *game)
 		ft_print_error("Error\nMissing texture in the '.cub' file\n", game);
 }
 
-
 int	ft_is_a_texture(char *line, char *initials, char **texture, t_game *game)
 {
 	int	i;
@@ -38,7 +37,7 @@ int	ft_is_a_texture(char *line, char *initials, char **texture, t_game *game)
 	if (ft_strncmp(line, initials, 2) == 0 && !*texture)
 	{
 		if (!ft_strchr(" \t\v\f\r\n", line[i]))
-			ft_print_error("Error\nUnreadable texture in the '.cub' file\n", game);
+			ft_print_error("Error\nUnreadable texture\n", game);
 		while (ft_strchr(" \t\v\f\r\n", line[i]))
 			i++;
 		while (!ft_strchr(" \t\v\f\r\n", line[i]))
@@ -49,11 +48,11 @@ int	ft_is_a_texture(char *line, char *initials, char **texture, t_game *game)
 		while (ft_strchr(" \t\v\f\r\n", line[i]))
 			i++;
 		if (line[i] && !*texture)
-			ft_print_error("Error\nUnreadable texture in the '.cub' file\n", game);
+			ft_print_error("Error\nUnreadable texture\n", game);
 		return (EXIT_SUCCESS);
 	}
 	else if (ft_strncmp(line, initials, 2) == 0 && *texture)
-		ft_print_error("Error\nDouble texture in the '.cub' file\n", game);
+		ft_print_error("Error\nDouble texture\n", game);
 	return (EXIT_FAILURE);
 }
 
@@ -69,21 +68,20 @@ int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 	if (ft_strncmp(line, initials, 1) == 0 && *color < 0xFF)
 	{
 		if (!ft_strchr(" \t\v\f\r\n", line[i]))
-			ft_print_error("Error\nUnreadable texture in the '.cub' file\n", game);
+			ft_print_error("Error\nUnreadable texture\n", game);
 		while (ft_strchr(" \t\v\f\r\n", line[i]))
 			i++;
 		colors = ft_split_with_str(line + i, ", \t\v\f\r\n");
 		if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
-			ft_print_error("Error\naaUnreadable color in the '.cub' file\n", game);
+			ft_print_error("Error\nUnreadable color\n", game);
 		r = ft_atoi_strict(colors[0]);
 		g = ft_atoi_strict(colors[1]);
 		b = ft_atoi_strict(colors[2]);
 		*color = r + g * 256 + b * 256 * 256 + 0xFF000000;
-		l_free_tab(colors);
-		return (EXIT_SUCCESS);
+		return (EXIT_SUCCESS + l_free_tab(colors));
 	}
 	else if (ft_strncmp(line, initials, 1) == 0 && *color >= 0xFF)
-		ft_print_error("Error\nDouble color in the '.cub' file\n", game);
+		ft_print_error("Error\nDouble color\n", game);
 	return (EXIT_FAILURE);
 }
 
@@ -108,6 +106,6 @@ int	ft_get_textures(char *line, t_game *game)
 		return (EXIT_SUCCESS);
 	if (ft_is_a_color(line + i, "C", &game->graph->ceiling, game) == 0)
 		return (EXIT_SUCCESS);
-	ft_print_error("Error\nUnexpected element in the '.cub' file\n", game);
+	ft_print_error("Error\nUnexpected element\n", game);
 	return (EXIT_FAILURE);
 }

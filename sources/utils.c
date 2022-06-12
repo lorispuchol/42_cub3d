@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 16:34:45 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/12 12:39:44 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 13:25:20 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	l_free_tab(char **tab)
+int	l_free_tab(char **tab)
 {
 	int	i;
 
 	i = -1;
 	if (!tab)
-		return ;
+		return (0);
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
+	return (0);
 }
 
 void	*ft_xmalloc(size_t size)
