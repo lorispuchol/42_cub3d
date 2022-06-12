@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 13:25:00 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:28:04 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,15 @@ int		l_free_tab(char **tab);
 void	*ft_xmalloc(size_t size);
 char	*l_add_char(char *str, char c);
 
+// check_file.c
+int		empty_line(char *line);
+
 // get_data_map.c
 int		ft_get_textures(char *line, t_game *game);
 void	l_non_null_value(t_game *game);
 
+// get_map.c
+void	ft_get_map(char *line, int fd, t_game *game);
 
 // init_game.c
 void	ft_init_game(t_game *game);

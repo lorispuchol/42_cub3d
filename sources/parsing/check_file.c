@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 16:10:37 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/12 17:27:47 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,22 @@ void	ft_get_data(int fd, t_game *game)
 
 	index = 0;
 	line = get_next_line(fd);
-	while (line)
+	while (index < 6 && line)
 	{
-		while (index < 6 && line)
+		if (empty_line(line) == EXIT_FAILURE)
 		{
-			if (empty_line(line) == EXIT_FAILURE)
-			{
-				ft_get_textures(line, game);
-				index++;
-			}
-			free(line);
-			line = get_next_line(fd);
+			ft_get_textures(line, game);
+			index++;
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
+	while (empty_line(line) == EXIT_SUCCESS)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	ft_get_map(line, fd, game);
 	l_non_null_value(game);
 }
 
@@ -77,7 +78,6 @@ void	check_valid_map(char *file, t_game *game)
 	if (fd < 0)
 		ft_print_error("Error\nImpossible to open file\n", game);
 	ft_get_data(fd, game);
-	ft_get_map(fd, game);
 }
 
 void	ft_parsing(int argc, char **argv, t_game *game)
