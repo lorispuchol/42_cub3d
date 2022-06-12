@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 13:17:43 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 14:28:24 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ int	main(int argc, char **argv)
 	game = ft_xmalloc(sizeof(t_game));
 	ft_init_game(game);
 	ft_parsing(argc, argv, game);
-	/*
-	dprintf(2, "north : %s\n", game->graph->north);
-	dprintf(2, "south : %s\n", game->graph->south);
-	dprintf(2, "east : %s\n", game->graph->east);
-	dprintf(2, "west : %s\n", game->graph->west);
-	dprintf(2, "ceiling : %u\n", game->graph->ceiling);
-	dprintf(2, "floor : %u\n", game->graph->floor);
-	*/
+	dprintf(1, "north : %s\n", game->graph->north);
+	dprintf(1, "south : %s\n", game->graph->south);
+	dprintf(1, "east : %s\n", game->graph->east);
+	dprintf(1, "west : %s\n", game->graph->west);
+	dprintf(1, "ceiling : %u\n", game->graph->ceiling);
+	dprintf(1, "floor : %u\n", game->graph->floor);
 	ft_free_game(game);
 }

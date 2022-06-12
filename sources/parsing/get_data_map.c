@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:50:03 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/12 13:23:28 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/12 16:05:46 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	l_non_null_value(t_game *game)
 {
-	dprintf(2, "north : %s\n", game->graph->north);
-	dprintf(2, "south : %s\n", game->graph->south);
-	dprintf(2, "east : %s\n", game->graph->east);
-	dprintf(2, "west : %s\n", game->graph->west);
-	dprintf(2, "ceiling : %u\n", game->graph->ceiling);
-	dprintf(2, "floor : %u\n", game->graph->floor);
+	// dprintf(1, "north : %s\n", game->graph->north);
+	// dprintf(1, "south : %s\n", game->graph->south);
+	// dprintf(1, "east : %s\n", game->graph->east);
+	// dprintf(1, "west : %s\n", game->graph->west);
+	// dprintf(1, "ceiling : %u\n", game->graph->ceiling);
+	// dprintf(1, "floor : %u\n", game->graph->floor);
 	if (!game->graph->north
 		|| !game->graph->south
 		|| !game->graph->east
@@ -36,18 +36,18 @@ int	ft_is_a_texture(char *line, char *initials, char **texture, t_game *game)
 	i = 2;
 	if (ft_strncmp(line, initials, 2) == 0 && !*texture)
 	{
-		if (!ft_strchr(" \t\v\f\r\n", line[i]))
+		if (!ft_strchr(" \t\v\f\r", line[i]))
 			ft_print_error("Error\nUnreadable texture\n", game);
-		while (ft_strchr(" \t\v\f\r\n", line[i]))
+		while (ft_strchr(" \t\v\f\r", line[i]))
 			i++;
 		while (!ft_strchr(" \t\v\f\r\n", line[i]))
 		{
 			*texture = l_add_char(*texture, line[i]);
 			i++;
 		}
-		while (ft_strchr(" \t\v\f\r\n", line[i]))
+		while (ft_strchr(" \t\v\f\r", line[i]))
 			i++;
-		if (line[i] && !*texture)
+		if (line[i] != '\n')
 			ft_print_error("Error\nUnreadable texture\n", game);
 		return (EXIT_SUCCESS);
 	}

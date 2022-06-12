@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 12:42:06 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/12 16:10:37 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	check_valid_map(char *file, t_game *game)
 	if (fd < 0)
 		ft_print_error("Error\nImpossible to open file\n", game);
 	ft_get_data(fd, game);
+	ft_get_map(fd, game);
 }
 
 void	ft_parsing(int argc, char **argv, t_game *game)
