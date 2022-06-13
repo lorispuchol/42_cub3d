@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/12 13:16:58 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/13 23:23:59 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_init_player(t_game *game)
 {
 	game->player = ft_xmalloc(sizeof(t_player));
-	game->player->x = 0;
-	game->player->y = 0;
-	game->player->dir = 0;
+	game->player->x = -1;
+	game->player->y = -1;
+	game->player->dir = -1;
 }
 
 void	ft_init_graph(t_game *game)
