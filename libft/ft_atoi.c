@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:10:56 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 18:17:35 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:01:15 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ unsigned int	ft_atoi_strict(const char *str)
 			ft_exit_atoi_strict();
 		i++;
 	}
-	// if ((res == 0 && str[i] != 0) || str[i] != '\0')
-	// 	ft_exit_atoi_strict();
 	return (res);
 }
+
+// if ((res == 0 && str[i] != 0) || str[i] != '\0')
+// 	ft_exit_atoi_strict();

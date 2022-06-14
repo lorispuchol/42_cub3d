@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 17:16:54 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:51:55 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ int		empty_line(char *line);
 int		ft_get_textures(char *line, t_game *game);
 void	l_non_null_value(t_game *game);
 
+// get_data_map_2.c
+int		ft_forward_in_color(char *line, int i, t_game *game);
+void	ft_forward_in_color_2(char *line, int i, t_game *game);
+
 // get_map.c
 void	ft_get_map(char *line, int fd, t_game *game);
 
@@ -86,7 +90,5 @@ void	ft_init_game(t_game *game);
 // check_map_closed.c
 void	ft_check_open_map(t_game *game, int x, int y);
 void	ft_square_map(t_game *game);
-
-
 
 #endif

@@ -5,6 +5,7 @@ SRCS = 	./sources/cub3d.c \
 		./sources/utils.c \
 		./sources/parsing/check_file.c \
 		./sources/parsing/get_data_map.c \
+		./sources/parsing/get_data_map_2.c \
 		./sources/parsing/get_map.c \
 		./sources/parsing/check_map.c \
 		./sources/parsing/check_open_map.c \
@@ -19,7 +20,7 @@ LIBFT = ./libft/
 
 MINILIBX = ./minilibx/
 
-CFLAGS = #-Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c ./includes/cub3d.h libft/libft.a Makefile/
 		${CC} ${CFLAGS} -c $< -o $@

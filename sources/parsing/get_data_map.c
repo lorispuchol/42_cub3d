@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:50:03 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/14 18:18:19 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:52:48 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,6 @@
 
 void	l_non_null_value(t_game *game)
 {
-	// dprintf(1, "north : %s\n", game->graph->north);
-	// dprintf(1, "south : %s\n", game->graph->south);
-	// dprintf(1, "east : %s\n", game->graph->east);
-	// dprintf(1, "west : %s\n", game->graph->west);
-	// dprintf(1, "ceiling : %u\n", game->graph->ceiling);
-	// dprintf(1, "floor : %u\n", game->graph->floor);
 	if (!game->graph->north
 		|| !game->graph->south
 		|| !game->graph->east
@@ -56,27 +50,10 @@ int	ft_is_a_texture(char *line, char *initials, char **texture, t_game *game)
 	return (EXIT_FAILURE);
 }
 
-int ft_forward_in_color(char *line, int i, t_game *game)
-{
-	while (ft_strchr(" \t\v\f\r\n", line[i]))
-		i++;
-	while (ft_strchr("0123456789", line[i]))
-		i++;
-	while (ft_strchr(" \t\v\f\r\n", line[i]))
-		i++;
-	if(line[i] != ',')
-		ft_print_error("Error\n1Unreadable color\n", game);
-	i++;
-	return (i);
-}
-
 int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 {
 	int				i;
-	char			**colors;
-	int				r;
-	int				g;
-	int				b;
+	int				rgb[3];
 
 	i = 1;
 	if (ft_strncmp(line, initials, 1) == 0 && *color < 0xFF)
@@ -85,14 +62,16 @@ int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 			ft_print_error("Error\nUnreadable color\n", game);
 		while (ft_strchr(" \t\v\f\r\n", line[i]))
 			i++;
-		r = ft_atoi_strict(line + i);
+		if (!ft_strchr("0123456789", line[i]))
+			ft_print_error("Error\nUnreadable color\n", game);
+		rgb[0] = ft_atoi_strict(line + i);
 		i = ft_forward_in_color(line, i, game);
-		g = ft_atoi_strict(line + i);
+		rgb[1] = ft_atoi_strict(line + i);
 		i = ft_forward_in_color(line, i, game);
-		b = ft_atoi_strict(line + i);
-		// i = ft_forward_in_color(line, i, game);
-		*color = r + g * 256 + b * 256 * 256 + 0xFF000000;
-		return (EXIT_SUCCESS + l_free_tab(colors));
+		rgb[2] = ft_atoi_strict(line + i);
+		ft_forward_in_color_2(line, i, game);
+		*color = rgb[0] + rgb[1] * 256 + rgb[2] * 256 * 256 + 0xFF000000;
+		return (EXIT_SUCCESS);
 	}
 	else if (ft_strncmp(line, initials, 1) == 0 && *color >= 0xFF)
 		ft_print_error("Error\nDouble color\n", game);

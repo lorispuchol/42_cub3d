@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 17:10:57 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 19:34:59 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,4 @@ void	ft_parsing(int argc, char **argv, t_game *game)
 {
 	check_file_map(argc, argv, game);
 	check_valid_map(argv[1], game);
-	
 }

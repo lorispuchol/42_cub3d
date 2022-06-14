@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:48:00 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 17:45:44 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 20:04:58 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,4 @@ void	ft_check_map(t_game *game)
 	ft_check_multiple_map(game);
 	ft_check_multiple_spawn(game);
 	ft_check_open_map(game, -1, -1);
-	dprintf(2, "y player == %f\n", game->player->y);
-	dprintf(2, "x player == %f\n", game->player->x);
 }
