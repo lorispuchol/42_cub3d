@@ -6,3 +6,4 @@ cub3D
 a.out
 */*.json
 *.vscode
+*.vscode/
