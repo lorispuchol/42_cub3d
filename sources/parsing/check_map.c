@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:48:00 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/13 23:32:11 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:45:44 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ void	ft_check_forbidden_char(t_game *game)
 	}
 }
 
+void	ft_get_player_pos(t_game *game, int x, int y)
+{
+	game->player->x = x;
+	game->player->y = y;
+	if (game->map[y][x] == 'N')
+		game->player->dir = M_PI / 2;
+	if (game->map[y][x] == 'S')
+		game->player->dir = -M_PI / 2;
+	if (game->map[y][x] == 'E')
+		game->player->dir = 0;
+	if (game->map[y][x] == 'W')
+		game->player->dir = M_PI;
+	game->map[y][x] = '0';
+}
+
 void	ft_check_multiple_spawn(t_game *game)
 {
 	int	x;
@@ -45,16 +60,15 @@ void	ft_check_multiple_spawn(t_game *game)
 			if (ft_strchr("NSEW", game->map[y][x]))
 			{
 				if (game->player->x != -1)
-					ft_print_error("Error\nInvalide map\n", game);
-				game->player->x = x;
-				game->player->y = y;
-				// if (game->map[y][x] == 'N')
-				// 	game->player->dir = pi /
+					ft_print_error("Error\nMultiple spawn in the map\n", game);
+				ft_get_player_pos(game, x, y);
 			}
 			x++;
 		}
 		y++;
 	}
+	if (game->player->x == -1)
+		ft_print_error("Error\nNo spawn in the map\n", game);
 }
 
 void	ft_check_multiple_map(t_game *game)
@@ -79,4 +93,7 @@ void	ft_check_map(t_game *game)
 	ft_check_forbidden_char(game);
 	ft_check_multiple_map(game);
 	ft_check_multiple_spawn(game);
+	ft_check_open_map(game, -1, -1);
+	dprintf(2, "y player == %f\n", game->player->y);
+	dprintf(2, "x player == %f\n", game->player->x);
 }

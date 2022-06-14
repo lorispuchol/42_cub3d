@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/12 16:11:52 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 18:29:22 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:33:26 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void	ft_add_line(t_game *game, char *line)
 	if (!game->map)
 	{
 		game->map = ft_xmalloc(sizeof(char *) * 2);
-		game->map[0] = line;
+		game->map[0] = ft_strtrim(line, "\n");
+		free(line);
 		game->map[1] = NULL;
+		return ;
 	}
 	i = 0;
 	while (game->map[i])
@@ -30,7 +32,8 @@ void	ft_add_line(t_game *game, char *line)
 	i = -1;
 	while (game->map[++i])
 		map_new[i] = game->map[i];
-	map_new[i] = line;
+	map_new[i] = ft_strtrim(line, "\n");
+	free(line);
 	map_new[i + 1] = NULL;
 	free(game->map);
 	game->map = map_new;

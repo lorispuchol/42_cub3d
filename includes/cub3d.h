@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/13 22:52:30 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:16:54 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,11 @@ void	ft_check_map(t_game *game);
 
 // init_game.c
 void	ft_init_game(t_game *game);
+
+// check_map_closed.c
+void	ft_check_open_map(t_game *game, int x, int y);
+void	ft_square_map(t_game *game);
+
+
 
 #endif

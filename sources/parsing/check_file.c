@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/13 22:47:28 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:10:57 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_get_data(int fd, t_game *game)
 		line = get_next_line(fd);
 	}
 	ft_get_map(line, fd, game);
+	ft_square_map(game);
 	ft_check_map(game);
 	l_non_null_value(game);
 }
@@ -85,4 +86,5 @@ void	ft_parsing(int argc, char **argv, t_game *game)
 {
 	check_file_map(argc, argv, game);
 	check_valid_map(argv[1], game);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:50:03 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/13 23:19:03 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 18:18:19 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@ int	ft_is_a_texture(char *line, char *initials, char **texture, t_game *game)
 	return (EXIT_FAILURE);
 }
 
+int ft_forward_in_color(char *line, int i, t_game *game)
+{
+	while (ft_strchr(" \t\v\f\r\n", line[i]))
+		i++;
+	while (ft_strchr("0123456789", line[i]))
+		i++;
+	while (ft_strchr(" \t\v\f\r\n", line[i]))
+		i++;
+	if(line[i] != ',')
+		ft_print_error("Error\n1Unreadable color\n", game);
+	i++;
+	return (i);
+}
+
 int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 {
 	int				i;
@@ -68,15 +82,15 @@ int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 	if (ft_strncmp(line, initials, 1) == 0 && *color < 0xFF)
 	{
 		if (!ft_strchr(" \t\v\f\r\n", line[i]))
-			ft_print_error("Error\nUnreadable texture\n", game);
+			ft_print_error("Error\nUnreadable color\n", game);
 		while (ft_strchr(" \t\v\f\r\n", line[i]))
 			i++;
-		colors = ft_split_with_str(line + i, ", \t\v\f\r\n");
-		if (!colors || !colors[0] || !colors[1] || !colors[2] || colors[3])
-			ft_print_error("Error\nUnreadable color\n", game);
-		r = ft_atoi_strict(colors[0]);
-		g = ft_atoi_strict(colors[1]);
-		b = ft_atoi_strict(colors[2]);
+		r = ft_atoi_strict(line + i);
+		i = ft_forward_in_color(line, i, game);
+		g = ft_atoi_strict(line + i);
+		i = ft_forward_in_color(line, i, game);
+		b = ft_atoi_strict(line + i);
+		// i = ft_forward_in_color(line, i, game);
 		*color = r + g * 256 + b * 256 * 256 + 0xFF000000;
 		return (EXIT_SUCCESS + l_free_tab(colors));
 	}

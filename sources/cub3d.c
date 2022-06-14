@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/12 17:24:31 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/14 17:34:51 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int	main(int argc, char **argv)
 	game = ft_xmalloc(sizeof(t_game));
 	ft_init_game(game);
 	ft_parsing(argc, argv, game);
+	int i = -1;
+	while (game->map[++i])
+	{
+		dprintf(1, "%s\n", game->map[i]);
+	}
 /*	
 	dprintf(1, "north : %s\n", game->graph->north);
 	dprintf(1, "south : %s\n", game->graph->south);

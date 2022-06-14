@@ -7,6 +7,7 @@ SRCS = 	./sources/cub3d.c \
 		./sources/parsing/get_data_map.c \
 		./sources/parsing/get_map.c \
 		./sources/parsing/check_map.c \
+		./sources/parsing/check_open_map.c \
 		./get_next_line/get_next_line.c \
 		./get_next_line/get_next_line_utils.c \
 
