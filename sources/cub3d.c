@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 20:05:31 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/15 00:04:09 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ void	ft_free_game(t_game *game)
 	}
 }
 
+int	ft_exit_game(t_game *game)
+{
+	ft_free_game(game);
+	exit(EXIT_SUCCESS);
+}
+
 void	ft_print_error(char *err, t_game *game)
 {
 	(void)game;
@@ -65,5 +71,6 @@ int	main(int argc, char **argv)
 	dprintf(1, "floor : %u\n", game->graph->floor);
 	dprintf(1, "y player == %f\n", game->player->y);
 	dprintf(1, "x player == %f\n", game->player->x);
+	ft_init_mlx(game);
 	ft_free_game(game);
 }

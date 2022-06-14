@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 19:51:55 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/15 00:03:53 by kmammeri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,14 @@ typedef struct s_game
 	void		*mlx_window;
 	int			w_height;
 	int			w_width;
+	int			fov;
+	float		r_h;
+	float		r_v;
 }				t_game;
 
 //cub3d.c
 void	ft_print_error(char *err, t_game *game);
+int		ft_exit_game(t_game *game);
 
 //parsing.c
 void	ft_parsing(int argc, char **argv, t_game *game);
@@ -90,5 +94,8 @@ void	ft_init_game(t_game *game);
 // check_map_closed.c
 void	ft_check_open_map(t_game *game, int x, int y);
 void	ft_square_map(t_game *game);
+
+// init_mlx.c
+void	ft_init_mlx(t_game *game);
 
 #endif

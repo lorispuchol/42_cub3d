@@ -1,16 +1,17 @@
 NAME = cub3D
 
-SRCS = 	./sources/cub3d.c \
-		./sources/parsing/init_game.c \
-		./sources/utils.c \
-		./sources/parsing/check_file.c \
-		./sources/parsing/get_data_map.c \
-		./sources/parsing/get_data_map_2.c \
-		./sources/parsing/get_map.c \
-		./sources/parsing/check_map.c \
-		./sources/parsing/check_open_map.c \
-		./get_next_line/get_next_line.c \
-		./get_next_line/get_next_line_utils.c \
+SRCS = 	./sources/cub3d.c 						\
+		./sources/execution/init_mlx.c 			\
+		./sources/parsing/init_game.c 			\
+		./sources/utils.c 						\
+		./sources/parsing/check_file.c 			\
+		./sources/parsing/get_data_map.c 		\
+		./sources/parsing/get_data_map_2.c 		\
+		./sources/parsing/get_map.c				\
+		./sources/parsing/check_map.c 			\
+		./sources/parsing/check_open_map.c 		\
+		./get_next_line/get_next_line.c 		\
+		./get_next_line/get_next_line_utils.c 	\
 
 OBJS = ${SRCS:.c=.o}
 
