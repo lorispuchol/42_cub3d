@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/15 00:03:53 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/15 18:02:59 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,36 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+typedef struct s_2dpoint
+{
+	int	x;
+	int	y;
+}			t_2dpoint;
+
+typedef struct s_rectangle
+{
+	t_2dpoint	tl;
+	t_2dpoint	br;
+}			t_rectangle;
+
+typedef struct s_triangle
+{
+	t_2dpoint	a;
+	t_2dpoint	b;
+	t_2dpoint	c;
+}			t_triangle;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		b_p_pix;
+	int		l_len;
+	int		endian;
+	int		width;
+	int		height;
+}				t_data;
 
 typedef struct s_graph
 {
@@ -49,8 +79,10 @@ typedef struct s_game
 	char		**map;
 	void		*mlx_ptr;
 	void		*mlx_window;
-	int			w_height;
-	int			w_width;
+	t_data		*mn_map;
+	t_data		*screen;
+	int			w_he;
+	int			w_wi;
 	int			fov;
 	float		r_h;
 	float		r_v;
@@ -97,5 +129,13 @@ void	ft_square_map(t_game *game);
 
 // init_mlx.c
 void	ft_init_mlx(t_game *game);
+
+// mini_map.c
+void	ft_create_mini_map(t_game *g);
+void	ft_set_pix(t_data *data, int x, int y, int color);
+
+// geometrie.c
+void	ft_vertical_line(t_data *img, t_2dpoint top, t_2dpoint bot, int color);
+void	ft_rectangle(t_data *img, t_rectangle rect, int color);
 
 #endif

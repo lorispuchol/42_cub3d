@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/15 00:04:36 by kmammeri         ###   ########.fr       */
+/*   Updated: 2022/06/15 15:18:28 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "../../includes/cub3d.h"
 
-void	ft_init_mlx(t_game *game)
+void	ft_init_mlx(t_game *g)
 {
-	game->mlx_ptr = mlx_init();
-	game->mlx_window = mlx_new_window(game->mlx_ptr, game->w_width,
-			game->w_height, "cub3D");
-	mlx_hook(game->mlx_window, 17, 1L << 17, ft_exit_game, game);
-	mlx_loop(game->mlx_ptr);
+	g->mlx_ptr = mlx_init();
+	g->mlx_window = mlx_new_window(g->mlx_ptr, g->w_wi, g->w_he, "cub3D");
+	ft_create_mini_map(g);
+	mlx_hook(g->mlx_window, 17, 1L << 17, ft_exit_game, g);
+	mlx_loop(g->mlx_ptr);
 }

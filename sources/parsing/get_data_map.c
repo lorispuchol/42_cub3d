@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_data_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 14:50:03 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/14 19:52:48 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/15 16:00:25 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	l_non_null_value(t_game *game)
 		|| !game->graph->south
 		|| !game->graph->east
 		|| !game->graph->west
-		|| game->graph->ceiling < 0x00FFFFFF
-		|| game->graph->floor <= 0x00FFFFFF)
+		|| game->graph->ceiling >= 0xFF000000
+		|| game->graph->floor >= 0xFF000000)
 		ft_print_error("Error\nMissing texture in the '.cub' file\n", game);
 }
 
@@ -56,7 +56,7 @@ int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 	int				rgb[3];
 
 	i = 1;
-	if (ft_strncmp(line, initials, 1) == 0 && *color < 0xFF)
+	if (ft_strncmp(line, initials, 1) == 0 && *color >= 0xFF)
 	{
 		if (!ft_strchr(" \t\v\f\r\n", line[i]))
 			ft_print_error("Error\nUnreadable color\n", game);
@@ -70,10 +70,10 @@ int	ft_is_a_color(char *line, char *initials, unsigned int *color, t_game *game)
 		i = ft_forward_in_color(line, i, game);
 		rgb[2] = ft_atoi_strict(line + i);
 		ft_forward_in_color_2(line, i, game);
-		*color = rgb[0] + rgb[1] * 256 + rgb[2] * 256 * 256 + 0xFF000000;
+		*color = rgb[0] + rgb[1] * 256 + rgb[2] * 256 * 256;
 		return (EXIT_SUCCESS);
 	}
-	else if (ft_strncmp(line, initials, 1) == 0 && *color >= 0xFF)
+	else if (ft_strncmp(line, initials, 1) == 0 && *color < 0xFF)
 		ft_print_error("Error\nDouble color\n", game);
 	return (EXIT_FAILURE);
 }
