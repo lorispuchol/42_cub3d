@@ -1,6 +1,7 @@
 NAME = cub3D
 
 SRCS = 	./sources/cub3d.c 						\
+		./sources/free.c 						\
 		./sources/execution/init_mlx.c 			\
 		./sources/execution/mini_map.c 			\
 		./sources/execution/geometry.c 			\

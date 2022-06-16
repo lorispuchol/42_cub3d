@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/15 18:02:59 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 13:13:49 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,9 @@ typedef struct s_game
 	float		r_h;
 	float		r_v;
 }				t_game;
+
+// free.c
+void	ft_free_game(t_game *game);
 
 //cub3d.c
 void	ft_print_error(char *err, t_game *game);

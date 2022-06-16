@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:10 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/15 19:00:44 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/16 13:21:24 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,4 @@ void	ft_rectangle(t_data *img, t_rectangle rect, int color)
 
 // void	ft_triangle(t_data *img, t_triangle trgl, int color)
 // {
-	
 // }
