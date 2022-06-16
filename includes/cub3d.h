@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/16 13:13:49 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/16 17:07:16 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,6 @@ void	ft_set_pix(t_data *data, int x, int y, int color);
 // geometrie.c
 void	ft_vertical_line(t_data *img, t_2dpoint top, t_2dpoint bot, int color);
 void	ft_rectangle(t_data *img, t_rectangle rect, int color);
+void	ft_triangle(t_data *img, t_triangle trgl, int color);
 
 #endif
