@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/16 17:07:16 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/17 23:44:42 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_player
 	float	x;
 	float	y;
 	float	dir;
+	float	speed;
+	float	acc;
 }				t_player;
 
 typedef struct s_game

@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/15 18:00:43 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/18 19:35:48 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_init_mn_map(t_game *game)
 	game->mn_map->b_p_pix = 0;
 	game->mn_map->l_len = 0;
 	game->mn_map->endian = 0;
-	game->mn_map->height = game->w_wi / 11;
-	game->mn_map->width = game->w_he / 7;
+	game->mn_map->height = game->w_wi / 11 - 11;
+	game->mn_map->width = game->w_he / 7 - 9;
 }
 
 void	ft_init_player(t_game *game)
@@ -30,6 +30,8 @@ void	ft_init_player(t_game *game)
 	game->player->x = -1;
 	game->player->y = -1;
 	game->player->dir = -1;
+	game->player->speed = 0;
+	game->player->acc = 0;
 }
 
 void	ft_init_graph(t_game *game)

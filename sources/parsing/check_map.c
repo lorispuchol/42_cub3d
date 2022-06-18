@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:48:00 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 20:04:58 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/06/17 23:42:28 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_check_forbidden_char(t_game *game)
 
 void	ft_get_player_pos(t_game *game, int x, int y)
 {
-	game->player->x = x;
-	game->player->y = y;
+	game->player->x = x + 0.5;
+	game->player->y = y + 0.5;
 	if (game->map[y][x] == 'N')
 		game->player->dir = M_PI / 2;
 	if (game->map[y][x] == 'S')
