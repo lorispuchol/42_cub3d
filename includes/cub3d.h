@@ -6,12 +6,15 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/17 23:44:42 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/21 18:03:54 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define COEFA 7
+# define COEFB 15
+# define COEFC 5
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -88,6 +91,7 @@ typedef struct s_game
 	int			fov;
 	float		r_h;
 	float		r_v;
+	float		rot;
 }				t_game;
 
 // free.c
@@ -142,6 +146,15 @@ void	ft_set_pix(t_data *data, int x, int y, int color);
 // geometrie.c
 void	ft_vertical_line(t_data *img, t_2dpoint top, t_2dpoint bot, int color);
 void	ft_rectangle(t_data *img, t_rectangle rect, int color);
-void	ft_triangle(t_data *img, t_triangle trgl, int color);
+void	ft_put_triangle(t_data *img, t_triangle trgl, int color);
+
+// mouvement.c
+void	ft_up(t_game *game);
+void	ft_down(t_game *game);
+void	ft_right(t_game *game);
+void	ft_left(t_game *game);
+
+// player_action.c
+int		ft_press_key(int keycode, t_game *game);
 
 #endif

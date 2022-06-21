@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 16:09:10 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/18 20:00:36 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/20 20:54:37 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_triangle	ft_order_triangle(t_triangle trgl)
 	return (trgl);
 }
 
-void	ft_triangle(t_data *img, t_triangle trgl, int color)
+void	ft_put_triangle(t_data *img, t_triangle trgl, int color)
 {
 	float		coef_dir_top;
 	float		coef_dir_bot;
