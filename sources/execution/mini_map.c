@@ -6,12 +6,11 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/28 02:26:17 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 20:14:29 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-#include <stdio.h>
 
 void	ft_set_pix(t_data *data, int x, int y, int color)
 {
@@ -21,172 +20,44 @@ void	ft_set_pix(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-// void	ft_mn_map_wall(t_game *game)
-// {
-// 	int			x[2];
-// 	int			y[2];
-// 	int			start[2];
-// 	int			offset[2];
-// 	t_rectangle	rect;
-
-// 	y[0] = floorf(game->player->y) - 6;
-// 	x[0] = floorf(game->player->x) - 5;
-// 	y[1] = floorf(game->player->y) + 6;
-// 	x[1] = floorf(game->player->x) + 5;
-// 	offset[0] = 16 * (game->player->x - 0.5 - floorf(game->player->x));
-// 	offset[1] = 16 * (game->player->y - 0.5 - floorf(game->player->y));
-// 	dprintf(2, "offset : x == %d  y == %d\n", offset[0], offset[1]);
-// 	if (y[0] < 0)
-// 		y[0] = 0;
-// 	if (x[0] < 0)
-// 		x[0] = 0;
-// 	start[0] = floorf(game->player->x) - 4;
-// 	start[1] = floorf(game->player->y) - 5;
-// 	dprintf(2, "----player : x == %d  y == %d\n", (int)game->player->x, (int)game->player->y);
-// 	while (y[0] < y[1] && game->map[y[0]])
-// 	{
-// 		x[0] = game->player->x - 5;
-// 		if (x[0] < 0)
-// 			x[0] = 0;
-// 		while (x[0] < x[1] && x[0] < (int)ft_strlen(game->map[y[0]]))
-// 		{
-// 			// dprintf(2, "----cnd : x == %d  y == %d\n", x[0], y[0]);
-// 			// if (x[0] == (int)game->player->x && y[0] == (int)game->player->y)
-// 				// dprintf(2, "------------------cnd : x == %d  y == %d\n\n\n\n", x[0], y[0]);
-// 			if (game->map[y[0]][x[0]] == '1' && x[0] >= 0 && y[0] >= 0)
-// 			{
-// 				rect.tl.x = offset[0] + (x[0] - start[0]) * 16;
-// 				rect.tl.y = offset[1] + (y[0] - start[1]) * 16;
-// 				rect.br.x = offset[0] + rect.tl.x + 16;
-// 				rect.br.y = offset[1] + rect.tl.y + 16;
-// 				// dprintf(2, "boucle tl : x == %d  y == %d\n", rect.tl.x, rect.tl.y);
-// 				// dprintf(2, "boucle br : x == %d  y == %d\n\n", rect.br.x, rect.br.y);
-// 				if (rect.tl.x >= 0 && rect.tl.y >= 0 && rect.br.x >= 0 && rect.br.y)
-// 					ft_rectangle(game->mn_map, rect, 0x00888888);
-// 			}
-// 			x[0]++;
-// 		}
-// 		y[0]++;
-// 	}
-// 	dprintf(2, "fin\n");
-// }
-
-void	ft_mn_map_wall(t_game *game)
+void
+	ft_wall_boundary_x(t_game *g, int x, t_rectangle *rect)
 {
-	int			x[2];
-	int			y[2];
-	int			offset[2];
-	t_rectangle	rect;
+	int	offsetx;
 
-	y[0] = (int)game->player->y - MNM_DP_SQR_Y;
-	y[1] = 0;
-	while (y[0] < 0)
-	{
-		y[0]++;
-		y[1]++;
-	}
-	while (game->map[y[0]] && y[0] - 1 <= (int)roundf(game->player->y) + MNM_DP_SQR_Y && y[1] * MNM_PIX_SQR <= game->mn_map->height - MNM_PIX_SQR)
-	{
-		x[0] = (int)game->player->x - MNM_DP_SQR_X;
-		x[1] = 0;
-		while (x[0] < 0)
-		{
-			x[0]++;
-			x[1]++;
-		}
-		while (game->map[y[0]][x[0]] && x[0] <= (int)roundf(game->player->x) + MNM_DP_SQR_X && x[1] * MNM_PIX_SQR <= game->mn_map->width - MNM_PIX_SQR)
-		{
-			if (game->map[y[0]][x[0]] == '1' && game->map[y[0]][x[0]])
-			{
-				offset[0] = (int)floorf((game->player->x - floorf(game->player->x)) * 10);
-				offset[1] = (int)floorf((game->player->y - floorf(game->player->y)) * 10);
-				if (offset[0] < 0 || offset[0] > 9)
-					offset[0] = 0;
-				if (offset[1] < 0 || offset[1] > 9)
-					offset[1] = 0;
-				rect.tl.x = x[1] * MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR;
-				if (rect.tl.x < 0)
-					rect.tl.x = 0;
-				if (rect.tl.x > game->mn_map->width)
-					rect.tl.x = game->mn_map->width;
-				rect.tl.y = y[1] * MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR;
-				if (rect.tl.y < 0)
-					rect.tl.y = 0;
-				if (rect.tl.y > game->mn_map->height)
-					rect.tl.y = game->mn_map->height;
-				rect.br.x = x[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR - MNP_GRID;
-				if (rect.br.x < 0)
-					rect.br.x = 0;
-				if (rect.br.x > game->mn_map->width)
-					rect.br.x = game->mn_map->width;
-				rect.br.y = y[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR - MNP_GRID;
-				if (rect.br.y < 0)
-					rect.br.y = 0;
-				if (rect.br.y > game->mn_map->height)
-					rect.br.y = game->mn_map->height;
-				ft_rectangle(game->mn_map, rect, 0x00AAAAAA);
-			}
-			if (game->map[y[0]][x[0]] == '0')
-			{
-				offset[0] = (int)floorf((game->player->x - floorf(game->player->x)) * 10);
-				offset[1] = (int)floorf((game->player->y - floorf(game->player->y)) * 10);
-				if (offset[0] < 0 || offset[0] > 9)
-					offset[0] = 0;
-				if (offset[1] < 0 || offset[1] > 9)
-					offset[1] = 0;
-				rect.tl.x = x[1] * MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR;
-				if (rect.tl.x < 0)
-					rect.tl.x = 0;
-				if (rect.tl.x > game->mn_map->width)
-					rect.tl.x = game->mn_map->width;
-				rect.tl.y = y[1] * MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR;
-				if (rect.tl.y < 0)
-					rect.tl.y = 0;
-				if (rect.tl.y > game->mn_map->height)
-					rect.tl.y = game->mn_map->height;
-				rect.br.x = x[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR - MNP_GRID;
-				if (rect.br.x < 0)
-					rect.br.x = 0;
-				if (rect.br.x > game->mn_map->width)
-					rect.br.x = game->mn_map->width;
-				rect.br.y = y[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR - MNP_GRID;
-				if (rect.br.y < 0)
-					rect.br.y = 0;
-				if (rect.br.y > game->mn_map->height)
-					rect.br.y = game->mn_map->height;
-				ft_rectangle(game->mn_map, rect, 0x00FFFFFF);
-			}
-			x[0]++;
-			x[1]++;
-		}
-		y[0]++;
-		y[1]++;
-	}
+	offsetx = (int)floorf((g->player->x - floorf(g->player->x)) * 10);
+	rect->tl.x = x * MNM_PIX_SQR - offsetx
+		* 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR;
+	if (rect->tl.x < 0)
+		rect->tl.x = 0;
+	if (rect->tl.x > g->mn_map->width)
+		rect->tl.x = g->mn_map->width;
+	rect->br.x = x * MNM_PIX_SQR + MNM_PIX_SQR - offsetx
+		* 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR - MNP_GRID;
+	if (rect->br.x < 0)
+		rect->br.x = 0;
+	if (rect->br.x > g->mn_map->width)
+		rect->br.x = g->mn_map->width;
 }
 
-t_triangle	ft_set_triangle(t_game *g, int side)
+void
+	ft_wall_boundary_y(t_game *g, int y, t_rectangle *rect)
 {
-	t_triangle	tri;
+	int	offsety;
 
-	if (side == 1)
-	{
-		tri.a.x = cos(g->player->dir + M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
-		tri.a.y = sin(g->player->dir + M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
-	}
-	else
-	{
-		tri.a.x = cos(g->player->dir - M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
-		tri.a.y = sin(g->player->dir - M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
-	}
-	tri.b.x = cos(g->player->dir) * CURSOR_COEFB + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
-	tri.b.y = sin(g->player->dir) * CURSOR_COEFB + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
-	tri.c.x = cos(g->player->dir) * CURSOR_COEFC + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
-	tri.c.y = sin(g->player->dir) * CURSOR_COEFC + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
-	return (tri);
+	offsety = (int)floorf((g->player->y - floorf(g->player->y)) * 10);
+	rect->tl.y = y * MNM_PIX_SQR - offsety
+		* 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR;
+	if (rect->tl.y < 0)
+		rect->tl.y = 0;
+	if (rect->tl.y > g->mn_map->height)
+		rect->tl.y = g->mn_map->height;
+	rect->br.y = y * MNM_PIX_SQR + MNM_PIX_SQR - offsety
+		* 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR - MNP_GRID;
+	if (rect->br.y < 0)
+		rect->br.y = 0;
+	if (rect->br.y > g->mn_map->height)
+		rect->br.y = g->mn_map->height;
 }
 
 void	ft_create_mini_map(t_game *g)

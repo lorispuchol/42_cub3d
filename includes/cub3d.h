@@ -6,12 +6,16 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/28 02:40:11 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 20:28:15 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define SPEED_INIT 0.06
+# define FACTOR_SPEED_SIDE 0.6
+# define FACTOR_SPEED_BACK 0.4
+# define FACTOR_SPEED_SPRINT 2
 # define CURSOR_COEFA 4
 # define CURSOR_COEFB 8
 # define CURSOR_COEFC 3
@@ -20,7 +24,7 @@
 # define MNM_PIX_SQR 16
 # define CURS_OFFSETX 0.465
 # define CURS_OFFSETY 0.465
-# define MNP_GRID 0
+# define MNP_GRID 2
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -121,68 +125,80 @@ typedef struct s_game
 }				t_game;
 
 // free.c
-void	ft_free_game(t_game *game);
+void		ft_free_game(t_game *game);
 
 //cub3d.c
-void	ft_print_error(char *err, t_game *game);
-int		ft_exit_game(t_game *game);
+void		ft_print_error(char *err, t_game *game);
+int			ft_exit_game(t_game *game);
 
 //parsing.c
-void	ft_parsing(int argc, char **argv, t_game *game);
+void		ft_parsing(int argc, char **argv, t_game *game);
 
 // get_next_line.c
-char	*get_next_line(int fd);
+char		*get_next_line(int fd);
 
 // utils.c
-int		l_free_tab(char **tab);
-void	*ft_xmalloc(size_t size);
-char	*l_add_char(char *str, char c);
+int			l_free_tab(char **tab);
+void		*ft_xmalloc(size_t size);
+char		*l_add_char(char *str, char c);
 
 // check_file.c
-int		empty_line(char *line);
+int			empty_line(char *line);
 
 // get_data_map.c
-int		ft_get_textures(char *line, t_game *game);
-void	l_non_null_value(t_game *game);
+int			ft_get_textures(char *line, t_game *game);
+void		l_non_null_value(t_game *game);
 
 // get_data_map_2.c
-int		ft_forward_in_color(char *line, int i, t_game *game);
-void	ft_forward_in_color_2(char *line, int i, t_game *game);
+int			ft_forward_in_color(char *line, int i, t_game *game);
+void		ft_forward_in_color_2(char *line, int i, t_game *game);
 
 // get_map.c
-void	ft_get_map(char *line, int fd, t_game *game);
+void		ft_get_map(char *line, int fd, t_game *game);
 
 // check_map.c
-void	ft_check_map(t_game *game);
+void		ft_check_map(t_game *game);
 
 // init_game.c
-void	ft_init_game(t_game *game);
+void		ft_init_game(t_game *game);
 
 // check_map_closed.c
-void	ft_check_open_map(t_game *game, int x, int y);
-void	ft_square_map(t_game *game);
+void		ft_check_open_map(t_game *game, int x, int y);
+void		ft_square_map(t_game *game);
 
 // init_mlx.c
-void	ft_init_mlx(t_game *game);
+void		ft_init_mlx(t_game *game);
 
 // mini_map.c
-void	ft_create_mini_map(t_game *g);
-void	ft_set_pix(t_data *data, int x, int y, int color);
+void		ft_create_mini_map(t_game *g);
+void		ft_set_pix(t_data *data, int x, int y, int color);
+void		ft_wall_boundary_x(t_game *g, int x, t_rectangle *rect);
+void		ft_wall_boundary_y(t_game *g, int y, t_rectangle *rect);
 
 // geometrie.c
-void	ft_vertical_line(t_data *img, t_2dpoint top, t_2dpoint bot, int color);
-void	ft_rectangle(t_data *img, t_rectangle rect, int color);
-void	ft_put_triangle(t_data *img, t_triangle trgl, int color);
+void		ft_vertical_line(t_data *img,
+				t_2dpoint top, t_2dpoint bot, int color);
+void		ft_rectangle(t_data *img, t_rectangle rect, int color);
+void		ft_put_triangle(t_data *img, t_triangle trgl, int color);
 
 // mouvement.c
-void	ft_up(t_game *game);
-void	ft_down(t_game *game);
-void	ft_right(t_game *game);
-void	ft_left(t_game *game);
+void		ft_up(t_game *game);
+void		ft_down(t_game *game);
+void		ft_right(t_game *game);
+void		ft_left(t_game *game);
 
 // player_action.c
-int		ft_press_key(int keycode, t_game *game);
-int		ft_release_key(int keycode, t_game *game);
-int		ft_action_loop(t_game *game);
+int			ft_press_key(int keycode, t_game *game);
+int			ft_release_key(int keycode, t_game *game);
+int			ft_action_loop(t_game *game);
+
+// minimap_utils.c
+t_triangle	ft_set_triangle(t_game *g, int side);
+void		ft_mn_map_wall(t_game *g);
+
+// geometry_utils.c
+void		ft_increment_triangle(t_rectangle *l,
+				int *x0, int *x1, t_triangle *t);
+void		ft_innit_triangle(t_rectangle *l, t_triangle *t, int *b0, int *b1);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/28 02:31:13 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 20:26:25 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_init_player(t_game *game)
 	game->player->x = -1;
 	game->player->y = -1;
 	game->player->dir = -1;
-	game->player->speed = 0.06;
+	game->player->speed = SPEED_INIT;
 	game->player->acc = 0;
 }
 
