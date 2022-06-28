@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/21 17:37:35 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/22 18:41:47 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_init_mlx(t_game *g)
 	ft_create_mini_map(g);
 	mlx_do_key_autorepeaton(g->mlx_ptr);
 	mlx_hook(g->mlx_window, 02, 1L << 0, ft_press_key, g);
-	mlx_hook(g->mlx_window, 02, 1L << 0, ft_press_key, g);
+	mlx_hook(g->mlx_window, 03, 1L << 1, ft_release_key, g);
+	mlx_loop_hook(g->mlx_ptr, ft_action_loop, g);
 	mlx_hook(g->mlx_window, 17, 1L << 17, ft_exit_game, g);
 	mlx_loop(g->mlx_ptr);
 }

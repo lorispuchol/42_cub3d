@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/21 16:56:27 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 02:31:13 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	ft_init_mn_map(t_game *game)
 	game->mn_map->b_p_pix = 0;
 	game->mn_map->l_len = 0;
 	game->mn_map->endian = 0;
-	game->mn_map->height = game->w_wi / 11 - 11;
-	game->mn_map->width = game->w_he / 7 - 9;
+	game->mn_map->height = MNM_PIX_SQR * (MNM_DP_SQR_Y * 2 + game->w_he / 1080);
+	game->mn_map->width = MNM_PIX_SQR * (MNM_DP_SQR_X * 2 + game->w_wi / 1920);
 }
 
 void	ft_init_player(t_game *game)
@@ -30,7 +30,7 @@ void	ft_init_player(t_game *game)
 	game->player->x = -1;
 	game->player->y = -1;
 	game->player->dir = -1;
-	game->player->speed = 0.2;
+	game->player->speed = 0.06;
 	game->player->acc = 0;
 }
 
@@ -49,6 +49,17 @@ void	ft_init_graph(t_game *game)
 	game->graph->ceiling = 0xFF000000;
 }
 
+void	ft_init_key(t_game *game)
+{
+	game->key = ft_xmalloc(sizeof(t_key));
+	game->key->down = 0;
+	game->key->left = 0;
+	game->key->right = 0;
+	game->key->up = 0;
+	game->key->rot_left = 0;
+	game->key->rot_right = 0;
+}
+
 void	ft_init_game(t_game *game)
 {
 	game->map = NULL;
@@ -57,6 +68,7 @@ void	ft_init_game(t_game *game)
 	game->w_wi = 1920;
 	game->w_he = 1080;
 	game->rot = M_PI_4 / 10;
+	ft_init_key(game);
 	ft_init_graph(game);
 	ft_init_player(game);
 	ft_init_mn_map(game);

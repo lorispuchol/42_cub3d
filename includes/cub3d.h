@@ -6,15 +6,21 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/21 18:03:54 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 02:40:11 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define COEFA 7
-# define COEFB 15
-# define COEFC 5
+# define CURSOR_COEFA 4
+# define CURSOR_COEFB 8
+# define CURSOR_COEFC 3
+# define MNM_DP_SQR_X 6
+# define MNM_DP_SQR_Y 7
+# define MNM_PIX_SQR 16
+# define CURS_OFFSETX 0.465
+# define CURS_OFFSETY 0.465
+# define MNP_GRID 0
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -43,6 +49,15 @@ typedef struct s_triangle
 	t_2dpoint	c;
 }			t_triangle;
 
+typedef struct s_ray
+{
+	t_2dpoint	impact;
+	float		cdir;
+	float		dist;
+	int			wall;
+	int			column_pix;
+}			t_ray;
+
 typedef struct s_data
 {
 	void	*img;
@@ -54,6 +69,15 @@ typedef struct s_data
 	int		height;
 }				t_data;
 
+typedef struct s_key
+{
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+	int	rot_left;
+	int	rot_right;
+}				t_key;
 typedef struct s_graph
 {
 	char				*north;
@@ -81,6 +105,7 @@ typedef struct s_game
 {
 	t_graph		*graph;
 	t_player	*player;
+	t_key		*key;
 	char		**map;
 	void		*mlx_ptr;
 	void		*mlx_window;
@@ -92,6 +117,7 @@ typedef struct s_game
 	float		r_h;
 	float		r_v;
 	float		rot;
+	int			mn_map_pix_sqr;
 }				t_game;
 
 // free.c
@@ -156,5 +182,7 @@ void	ft_left(t_game *game);
 
 // player_action.c
 int		ft_press_key(int keycode, t_game *game);
+int		ft_release_key(int keycode, t_game *game);
+int		ft_action_loop(t_game *game);
 
 #endif

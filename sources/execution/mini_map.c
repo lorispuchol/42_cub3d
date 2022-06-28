@@ -6,11 +6,12 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/21 18:02:00 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/28 02:26:17 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <stdio.h>
 
 void	ft_set_pix(t_data *data, int x, int y, int color)
 {
@@ -70,21 +71,98 @@ void	ft_set_pix(t_data *data, int x, int y, int color)
 // 	dprintf(2, "fin\n");
 // }
 
- void	ft_mn_map_wall(t_game *game)
- {
-	int	x;
-	int	y;
-	
-	x = game->player->x - 5;
-	if (x < 0)
-		x = 0;
-	y = game->player->y - 6;
-	if (y < 0)
-		y = 0;
-	dprintf(2, "x == %d\n", x);
-	dprintf(2, "y == %d\n", y);
- }
+void	ft_mn_map_wall(t_game *game)
+{
+	int			x[2];
+	int			y[2];
+	int			offset[2];
+	t_rectangle	rect;
 
+	y[0] = (int)game->player->y - MNM_DP_SQR_Y;
+	y[1] = 0;
+	while (y[0] < 0)
+	{
+		y[0]++;
+		y[1]++;
+	}
+	while (game->map[y[0]] && y[0] - 1 <= (int)roundf(game->player->y) + MNM_DP_SQR_Y && y[1] * MNM_PIX_SQR <= game->mn_map->height - MNM_PIX_SQR)
+	{
+		x[0] = (int)game->player->x - MNM_DP_SQR_X;
+		x[1] = 0;
+		while (x[0] < 0)
+		{
+			x[0]++;
+			x[1]++;
+		}
+		while (game->map[y[0]][x[0]] && x[0] <= (int)roundf(game->player->x) + MNM_DP_SQR_X && x[1] * MNM_PIX_SQR <= game->mn_map->width - MNM_PIX_SQR)
+		{
+			if (game->map[y[0]][x[0]] == '1' && game->map[y[0]][x[0]])
+			{
+				offset[0] = (int)floorf((game->player->x - floorf(game->player->x)) * 10);
+				offset[1] = (int)floorf((game->player->y - floorf(game->player->y)) * 10);
+				if (offset[0] < 0 || offset[0] > 9)
+					offset[0] = 0;
+				if (offset[1] < 0 || offset[1] > 9)
+					offset[1] = 0;
+				rect.tl.x = x[1] * MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR;
+				if (rect.tl.x < 0)
+					rect.tl.x = 0;
+				if (rect.tl.x > game->mn_map->width)
+					rect.tl.x = game->mn_map->width;
+				rect.tl.y = y[1] * MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR;
+				if (rect.tl.y < 0)
+					rect.tl.y = 0;
+				if (rect.tl.y > game->mn_map->height)
+					rect.tl.y = game->mn_map->height;
+				rect.br.x = x[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR - MNP_GRID;
+				if (rect.br.x < 0)
+					rect.br.x = 0;
+				if (rect.br.x > game->mn_map->width)
+					rect.br.x = game->mn_map->width;
+				rect.br.y = y[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR - MNP_GRID;
+				if (rect.br.y < 0)
+					rect.br.y = 0;
+				if (rect.br.y > game->mn_map->height)
+					rect.br.y = game->mn_map->height;
+				ft_rectangle(game->mn_map, rect, 0x00AAAAAA);
+			}
+			if (game->map[y[0]][x[0]] == '0')
+			{
+				offset[0] = (int)floorf((game->player->x - floorf(game->player->x)) * 10);
+				offset[1] = (int)floorf((game->player->y - floorf(game->player->y)) * 10);
+				if (offset[0] < 0 || offset[0] > 9)
+					offset[0] = 0;
+				if (offset[1] < 0 || offset[1] > 9)
+					offset[1] = 0;
+				rect.tl.x = x[1] * MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR;
+				if (rect.tl.x < 0)
+					rect.tl.x = 0;
+				if (rect.tl.x > game->mn_map->width)
+					rect.tl.x = game->mn_map->width;
+				rect.tl.y = y[1] * MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR;
+				if (rect.tl.y < 0)
+					rect.tl.y = 0;
+				if (rect.tl.y > game->mn_map->height)
+					rect.tl.y = game->mn_map->height;
+				rect.br.x = x[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[0] * 0.1 * MNM_PIX_SQR + CURS_OFFSETX * MNM_PIX_SQR - MNP_GRID;
+				if (rect.br.x < 0)
+					rect.br.x = 0;
+				if (rect.br.x > game->mn_map->width)
+					rect.br.x = game->mn_map->width;
+				rect.br.y = y[1] * MNM_PIX_SQR + MNM_PIX_SQR - offset[1] * 0.1 * MNM_PIX_SQR + CURS_OFFSETY * MNM_PIX_SQR - MNP_GRID;
+				if (rect.br.y < 0)
+					rect.br.y = 0;
+				if (rect.br.y > game->mn_map->height)
+					rect.br.y = game->mn_map->height;
+				ft_rectangle(game->mn_map, rect, 0x00FFFFFF);
+			}
+			x[0]++;
+			x[1]++;
+		}
+		y[0]++;
+		y[1]++;
+	}
+}
 
 t_triangle	ft_set_triangle(t_game *g, int side)
 {
@@ -92,19 +170,22 @@ t_triangle	ft_set_triangle(t_game *g, int side)
 
 	if (side == 1)
 	{
-		tri.a.x = cos(g->player->dir + M_PI_2) * COEFA + g->mn_map->width / 2;
-		tri.a.y = sin(g->player->dir + M_PI_2) * COEFA + g->mn_map->height / 2;
+		tri.a.x = cos(g->player->dir + M_PI_2)
+			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+		tri.a.y = sin(g->player->dir + M_PI_2)
+			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
 	}
 	else
 	{
-		tri.a.x = cos(g->player->dir - M_PI_2) * COEFA + g->mn_map->width / 2;
-		tri.a.y = sin(g->player->dir - M_PI_2) * COEFA + g->mn_map->height / 2;
+		tri.a.x = cos(g->player->dir - M_PI_2)
+			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+		tri.a.y = sin(g->player->dir - M_PI_2)
+			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
 	}
-
-	tri.b.x = cos(g->player->dir) * COEFB + g->mn_map->width / 2;
-	tri.b.y = sin(g->player->dir) * COEFB + g->mn_map->height / 2;
-	tri.c.x = cos(g->player->dir) * COEFC + g->mn_map->width / 2;
-	tri.c.y = sin(g->player->dir) * COEFC + g->mn_map->height / 2;
+	tri.b.x = cos(g->player->dir) * CURSOR_COEFB + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+	tri.b.y = sin(g->player->dir) * CURSOR_COEFB + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
+	tri.c.x = cos(g->player->dir) * CURSOR_COEFC + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+	tri.c.y = sin(g->player->dir) * CURSOR_COEFC + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
 	return (tri);
 }
 
