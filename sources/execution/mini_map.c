@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/28 20:14:29 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 21:21:06 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	ft_create_mini_map(t_game *g)
 	ft_mn_map_wall(g);
 	ft_put_triangle(g->mn_map, tri[0], 0x00FF0000);
 	ft_put_triangle(g->mn_map, tri[1], 0x00FF0000);
+	ft_init_ray(g);
 	mlx_put_image_to_window(g->mlx_ptr,
 		g->mlx_window, g->mn_map->img, g->w_wi - g->mn_map->width - 10, 10);
 }

@@ -6,12 +6,15 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/28 20:28:15 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/30 21:24:58 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define HEIGHT 1080
+# define WIDTH 1920
+# define FOV 60
 # define SPEED_INIT 0.06
 # define FACTOR_SPEED_SIDE 0.6
 # define FACTOR_SPEED_BACK 0.4
@@ -21,7 +24,7 @@
 # define CURSOR_COEFC 3
 # define MNM_DP_SQR_X 6
 # define MNM_DP_SQR_Y 7
-# define MNM_PIX_SQR 16
+# define MNM_PIX_SQR 20
 # define CURS_OFFSETX 0.465
 # define CURS_OFFSETY 0.465
 # define MNP_GRID 2
@@ -56,7 +59,8 @@ typedef struct s_triangle
 typedef struct s_ray
 {
 	t_2dpoint	impact;
-	float		cdir;
+	float		cdirx;
+	float		cdiry;
 	float		dist;
 	int			wall;
 	int			column_pix;
@@ -110,6 +114,7 @@ typedef struct s_game
 	t_graph		*graph;
 	t_player	*player;
 	t_key		*key;
+	t_ray		*ray;
 	char		**map;
 	void		*mlx_ptr;
 	void		*mlx_window;
@@ -117,7 +122,8 @@ typedef struct s_game
 	t_data		*screen;
 	int			w_he;
 	int			w_wi;
-	int			fov;
+	float		fov;
+	float		fov_2;
 	float		r_h;
 	float		r_v;
 	float		rot;
@@ -200,5 +206,8 @@ void		ft_mn_map_wall(t_game *g);
 void		ft_increment_triangle(t_rectangle *l,
 				int *x0, int *x1, t_triangle *t);
 void		ft_innit_triangle(t_rectangle *l, t_triangle *t, int *b0, int *b1);
+
+// init_ray.c
+void		ft_init_ray(t_game *game);
 
 #endif

@@ -7,6 +7,7 @@ SRCS = 	./sources/cub3d.c 						\
 		./sources/execution/minimap_utils.c 	\
 		./sources/execution/geometry.c 			\
 		./sources/execution/geometry_utils.c 	\
+		./sources/execution/init_ray.c 			\
 		./sources/execution/player_action.c		\
 		./sources/execution/mouvement.c			\
 		./sources/parsing/init_game.c 			\

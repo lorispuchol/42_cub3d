@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:12:42 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/28 20:14:36 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/06/29 18:12:32 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,24 @@ t_triangle	ft_set_triangle(t_game *g, int side)
 	if (side == 1)
 	{
 		tri.a.x = cos(g->player->dir + M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+			* CURSOR_COEFA + g->mn_map->width * 0.5;
 		tri.a.y = sin(g->player->dir + M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
+			* CURSOR_COEFA + g->mn_map->height * 0.5;
 	}
 	else
 	{
 		tri.a.x = cos(g->player->dir - M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+			* CURSOR_COEFA + g->mn_map->width * 0.5;
 		tri.a.y = sin(g->player->dir - M_PI_2)
-			* CURSOR_COEFA + MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
+			* CURSOR_COEFA + g->mn_map->height * 0.5;
 	}
 	tri.b.x = cos(g->player->dir) * CURSOR_COEFB
-		+ MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+		+ g->mn_map->width * 0.5;
 	tri.b.y = sin(g->player->dir) * CURSOR_COEFB
-		+ MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
+		+ g->mn_map->height * 0.5;
 	tri.c.x = cos(g->player->dir) * CURSOR_COEFC
-		+ MNM_PIX_SQR * MNM_DP_SQR_X + MNM_PIX_SQR * 0.5;
+		+ g->mn_map->width * 0.5;
 	tri.c.y = sin(g->player->dir) * CURSOR_COEFC
-		+ MNM_PIX_SQR * MNM_DP_SQR_Y + MNM_PIX_SQR * 0.5;
+		+ g->mn_map->height * 0.5;
 	return (tri);
 }
