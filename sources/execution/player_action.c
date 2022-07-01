@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/30 18:54:52 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/01 20:58:55 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,16 @@ void	ft_rotate_left(t_game *game)
 	game->player->dir -= game->rot;
 	if (game->player->dir > 2 * M_PI)
 		game->player->dir -= 2 * M_PI;
-	if (game->player->dir < -M_PI)
+	if (game->player->dir < 0)
 		game->player->dir += 2 * M_PI;
+	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI + game->rot)
+		game->player->dir = M_PI;
+	if (game->player->dir > 0 - game->rot && game->player->dir < 0 + game->rot)
+		game->player->dir = 0;
+	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2 + game->rot)
+		game->player->dir = M_PI_2;
+	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3 * M_PI_2 + game->rot)
+		game->player->dir = 3 * M_PI_2;
 }
 
 void	ft_rotate_right(t_game *game)
@@ -26,8 +34,16 @@ void	ft_rotate_right(t_game *game)
 	game->player->dir += game->rot;
 	if (game->player->dir > 2 * M_PI)
 		game->player->dir -= 2 * M_PI;
-	if (game->player->dir < -M_PI)
+	if (game->player->dir < 0)
 		game->player->dir += 2 * M_PI;
+	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI + game->rot)
+		game->player->dir = M_PI;
+	if (game->player->dir > 0 - game->rot && game->player->dir < 0 + game->rot)
+		game->player->dir = 0;
+	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2 + game->rot)
+		game->player->dir = M_PI_2;
+	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3 * M_PI_2 + game->rot)
+		game->player->dir = 3 * M_PI_2;
 }
 
 int	ft_action_loop(t_game *game)
