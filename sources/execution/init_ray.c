@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/03 23:03:05 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/03 23:14:46 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/*
 #include "../../includes/cub3d.h"
 #include <math.h>
 #include <stdio.h>
@@ -148,3 +150,4 @@ void	ft_cast_ray(t_game *game)
 		i++;
 	}
 }
+*/
