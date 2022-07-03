@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/30 21:24:58 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/01 23:47:13 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@ typedef struct s_triangle
 
 typedef struct s_ray
 {
-	t_2dpoint	impact;
-	float		cdirx;
-	float		cdiry;
-	float		dist;
-	int			wall;
+	float		pt_h[2];
+	float		pt_v[2];
+	float		dist[2];
+	int			wall[2];
+	float		dist_first_wall;
+	int			first_wall;
 	int			column_pix;
 }			t_ray;
 
@@ -102,11 +103,11 @@ typedef struct s_graph
 
 typedef struct s_player
 {
-	float	x;
-	float	y;
-	float	dir;
-	float	speed;
-	float	acc;
+	float		x;
+	float		y;
+	long double	dir;
+	float		speed;
+	float		acc;
 }				t_player;
 
 typedef struct s_game
@@ -208,6 +209,9 @@ void		ft_increment_triangle(t_rectangle *l,
 void		ft_innit_triangle(t_rectangle *l, t_triangle *t, int *b0, int *b1);
 
 // init_ray.c
-void		ft_init_ray(t_game *game);
+void		ft_cast_ray(t_game *game);
+
+// display_screen.c
+void		ft_display_screen(t_game *g);
 
 #endif
