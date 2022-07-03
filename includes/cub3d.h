@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/01 23:47:13 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/03 23:09:52 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ typedef struct s_game
 	t_key		*key;
 	t_ray		*ray;
 	char		**map;
+	int			l_map;
+	int			h_map;
 	void		*mlx_ptr;
 	void		*mlx_window;
 	t_data		*mn_map;
