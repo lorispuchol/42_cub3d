@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispay_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:59:17 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/01 23:41:55 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/04 03:28:20 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 void	ft_display_screen(t_game *g)
 {	
-	int			i;
 	t_rectangle	back;
 
 	if (!g->screen->img)
@@ -23,7 +22,6 @@ void	ft_display_screen(t_game *g)
 	if (!g->screen->addr)
 		g->screen->addr = mlx_get_data_addr(g->screen->img,
 				&g->screen->b_p_pix, &g->screen->l_len, &g->screen->endian);
-	i = 0;
 	back.tl.x = 0;
 	back.tl.y = 0;
 	back.br.x = g->w_wi;
