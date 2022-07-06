@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/03 23:09:52 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/06 21:12:59 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define HEIGHT 1080
-# define WIDTH 1920
+# define HEIGHT 540
+# define WIDTH 960
 # define FOV 60
 # define SPEED_INIT 0.06
 # define FACTOR_SPEED_SIDE 0.6
@@ -28,6 +28,13 @@
 # define CURS_OFFSETX 0.465
 # define CURS_OFFSETY 0.465
 # define MNP_GRID 2
+
+enum sprite {
+	SP_NORTH,
+	SP_SOUTH,
+	SP_EAST,
+	SP_WEST,
+};
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -58,13 +65,21 @@ typedef struct s_triangle
 
 typedef struct s_ray
 {
-	float		pt_h[2];
-	float		pt_v[2];
-	float		dist[2];
-	int			wall[2];
-	float		dist_first_wall;
-	int			first_wall;
-	int			column_pix;
+	long double	angle;
+	float		pt_impact_x;
+	float		pt_impact_y;
+	float		dist_impact_hor;
+	float		dist_impact_ver;
+	float		lil_dist;
+	int			wall_hor;
+	int			wall_ver;
+	int			if_wall_ver;
+	int			if_wall_hor;
+	int			wall;
+	int			next_grid_hor;
+	int			next_grid_ver;
+	float		y_ver;
+	float		x_hor;
 }			t_ray;
 
 typedef struct s_data
@@ -127,9 +142,9 @@ typedef struct s_game
 	int			w_wi;
 	float		fov;
 	float		fov_2;
-	float		r_h;
+	long double	angle_rays;
 	float		r_v;
-	float		rot;
+	long double	rot;
 	int			mn_map_pix_sqr;
 }				t_game;
 
@@ -211,9 +226,21 @@ void		ft_increment_triangle(t_rectangle *l,
 void		ft_innit_triangle(t_rectangle *l, t_triangle *t, int *b0, int *b1);
 
 // init_ray.c
+void		ft_init_ray(t_game *game);
 void		ft_cast_ray(t_game *game);
+void		check_if_wall_ver(int next_grid_ver, float y_ver, t_ray *ray, t_game *game);
+void		check_if_wall_hor(int next_grid_hor, float x_hor, t_ray *ray, t_game *game);
+
+
 
 // display_screen.c
 void		ft_display_screen(t_game *g);
+
+// raycast.c
+
+void	ft_raycast_btm_rgt(t_game *g, t_ray *ray);
+void	ft_raycast_btm_lft(t_game *g, t_ray *ray);
+void	ft_raycast_top_lft(t_game *g, t_ray *ray);
+void	ft_raycast_top_rgt(t_game *g, t_ray *ray);
 
 #endif

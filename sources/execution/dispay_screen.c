@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:59:17 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/04 03:28:20 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/06 15:43:18 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void	ft_display_screen(t_game *g)
 	back.br.x = g->w_wi;
 	back.br.y = g->w_he - 2;
 	ft_rectangle(g->screen, back, g->graph->floor);
-	ft_cast_ray(g);
+	// ft_cast_ray(g);
 	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->screen->img, 0, 0);
 }

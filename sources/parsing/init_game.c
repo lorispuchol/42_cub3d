@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/29 17:38:10 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/06 21:06:36 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-#include <math.h>
 
 void	ft_init_mn_map(t_game *game)
 {
@@ -73,6 +72,32 @@ void	ft_init_key(t_game *game)
 	game->key->rot_right = 0;
 }
 
+void	ft_init_rays(t_game *game)
+{
+	int	i;
+
+	game->ray = ft_xmalloc(sizeof(t_ray) * game->w_wi);
+	i = -1;
+	while (++i < game->w_wi)
+	{
+		game->ray[i].angle = 0;
+		game->ray[i].dist_impact_hor = 0;
+		game->ray[i].dist_impact_ver = 0;
+		game->ray[i].lil_dist = 0;
+		game->ray[i].pt_impact_x = 0;
+		game->ray[i].pt_impact_y = 0;
+		game->ray[i].wall = 0;
+		game->ray[i].wall_hor = 0;
+		game->ray[i].wall_ver = 0;
+		game->ray[i].if_wall_hor = 0;
+		game->ray[i].if_wall_ver = 0;
+		game->ray[i].next_grid_hor = 0;
+		game->ray[i].next_grid_ver = 0;
+		game->ray[i].x_hor = 0;
+		game->ray[i].y_ver = 0;
+	}
+}
+
 void	ft_init_game(t_game *game)
 {
 	game->map = NULL;
@@ -82,9 +107,9 @@ void	ft_init_game(t_game *game)
 	game->w_he = HEIGHT;
 	game->fov = FOV * 2 * M_PI / 360;
 	game->fov_2 = game->fov * 0.5;
-	game->ray = ft_xmalloc(sizeof(t_ray) * game->w_wi);
-	game->r_h = game->fov / game->w_wi;
+	game->angle_rays = game->fov / game->w_wi;
 	game->rot = M_PI_4 / 10;
+	ft_init_rays(game);
 	ft_init_key(game);
 	ft_init_graph(game);
 	ft_init_player(game);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/03 23:14:46 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/07/06 16:57:19 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_display_rays(t_game *game, int ray, float angle)
 
 	game->ray->dist[0] = cosf(fabsf(angle - (float)game->player->dir)) * sqrtf((game->player->x - game->ray[ray].pt_v[0]) * (game->player->x - game->ray[ray].pt_v[0]) + (game->player->y - game->ray[ray].pt_v[1]) * (game->player->y - game->ray[ray].pt_v[1]));
 	game->ray->dist[1] = cosf(fabsf(angle - (float)game->player->dir)) * sqrtf((game->player->x - game->ray[ray].pt_h[0]) * (game->player->x - game->ray[ray].pt_h[0]) + (game->player->y - game->ray[ray].pt_h[1]) * (game->player->y - game->ray[ray].pt_h[1]));
-	if (angle >= game->player->dir - game->r_h && angle <= game->player->dir + game->r_h)
+	if (angle >= game->player->dir - game->angle_rays && angle <= game->player->dir + game->angle_rays)
 	{
 		dprintf(2, "test4 dist hor == %f\n", game->ray->dist[0]);
 		dprintf(2, "test4 dist vert == %f\n", game->ray->dist[1]);
@@ -42,7 +42,7 @@ void	ft_display_rays(t_game *game, int ray, float angle)
 		game->ray->first_wall = game->ray->wall[1];
 		game->ray->dist_first_wall = game->ray->dist[1];
 	}
-	if (angle >= game->player->dir - game->r_h && angle <= game->player->dir + game->r_h)
+	if (angle >= game->player->dir - game->angle_rays && angle <= game->player->dir + game->angle_rays)
 		dprintf(2, "test4 dist first wall == %f\n", game->ray->dist_first_wall);
 	rect.tl.x = ray;
 	rect.tl.y = (int)(game->w_he * 0.5 - 15000 / (game->ray->dist_first_wall * 100));
@@ -146,7 +146,7 @@ void	ft_cast_ray(t_game *game)
 			game->player->dir = 3 * M_PI_2;
 		ft_init_ray(game, i, angle);
 		// ft_display_rays(game, i, angle);
-		angle += game->r_h;
+		angle += game->angle_rays;
 		i++;
 	}
 }
