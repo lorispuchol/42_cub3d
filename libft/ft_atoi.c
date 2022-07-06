@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:10:56 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 20:01:15 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/07/06 22:30:38 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_exit_atoi_strict(void)
 {
-	ft_putstr_fd("Error\n2Unreadable color\n", 2);
+	ft_putstr_fd("Error\nUnreadable color\n", 2);
 	exit(EXIT_FAILURE);
 }
 
