@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 14:03:05 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 17:18:03 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,16 +232,17 @@ void		ft_cast_ray(t_game *game);
 void		check_if_wall_ver(int next_grid_ver, float y_ver, t_ray *ray, t_game *game);
 void		check_if_wall_hor(int next_grid_hor, float x_hor, t_ray *ray, t_game *game);
 
-
+// angle_particular.c
+void		ft_angle_particular(t_game *game, t_ray *ray);
 
 // display_screen.c
 void		ft_display_screen(t_game *g);
 
 // raycast.c
 
-void	ft_raycast_btm_rgt(t_game *g, t_ray *ray);
-void	ft_raycast_btm_lft(t_game *g, t_ray *ray);
-void	ft_raycast_top_lft(t_game *g, t_ray *ray);
-void	ft_raycast_top_rgt(t_game *g, t_ray *ray);
+void		ft_raycast_btm_rgt(t_game *g, t_ray *ray);
+void		ft_raycast_btm_lft(t_game *g, t_ray *ray);
+void		ft_raycast_top_lft(t_game *g, t_ray *ray);
+void		ft_raycast_top_rgt(t_game *g, t_ray *ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 17:02:58 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 17:39:33 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,6 @@ void	check_if_wall_hor(int next_grid_hor, float x_hor, t_ray *ray, t_game *game)
 	return ;
 }
 
-
-
 void ft_raycast(t_game *game, t_ray *ray)
 {
 	if (ray->angle > 2 * M_PI)
@@ -137,12 +135,11 @@ void ft_raycast(t_game *game, t_ray *ray)
 	// dprintf(1, "index ray: %d  ---  angle: %Lf  ---  dir: %Lf\n", ray->index, ray->angle, game->player->dir);
 	if (ray->angle == 0 || ray->angle == 3 * M_PI_2 || ray->angle == M_PI_2 || ray->angle == 2 * M_PI || ray->angle == M_PI)
 	{
-		// ft_angle_particulier();
-		dprintf(1, "dir on axe  ---  ray num: %d  ---  angle: %Lf\n",ray->index, ray->angle);
-		return ;
-	}	
-	
-	if (ray->angle > 0 && ray->angle < M_PI_2)
+		// dprintf(1, "dir on axe  ---  ray num: %d  ---  angle: %Lf\n",ray->index, ray->angle);
+		ft_angle_particular(game, ray);
+		// return ;
+	}
+	else if (ray->angle > 0 && ray->angle < M_PI_2)
 		ft_raycast_btm_rgt(game, ray);
 	else if (ray->angle > M_PI_2 && ray->angle < M_PI)
 		ft_raycast_btm_lft(game, ray);
@@ -211,7 +208,6 @@ void	ft_init_ray(t_game *game)
 
 		les changements:
 		
-		- la direction init du player dans check_map.c
 		- l'angle des rayons qui est toujours egal a la direciton
 		
 /////////////////////////////////////////////////////////////////////////*/

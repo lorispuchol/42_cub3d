@@ -13,6 +13,7 @@ SRCS = 	./sources/cub3d.c 						\
 		./sources/execution/player_action.c		\
 		./sources/execution/mouvement.c			\
 		./sources/execution/raycast.c			\
+		./sources/execution/angle_particular.c	\
 		./sources/parsing/init_game.c 			\
 		./sources/utils.c 						\
 		./sources/parsing/check_file.c 			\
@@ -32,7 +33,7 @@ LIBFT = ./libft/
 
 MINILIBX = ./minilibx/
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 %.o: %.c ./includes/cub3d.h libft/libft.a Makefile/
 		${CC} ${CFLAGS} -c $< -o $@
