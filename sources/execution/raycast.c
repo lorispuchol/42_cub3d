@@ -6,13 +6,13 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 18:16:59 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/07 16:05:30 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 16:45:31 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	get_lil_dist(t_ray *ray, t_game *game)
+void	get_lil_dist(t_ray *ray)
 {
 	if (ray->dist_impact_hor < 0)
 	{
@@ -82,7 +82,7 @@ void ft_raycast_btm_rgt(t_game *g, t_ray *ray)
 				ray->next_grid_hor++;
 		}
 	}
-	get_lil_dist(ray, g);
+	get_lil_dist(ray);
 }
 
 void ft_raycast_btm_lft(t_game *g, t_ray *ray)
@@ -108,7 +108,7 @@ void ft_raycast_btm_lft(t_game *g, t_ray *ray)
 				ray->next_grid_hor++;
 		}
 	}
-	get_lil_dist(ray, g);
+	get_lil_dist(ray);
 }
 
 void ft_raycast_top_lft(t_game *g, t_ray *ray)
@@ -135,7 +135,7 @@ void ft_raycast_top_lft(t_game *g, t_ray *ray)
 				ray->next_grid_hor--;
 		}
 	}
-	get_lil_dist(ray, g);
+	get_lil_dist(ray);
 }
 
 
@@ -162,5 +162,5 @@ void ft_raycast_top_rgt(t_game *g, t_ray *ray)
 				ray->next_grid_hor--;
 		}
 	}
-	get_lil_dist(ray, g);
+	get_lil_dist(ray);
 }

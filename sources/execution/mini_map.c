@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 15:33:59 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 16:50:20 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_set_pix(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x > data->width - 1 || x < 0 || y > data->height - 1 || y < 0)
+		return ;
 	dst = data->addr + (y * data->l_len + x * (data->b_p_pix / 8));
 	*(unsigned int *)dst = color;
 }
