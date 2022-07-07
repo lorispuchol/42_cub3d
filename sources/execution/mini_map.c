@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 16:50:20 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 19:10:58 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_create_mini_map(t_game *g)
 	ft_put_triangle(g->mn_map, tri[0], 0x00FF0000);
 	ft_put_triangle(g->mn_map, tri[1], 0x00FF0000);
 	ft_display_screen(g);
-	ft_init_ray(g);
 	mlx_put_image_to_window(g->mlx_ptr,
 		g->mlx_window, g->mn_map->img, g->w_wi - g->mn_map->width - 10, 10);
 }

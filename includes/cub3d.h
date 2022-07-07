@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 17:18:03 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 19:31:14 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define CURS_OFFSETX 0.465
 # define CURS_OFFSETY 0.465
 # define MNP_GRID 2
+# define LONG_DIST 0.05
 
 enum sprite {
 	SP_NORTH,
@@ -227,6 +228,7 @@ void		ft_increment_triangle(t_rectangle *l,
 void		ft_innit_triangle(t_rectangle *l, t_triangle *t, int *b0, int *b1);
 
 // init_ray.c
+void		ft_reset_rays(t_game *game);
 void		ft_init_ray(t_game *game);
 void		ft_cast_ray(t_game *game);
 void		check_if_wall_ver(int next_grid_ver, float y_ver, t_ray *ray, t_game *game);
@@ -237,6 +239,9 @@ void		ft_angle_particular(t_game *game, t_ray *ray);
 
 // display_screen.c
 void		ft_display_screen(t_game *g);
+
+// ft_print_ray.c
+void	ft_print_ray(t_game *game);
 
 // raycast.c
 

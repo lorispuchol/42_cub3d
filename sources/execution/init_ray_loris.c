@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 17:39:33 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 19:12:01 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void ft_raycast(t_game *game, t_ray *ray)
 		ft_raycast_top_rgt(game, ray);
 	
 
-	dprintf(1, "len ray: %f  wall x: %f --- wall y: %f on wall: %d ---- player x: %f  player y: %f  dir: %Lf\n", ray->lil_dist, ray->pt_impact_x, ray->pt_impact_y, ray->wall, game->player->x, game->player->y, game->player->dir);
+	// dprintf(1, "len ray: %f  wall x: %f --- wall y: %f on wall: %d ---- player x: %f  player y: %f  dir: %Lf\n", ray->lil_dist, ray->pt_impact_x, ray->pt_impact_y, ray->wall, game->player->x, game->player->y, game->player->dir);
 }
 
 void ft_reset_rays(t_game *game)
@@ -189,19 +189,18 @@ void	ft_init_ray(t_game *game)
 	posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
 	posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
 	while (angle < game->player->dir + game->fov_2 && i < game->w_wi)
-	{
-		// dprintf(1, "actions\n");
-		
+	{	
 		posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
 		posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
 		ft_set_pix(game->mn_map, posx, posy, 0x0000AA00);
-		game->ray[i].angle = game->player->dir;
+		game->ray[i].angle = angle;
 		game->ray[i].index = i;
 		ft_raycast(game, &game->ray[i]);
+		// ft_print_ray(game, &game->ray[i]);
 		angle += game->angle_rays;
 		i++;
 	}
-	ft_reset_rays(game);
+	// mlx_put_image_to_window(game->mlx_ptr, game->mlx_window, game->screen->img, 0, 0);
 }
 
 /*///////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@ SRCS = 	./sources/cub3d.c 						\
 		./sources/free.c 						\
 		./sources/execution/init_mlx.c 			\
 		./sources/execution/dispay_screen.c 	\
+		./sources/execution/print_ray.c		 	\
 		./sources/execution/mini_map.c 			\
 		./sources/execution/minimap_utils.c 	\
 		./sources/execution/geometry.c 			\
@@ -33,7 +34,7 @@ LIBFT = ./libft/
 
 MINILIBX = ./minilibx/
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 %.o: %.c ./includes/cub3d.h libft/libft.a Makefile/
 		${CC} ${CFLAGS} -c $< -o $@

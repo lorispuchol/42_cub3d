@@ -5,8 +5,8 @@ SO      5m'
 
 WE                                       ./path_to_the_west_texture
  
-C 0,10, 105
-F 254,4,30
+C 120,10, 0
+F 200,200,0
 
 
 
