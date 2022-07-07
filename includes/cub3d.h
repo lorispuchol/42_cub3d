@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/06 21:12:59 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 14:03:05 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct s_triangle
 
 typedef struct s_ray
 {
+	int			index;
 	long double	angle;
 	float		pt_impact_x;
 	float		pt_impact_y;

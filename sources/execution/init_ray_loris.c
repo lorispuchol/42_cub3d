@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/06 22:21:43 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 15:44:21 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ void	fill_ray_hor(t_ray *ray, t_game *game, int next_grid_hor, float x_hor)
 
 void	check_if_wall_ver(int next_grid_ver, float y_ver, t_ray *ray, t_game *game)
 {
+	// dprintf(1,  "y_ver: %f -- h_map: %d\n", y_ver, game->h_map);
 	if (y_ver < 0 || y_ver > (game->h_map - 1))
 	{
 		ray->dist_impact_ver = -1;
 		ray->if_wall_ver = -1;
+		// dprintf(2, "icicici\n");
 		return ;	
 	}
 	if (ray->angle > M_PI_2 && ray->angle < 3 * M_PI_2)
@@ -73,10 +75,12 @@ void	check_if_wall_ver(int next_grid_ver, float y_ver, t_ray *ray, t_game *game)
 
 void	check_if_wall_hor(int next_grid_hor, float x_hor, t_ray *ray, t_game *game)
 {
+	// dprintf(1,  "x_hor: %f -- l_map: %d\n", x_hor, game->l_map);
 	if (x_hor < 0 || x_hor > (game->l_map - 1))
 	{
 		ray->dist_impact_hor = -1;
 		ray->if_wall_hor = -1;
+		// dprintf(2, "lala\n");
 		return ;
 	}
 	if (ray->angle > M_PI && ray->angle < (2 * M_PI))
@@ -100,33 +104,99 @@ void	check_if_wall_hor(int next_grid_hor, float x_hor, t_ray *ray, t_game *game)
 
 
 
-void ft_raycast(t_game *game, long double angle, t_ray *ray)
+void ft_raycast(t_game *game, t_ray *ray)
 {
 	int next_grid_hor;
 	int next_grid_ver;
 	float first_cross_hor;
 	float first_cross_ver;
 
-	if (angle > 2 * M_PI)
-		angle -= 2 * M_PI;
-	if (angle < 0)
-		angle += 2 * M_PI;
-	if (angle == 0 || angle == 3 * M_PI_2 || angle == M_PI_2 || angle == 2 * M_PI || angle == M_PI || angle == -M_PI)
+	if (ray->angle > 2 * M_PI)
+		ray->angle -= 2 * M_PI;
+	if (ray->angle < 0)
+		ray->angle += 2 * M_PI;
+	// dprintf(1, "index ray: %d  ---  angle: %Lf  ---  dir: %Lf\n", ray->index, ray->angle, game->player->dir);
+	if (ray->angle == 0 || ray->angle == 3 * M_PI_2 || ray->angle == M_PI_2 || ray->angle == 2 * M_PI || ray->angle == M_PI)
 	{
 		// ft_angle_particulier();
-		dprintf(1, "dir on axe\n");
+		dprintf(1, "dir on axe  ---  ray num: %d  ---  angle: %Lf\n",ray->index, ray->angle);
 		return ;
 	}	
 	
-	if (angle > 0 && angle < M_PI_2)
+	if (ray->angle > 0 && ray->angle < M_PI_2)
 		ft_raycast_btm_rgt(game, ray);
-	else if (angle > M_PI_2 && angle < M_PI)
+	else if (ray->angle > M_PI_2 && ray->angle < M_PI)
 		ft_raycast_btm_lft(game, ray);
-	else if (angle > M_PI && angle < 3 * M_PI_2)
+	else if (ray->angle > M_PI && ray->angle < 3 * M_PI_2)
 		ft_raycast_top_lft(game, ray);
-	else if (angle > 3 * M_PI_2 && angle < 2 * M_PI)
+	else if (ray->angle > 3 * M_PI_2 && ray->angle < 2 * M_PI)
 		ft_raycast_top_rgt(game, ray);
 	
+
+	dprintf(1, "len ray: %f  wall x: %f --- wall y: %f on wall: %d ---- player x: %f  player y: %f  dir: %Lf\n", ray->lil_dist, ray->pt_impact_x, ray->pt_impact_y, ray->wall, game->player->x, game->player->y, game->player->dir);
+}
+
+void ft_reset_rays(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	while (++i < game->w_wi)
+	{
+		game->ray[i].angle = 0;
+		game->ray[i].dist_impact_hor = 0;
+		game->ray[i].dist_impact_ver = 0;
+		game->ray[i].lil_dist = 0;
+		game->ray[i].pt_impact_x = 0;
+		game->ray[i].pt_impact_y = 0;
+		game->ray[i].wall = 0;
+		game->ray[i].wall_hor = 0;
+		game->ray[i].wall_ver = 0;
+		game->ray[i].if_wall_hor = 0;
+		game->ray[i].if_wall_ver = 0;
+		game->ray[i].next_grid_hor = 0;
+		game->ray[i].next_grid_ver = 0;
+		game->ray[i].x_hor = 0;
+		game->ray[i].y_ver = 0;
+	}
+}
+
+void	ft_init_ray(t_game *game)
+{
+	int			i;
+	long double	angle;
+	int			posx;
+	int			posy;
+
+	angle = game->player->dir - game->fov_2;
+	i = 0;
+	posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
+	posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
+	while (angle < game->player->dir + game->fov_2 && i < game->w_wi)
+	{
+		// dprintf(1, "actions\n");
+		
+		posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
+		posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
+		ft_set_pix(game->mn_map, posx, posy, 0x0000AA00);
+		game->ray[i].angle = game->player->dir;
+		game->ray[i].index = i;
+		ft_raycast(game, &game->ray[i]);
+		angle += game->angle_rays;
+		i++;
+	}
+	ft_reset_rays(game);
+}
+
+/*///////////////////////////////////////////////////////////////////////
+
+		les changements:
+		
+		- la direction init du player dans check_map.c
+		- l'angle des rayons qui est toujours egal a la direciton
+		
+/////////////////////////////////////////////////////////////////////////*/
+
 	/*
 	if (angle > M_PI && angle < (2 * M_PI))
 		next_grid_hor = (int)floorf(game->player->y);
@@ -169,29 +239,3 @@ void ft_raycast(t_game *game, long double angle, t_ray *ray)
 	// ft_set_pix(game->mn_map, game->mn_map->width * 0.5 + 10, game->mn_map->height * 0.5 + 10, 0x000000FF);
 	// dprintf(1,"pix posi: %d\n", (int)floorf((next_grid_ver - game->player->x)));
 	// dprintf(1, "premier croisement ver: x=%d y=%f  ---  premier croisement hor: x=%f y=%d  ---  posi x: %f  posi y: %f  dir: %Lf\n", next_grid_ver, first_cross_ver, first_cross_hor, next_grid_hor, game->player->x, game->player->y, angle);
-
-	dprintf(2, "len ray: %f  wall x: %f --- wall y: %f on wall: %d ---- player x: %f  player y: %f  dir: %Lf\n", ray->lil_dist, ray->pt_impact_x, ray->pt_impact_y, ray->wall, game->player->x, game->player->y, game->player->dir);
-}
-
-void	ft_init_ray(t_game *game)
-{
-	int			i;
-	long double	angle;
-	int			posx;
-	int			posy;
-	
-	angle = game->player->dir - game->fov_2;
-	i = 0;
-	posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
-	posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
-	while (angle < game->player->dir + game->fov_2 && i < game->w_wi)
-	{
-		posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
-		posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
-		ft_set_pix(game->mn_map, posx, posy, 0x0000AA00);
-		game->ray[i].angle = game->player->dir;
-		ft_raycast(game, game->player->dir, &game->ray[i]);
-		angle += game->angle_rays;
-		i++;
-	}
-}

@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 18:16:59 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/06 22:26:33 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 16:05:30 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,30 @@
 
 void	get_lil_dist(t_ray *ray, t_game *game)
 {
-	if (ray->dist_impact_hor < ray->dist_impact_ver && ray->dist_impact_hor > 0)
+	if (ray->dist_impact_hor < 0)
+	{
+		ray->lil_dist = ray->dist_impact_ver;
+		ray->pt_impact_x = ray->next_grid_ver;
+		ray->pt_impact_y = ray->y_ver;
+		ray->wall = ray->wall_ver;
+		return ;
+	}
+	if (ray->dist_impact_ver < 0)
+	{
+		ray->lil_dist = ray->dist_impact_hor;
+		ray->pt_impact_x = ray->x_hor;
+		ray->pt_impact_y = ray->next_grid_hor;
+		ray->wall = ray->wall_hor;
+		return ;
+	}
+	if (ray->dist_impact_hor <= ray->dist_impact_ver)
 	{
 		ray->lil_dist = ray->dist_impact_hor;
 		ray->pt_impact_x = ray->x_hor;
 		ray->pt_impact_y = ray->next_grid_hor;
 		ray->wall = ray->wall_hor;
 	}
-	else if (ray->dist_impact_ver < ray->dist_impact_hor && ray->dist_impact_ver > 0)
+	else if (ray->dist_impact_ver < ray->dist_impact_hor)
 	{
 		ray->lil_dist = ray->dist_impact_ver;
 		ray->pt_impact_x = ray->next_grid_ver;
@@ -47,15 +63,16 @@ void ft_raycast_btm_rgt(t_game *g, t_ray *ray)
 {
 	ray->next_grid_hor = (int)floorf(g->player->y) + 1;
 	ray->next_grid_ver = (int)floorf(g->player->x) + 1;
+	
+	// dprintf(1, "ici 1  ---  ray num: %d  ---  angle: %Lf\n", ray->index, ray->angle);
 	while(ray->if_wall_ver == 0 || ray->if_wall_hor == 0)
 	{
-		dprintf(2, "ici 1\n");
 		if (ray->if_wall_ver == 0)
 		{
 			ray->y_ver = ((float)ray->next_grid_ver - g->player->x) * tan((double)ray->angle) + g->player->y;
 			check_if_wall_ver(ray->next_grid_ver, ray->y_ver, ray, g);
 			if (ray->if_wall_ver == 0)
-				ray->next_grid_ver--;
+				ray->next_grid_ver++;
 		}
 		if (ray->if_wall_hor == 0)
 		{
@@ -72,9 +89,10 @@ void ft_raycast_btm_lft(t_game *g, t_ray *ray)
 {
 	ray->next_grid_hor = (int)floorf(g->player->y) + 1;
 	ray->next_grid_ver = (int)floorf(g->player->x);
+	
+	// dprintf(1, "ici 2  ---  ray num: %d  ---  angle: %Lf\n", ray->index, ray->angle);
 	while(ray->if_wall_ver == 0 || ray->if_wall_hor == 0)
 	{
-		dprintf(2, "ici 2\n");
 		if (ray->if_wall_ver == 0)
 		{
 			ray->y_ver = ((float)ray->next_grid_ver - g->player->x) * tan((double)ray->angle) + g->player->y;
@@ -98,9 +116,10 @@ void ft_raycast_top_lft(t_game *g, t_ray *ray)
 	ray->next_grid_hor = (int)floorf(g->player->y);
 	ray->next_grid_ver = (int)floorf(g->player->x);
 	
+	// dprintf(1, "ici 3  ---  ray num: %d  ---  angle: %Lf\n", ray->index, ray->angle);
 	while(ray->if_wall_ver == 0 || ray->if_wall_hor == 0)
 	{
-		dprintf(2, "ici 3\n");
+
 		if (ray->if_wall_ver == 0)
 		{
 			ray->y_ver = ((float)ray->next_grid_ver - g->player->x) * tan((double)ray->angle) + g->player->y;
@@ -124,9 +143,10 @@ void ft_raycast_top_rgt(t_game *g, t_ray *ray)
 {	
 	ray->next_grid_hor = (int)floorf(g->player->y);
 	ray->next_grid_ver = (int)floorf(g->player->x) + 1;
+	
+	// dprintf(1, "ici 4  ---  ray num: %d  ---  angle: %Lf\n", ray->index, ray->angle);
 	while(ray->if_wall_ver == 0 || ray->if_wall_hor == 0)
 	{
-		dprintf(2, "ici 4\n");
 		if (ray->if_wall_ver == 0)
 		{
 			ray->y_ver = ((float)ray->next_grid_ver - g->player->x) * tan((double)ray->angle) + g->player->y;

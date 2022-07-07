@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:48:00 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/01 17:49:18 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/07/07 14:39:51 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_get_player_pos(t_game *game, int x, int y)
 		game->player->dir = 0;
 	if (game->map[y][x] == 'W')
 		game->player->dir = M_PI;
+	game->player->dir = M_PI_2 - 1; 
 	game->map[y][x] = '0';
 }
 

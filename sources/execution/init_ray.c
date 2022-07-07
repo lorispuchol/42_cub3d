@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/06 16:57:19 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/07 14:52:42 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_display_rays(t_game *game, int ray, float angle)
 	game->ray->dist[1] = cosf(fabsf(angle - (float)game->player->dir)) * sqrtf((game->player->x - game->ray[ray].pt_h[0]) * (game->player->x - game->ray[ray].pt_h[0]) + (game->player->y - game->ray[ray].pt_h[1]) * (game->player->y - game->ray[ray].pt_h[1]));
 	if (angle >= game->player->dir - game->angle_rays && angle <= game->player->dir + game->angle_rays)
 	{
-		dprintf(2, "test4 dist hor == %f\n", game->ray->dist[0]);
-		dprintf(2, "test4 dist vert == %f\n", game->ray->dist[1]);
+		dprintf(1, "test4 dist hor == %f\n", game->ray->dist[0]);
+		dprintf(1, "test4 dist vert == %f\n", game->ray->dist[1]);
 	}
 	game->ray->dist_first_wall = game->ray->dist[0];
 	game->ray->first_wall = game->ray->wall[0];
@@ -43,7 +43,7 @@ void	ft_display_rays(t_game *game, int ray, float angle)
 		game->ray->dist_first_wall = game->ray->dist[1];
 	}
 	if (angle >= game->player->dir - game->angle_rays && angle <= game->player->dir + game->angle_rays)
-		dprintf(2, "test4 dist first wall == %f\n", game->ray->dist_first_wall);
+		dprintf(1, "test4 dist first wall == %f\n", game->ray->dist_first_wall);
 	rect.tl.x = ray;
 	rect.tl.y = (int)(game->w_he * 0.5 - 15000 / (game->ray->dist_first_wall * 100));
 	if (rect.tl.y < 0 || rect.tl.y > game->w_he)
@@ -99,7 +99,7 @@ void	ft_find_wall(t_game *game, int ray, float angle, int init[2])
 		
 	}
 
-	// dprintf(2, "dist fisrt wall == %f\n", game->ray->dist_first_wall);
+	// dprintf(1, "dist fisrt wall == %f\n", game->ray->dist_first_wall);
 }
 
 void	ft_init_ray(t_game *game, int ray, float angle)
