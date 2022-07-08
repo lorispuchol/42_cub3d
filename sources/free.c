@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 13:12:46 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/06/16 13:22:12 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/07/08 15:23:03 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void ft_free_rays(t_game *game)
+{
+	if (game->ray)
+		free (game->ray);
+}
+
+void ft_free_key(t_game *game)
+{
+	if (game->key)
+		free (game->key);
+}
+
 
 void	ft_free_mn_map(t_game *game)
 {
@@ -54,6 +67,8 @@ void	ft_free_game(t_game *game)
 		ft_free_player(game);
 		ft_free_mn_map(game);
 		l_free_tab(game->map);
+		ft_free_key(game);
+		ft_free_rays(game);
 		free(game);
 		game = NULL;
 	}

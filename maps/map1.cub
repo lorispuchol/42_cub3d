@@ -1,16 +1,10 @@
-NO ./path_to_the_north_texture
-
-SO      5m'                                          
-
-
-WE                                       ./path_to_the_west_texture
+NO ./sprites/wall.xpm
+SO ./sprites/wall.xpm                                      
+WE ./sprites/ground.xpm
+EA ./sprites/ground.xpm
  
 C 200,75, 0
 F 100,150,150
-
-
-
-EA ./path_to_the_east_texture   
 
 111111111111111
 10000111000001

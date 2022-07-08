@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/06 21:06:36 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/08 16:46:47 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	ft_init_graph(t_game *game)
 	game->graph->south = NULL;
 	game->graph->east = NULL;
 	game->graph->west = NULL;
-	game->graph->sprite_n = NULL;
-	game->graph->sprite_s = NULL;
-	game->graph->sprite_e = NULL;
-	game->graph->sprite_w = NULL;
+	game->graph->sp_no = ft_xmalloc(sizeof(t_data));
+	game->graph->sp_so = ft_xmalloc(sizeof(t_data));
+	game->graph->sp_ea = ft_xmalloc(sizeof(t_data));
+	game->graph->sp_we = ft_xmalloc(sizeof(t_data));
 	game->graph->floor = 0xFF000000;
 	game->graph->ceiling = 0xFF000000;
 }

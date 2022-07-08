@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/08 14:33:50 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/08 17:20:22 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,11 @@ typedef struct s_graph
 	char				*south;
 	char				*east;
 	char				*west;
-	void				*sprite_n;
-	void				*sprite_s;
-	void				*sprite_e;
-	void				*sprite_w;
+	t_data				*sp_we;
+	t_data				*sp_ea;
+	t_data				*sp_no;
+	t_data				*sp_so;
+	
 	unsigned int		floor;
 	unsigned int		ceiling;
 }				t_graph;
@@ -196,6 +197,7 @@ void		ft_square_map(t_game *game);
 void		ft_init_mlx(t_game *game);
 
 // mini_map.c
+int			ft_get_color(t_data *data, int x, int y);
 void		ft_create_mini_map(t_game *g);
 void		ft_set_pix(t_data *data, int x, int y, int color);
 void		ft_wall_boundary_x(t_game *g, int x, t_rectangle *rect);
