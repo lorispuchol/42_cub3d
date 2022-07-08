@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 19:31:14 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/08 14:33:50 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define HEIGHT 540
 # define WIDTH 960
 # define FOV 60
-# define SPEED_INIT 0.06
+# define SPEED_INIT 0.04
 # define FACTOR_SPEED_SIDE 0.6
 # define FACTOR_SPEED_BACK 0.4
 # define FACTOR_SPEED_SPRINT 2

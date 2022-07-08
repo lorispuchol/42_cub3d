@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 22:48:00 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 17:39:17 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/08 14:16:10 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_check_forbidden_char(t_game *game)
 
 void	ft_get_player_pos(t_game *game, int x, int y)
 {
-	game->player->x = x + 0.5;
-	game->player->y = y + 0.5;
+	game->player->x = x + 0.51;
+	game->player->y = y + 0.50;
 	if (game->map[y][x] == 'N')
 		game->player->dir = 3 * M_PI_2;
 	if (game->map[y][x] == 'S')
