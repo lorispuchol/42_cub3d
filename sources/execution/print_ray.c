@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:11:36 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/08 19:56:33 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/08 20:00:13 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,7 @@ void	print_sprite_ray(t_game *game, int x, int height_wall, t_data *sprite)
 	while (y[0] < y[1])
 	{
 		color_x = (int)((game->ray[x].pt_impact_x - floorf(game->ray[x].pt_impact_x) + game->ray[x].pt_impact_y - floorf(game->ray[x].pt_impact_y)) * sprite->width);
-		if (true_y < game->screen->height / 2)
-			color_y = (int)(((float)true_y / (float)height_wall) * sprite->height);
-		else
-			color_y = (int)(((float)true_y / (float)height_wall) * sprite->height);
-		// if (color_y >= sprite->height)
-		// 	color_y = sprite->height - 1;
-		// if (color_y < 0)
-		// 	color_y = 0;
-		// if (color_x >= sprite->width)
-		// 	color_x = sprite->width - 1;
-		// if (color_x < 0)
-		// 	color_x = 0;
-		// printf("x color == %d y color == %d\n", color_x, color_y);
+		color_y = (int)(((float)true_y / (float)height_wall) * sprite->height);
 		ft_set_pix(game->screen, x, y[0], ft_get_color(sprite, color_x, color_y));
 		y[0]++;
 		true_y++;
