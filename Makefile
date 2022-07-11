@@ -13,6 +13,7 @@ SRCS = 	./sources/cub3d.c 						\
 		./sources/execution/player_action.c		\
 		./sources/execution/mouvement.c			\
 		./sources/execution/raycast.c			\
+		./sources/execution/get_little_dist.c			\
 		./sources/execution/angle_particular.c	\
 		./sources/parsing/init_game.c 			\
 		./sources/parsing/init_images.c 		\

@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/11 04:51:38 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/11 23:17:16 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,5 +257,13 @@ void		ft_raycast_btm_rgt(t_game *g, t_ray *ray);
 void		ft_raycast_btm_lft(t_game *g, t_ray *ray);
 void		ft_raycast_top_lft(t_game *g, t_ray *ray);
 void		ft_raycast_top_rgt(t_game *g, t_ray *ray);
+void		ft_raycast(t_game *game, t_ray *ray);
+
+// get_little_dist.c
+void		get_lil_dist(t_ray *ray);
+void		fill_ray_hor(t_ray *ray, t_game *game,
+				int next_grid_hor, float x_hor);
+void		fill_ray_ver(t_ray *ray, t_game *game,
+				int next_grid_ver, float y_ver);
 
 #endif

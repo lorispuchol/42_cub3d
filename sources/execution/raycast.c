@@ -6,52 +6,11 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 18:16:59 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/11 04:45:27 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/11 23:28:47 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	get_lil_dist(t_ray *ray)
-{
-	if (ray->dist_impact_hor < 0)
-	{
-		ray->lil_dist = ray->dist_impact_ver;
-		ray->pt_impact_x = ray->next_grid_ver;
-		ray->pt_impact_y = ray->y_ver;
-		ray->wall = ray->wall_ver;
-		return ;
-	}
-	if (ray->dist_impact_ver < 0)
-	{
-		ray->lil_dist = ray->dist_impact_hor;
-		ray->pt_impact_x = ray->x_hor;
-		ray->pt_impact_y = ray->next_grid_hor;
-		ray->wall = ray->wall_hor;
-		return ;
-	}
-	if (ray->dist_impact_hor <= ray->dist_impact_ver)
-	{
-		ray->lil_dist = ray->dist_impact_hor;
-		ray->pt_impact_x = ray->x_hor;
-		ray->pt_impact_y = ray->next_grid_hor;
-		ray->wall = ray->wall_hor;
-	}
-	else if (ray->dist_impact_ver < ray->dist_impact_hor)
-	{
-		ray->lil_dist = ray->dist_impact_ver;
-		ray->pt_impact_x = ray->next_grid_ver;
-		ray->pt_impact_y = ray->y_ver;
-		ray->wall = ray->wall_ver;
-	}
-	else
-	{
-		ray->lil_dist = -2;
-		ray->pt_impact_x = -2;
-		ray->pt_impact_y = -2;
-		ray->wall = -2;
-	}
-}
 
 void	ft_raycast_btm_rgt(t_game *g, t_ray *ray)
 {
@@ -155,4 +114,23 @@ void	ft_raycast_top_rgt(t_game *g, t_ray *ray)
 		}
 	}
 	get_lil_dist(ray);
+}
+
+void	ft_raycast(t_game *game, t_ray *ray)
+{
+	if (ray->angle > 2 * M_PI)
+		ray->angle -= 2 * M_PI;
+	if (ray->angle < 0)
+		ray->angle += 2 * M_PI;
+	if (ray->angle == 0 || ray->angle == 3 * M_PI_2
+		|| ray->angle == M_PI_2 || ray->angle == 2 * M_PI || ray->angle == M_PI)
+		ft_angle_particular(game, ray);
+	else if (ray->angle > 0 && ray->angle < M_PI_2)
+		ft_raycast_btm_rgt(game, ray);
+	else if (ray->angle > M_PI_2 && ray->angle < M_PI)
+		ft_raycast_btm_lft(game, ray);
+	else if (ray->angle > M_PI && ray->angle < 3 * M_PI_2)
+		ft_raycast_top_lft(game, ray);
+	else if (ray->angle > 3 * M_PI_2 && ray->angle < 2 * M_PI)
+		ft_raycast_top_rgt(game, ray);
 }
