@@ -1,7 +1,7 @@
-NO ./sprites/wall.xpm
-SO ./sprites/wall.xpm                                      
-WE ./sprites/ground.xpm
-EA ./sprites/ground.xpm
+NO ./sprites/my_wall3.xpm
+SO ./sprites/my_wall5.xpm                                      
+WE ./sprites/my_wall7.xpm
+EA ./sprites/my_wall8.xpm
  
 C 200,75, 0
 F 100,150,150

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:59:14 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/08 15:55:27 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/11 04:44:10 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_print_error(char *err, t_game *game)
 	exit(EXIT_FAILURE);
 }
 
-void ft_check_sprites(t_game *game)
+void	ft_check_sprites(t_game *game)
 {
 	int	fd;
 
@@ -59,17 +59,3 @@ int	main(int argc, char **argv)
 	ft_init_mlx(game);
 	ft_free_game(game);
 }
-
-	/*
-	int	i = -1;
-	while (game->map[++i])
-		dprintf(1, "%s\n", game->map[i]);
-	dprintf(1, "north : %s\n", game->graph->north);
-	dprintf(1, "south : %s\n", game->graph->south);
-	dprintf(1, "east : %s\n", game->graph->east);
-	dprintf(1, "west : %s\n", game->graph->west);
-	dprintf(1, "ceiling : %u\n", game->graph->ceiling);
-	dprintf(1, "floor : %u\n", game->graph->floor);
-	dprintf(1, "y player == %f\n", game->player->y);
-	dprintf(1, "x player == %f\n", game->player->x);
-	*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   angle_particular.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 17:18:23 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/07 17:53:59 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/11 04:23:28 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ void	ft_ray_bot(t_ray *ray, t_game *game)
 	ray->lil_dist = fabsf(ray->pt_impact_y - game->player->y);
 }
 
-void ft_angle_particular(t_game *game, t_ray *ray)
+void	ft_angle_particular(t_game *game, t_ray *ray)
 {
-	if (ray->angle == 0 || ray->angle ==  2 * M_PI)
+	if (ray->angle == 0 || ray->angle == 2 * M_PI)
 		ft_ray_right(ray, game);
 	else if (ray->angle == M_PI)
 		ft_ray_left(ray, game);

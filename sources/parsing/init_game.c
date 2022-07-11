@@ -3,38 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/08 16:46:47 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/11 04:17:51 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-void	ft_init_mn_map(t_game *game)
-{
-	game->mn_map = ft_xmalloc(sizeof(t_data));
-	game->mn_map->img = NULL;
-	game->mn_map->addr = NULL;
-	game->mn_map->b_p_pix = 0;
-	game->mn_map->l_len = 0;
-	game->mn_map->endian = 0;
-	game->mn_map->height = MNM_PIX_SQR * (MNM_DP_SQR_Y * 2 + game->w_he / HEIGHT);
-	game->mn_map->width = MNM_PIX_SQR * (MNM_DP_SQR_X * 2 + game->w_wi / WIDTH);
-}
-
-void	ft_init_screen(t_game *game)
-{
-	game->screen = ft_xmalloc(sizeof(t_data));
-	game->screen->img = NULL;
-	game->screen->addr = NULL;
-	game->screen->b_p_pix = 0;
-	game->screen->l_len = 0;
-	game->screen->endian = 0;
-	game->screen->height = game->w_he;
-	game->screen->width = game->w_wi;
-}
 
 void	ft_init_player(t_game *game)
 {
@@ -108,7 +84,7 @@ void	ft_init_game(t_game *game)
 	game->fov = FOV * 2 * M_PI / 360;
 	game->fov_2 = game->fov * 0.5;
 	game->angle_rays = game->fov / game->w_wi;
-	game->rot = M_PI_4 / 10;
+	game->rot = M_PI_4 * ROT_SPEED / 10;
 	ft_init_rays(game);
 	ft_init_key(game);
 	ft_init_graph(game);

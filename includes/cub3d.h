@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/08 17:20:22 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/11 04:51:38 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define HEIGHT 540
-# define WIDTH 960
-# define FOV 60
-# define SPEED_INIT 0.04
+# define HEIGHT 720
+# define WIDTH 1280
+# define FOV 80
+# define SPEED_INIT 0.1
 # define FACTOR_SPEED_SIDE 0.6
 # define FACTOR_SPEED_BACK 0.4
 # define FACTOR_SPEED_SPRINT 2
@@ -29,13 +29,7 @@
 # define CURS_OFFSETY 0.465
 # define MNP_GRID 2
 # define LONG_DIST 0.05
-
-enum sprite {
-	SP_NORTH,
-	SP_SOUTH,
-	SP_EAST,
-	SP_WEST,
-};
+# define ROT_SPEED 1.4
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -44,6 +38,13 @@ enum sprite {
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+
+enum e_sprite {
+	SP_NORTH,
+	SP_SOUTH,
+	SP_EAST,
+	SP_WEST,
+};
 
 typedef struct s_2dpoint
 {
@@ -114,7 +115,6 @@ typedef struct s_graph
 	t_data				*sp_ea;
 	t_data				*sp_no;
 	t_data				*sp_so;
-	
 	unsigned int		floor;
 	unsigned int		ceiling;
 }				t_graph;
@@ -189,6 +189,10 @@ void		ft_check_map(t_game *game);
 // init_game.c
 void		ft_init_game(t_game *game);
 
+// init_images.c
+void		ft_init_mn_map(t_game *game);
+void		ft_init_screen(t_game *game);
+
 // check_map_closed.c
 void		ft_check_open_map(t_game *game, int x, int y);
 void		ft_square_map(t_game *game);
@@ -233,8 +237,10 @@ void		ft_innit_triangle(t_rectangle *l, t_triangle *t, int *b0, int *b1);
 void		ft_reset_rays(t_game *game);
 void		ft_init_ray(t_game *game);
 void		ft_cast_ray(t_game *game);
-void		check_if_wall_ver(int next_grid_ver, float y_ver, t_ray *ray, t_game *game);
-void		check_if_wall_hor(int next_grid_hor, float x_hor, t_ray *ray, t_game *game);
+void		check_if_wall_ver(int next_grid_ver, float y_ver,
+				t_ray *ray, t_game *game);
+void		check_if_wall_hor(int next_grid_hor,
+				float x_hor, t_ray *ray, t_game *game);
 
 // angle_particular.c
 void		ft_angle_particular(t_game *game, t_ray *ray);
@@ -243,7 +249,7 @@ void		ft_angle_particular(t_game *game, t_ray *ray);
 void		ft_display_screen(t_game *g);
 
 // ft_print_ray.c
-void	ft_print_ray(t_game *game);
+void		ft_print_ray(t_game *game);
 
 // raycast.c
 

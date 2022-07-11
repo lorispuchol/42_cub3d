@@ -10,12 +10,12 @@ SRCS = 	./sources/cub3d.c 						\
 		./sources/execution/geometry.c 			\
 		./sources/execution/geometry_utils.c 	\
 		./sources/execution/init_ray.c 			\
-		./sources/execution/init_ray_loris.c 	\
 		./sources/execution/player_action.c		\
 		./sources/execution/mouvement.c			\
 		./sources/execution/raycast.c			\
 		./sources/execution/angle_particular.c	\
 		./sources/parsing/init_game.c 			\
+		./sources/parsing/init_images.c 		\
 		./sources/utils.c 						\
 		./sources/parsing/check_file.c 			\
 		./sources/parsing/get_data_map.c 		\
@@ -34,7 +34,7 @@ LIBFT = ./libft/
 
 MINILIBX = ./minilibx/
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 %.o: %.c ./includes/cub3d.h libft/libft.a Makefile/
 		${CC} ${CFLAGS} -c $< -o $@

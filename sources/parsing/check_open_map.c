@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_open_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 15:00:10 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/03 22:44:20 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/07/11 04:15:03 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	ft_square_map(t_game *game)
 		while ((int)ft_strlen(game->map[y]) < len_max)
 			game->map[y] = l_add_char(game->map[y], ' ');
 	}
-	game->l_map = ft_strlen(game->map[0]);	
+	game->l_map = ft_strlen(game->map[0]);
 	y = 0;
-	while(game->map[y])
+	while (game->map[y])
 		y++;
 	game->h_map = y;
 }

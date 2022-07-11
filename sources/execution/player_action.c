@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/07 15:33:41 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/11 04:35:44 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@ void	ft_rotate_left(t_game *game)
 		game->player->dir -= 2 * M_PI;
 	if (game->player->dir < 0)
 		game->player->dir += 2 * M_PI;
-	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI + game->rot)
+	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI
+		+ game->rot)
 		game->player->dir = M_PI;
 	if (game->player->dir > 0 - game->rot && game->player->dir < 0 + game->rot)
 		game->player->dir = 0;
-	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2 + game->rot)
+	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2
+		+ game->rot)
 		game->player->dir = M_PI_2;
-	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3 * M_PI_2 + game->rot)
+	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3
+		* M_PI_2 + game->rot)
 		game->player->dir = 3 * M_PI_2;
 }
 
@@ -36,13 +39,16 @@ void	ft_rotate_right(t_game *game)
 		game->player->dir -= 2 * M_PI;
 	if (game->player->dir < 0)
 		game->player->dir += 2 * M_PI;
-	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI + game->rot)
+	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI
+		+ game->rot)
 		game->player->dir = M_PI;
 	if (game->player->dir > 0 - game->rot && game->player->dir < 0 + game->rot)
 		game->player->dir = 0;
-	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2 + game->rot)
+	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2
+		+ game->rot)
 		game->player->dir = M_PI_2;
-	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3 * M_PI_2 + game->rot)
+	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3
+		* M_PI_2 + game->rot)
 		game->player->dir = 3 * M_PI_2;
 }
 

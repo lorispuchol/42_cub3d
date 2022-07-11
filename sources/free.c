@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 13:12:46 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/08 15:23:03 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/11 04:22:22 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void ft_free_rays(t_game *game)
+void	ft_free_rays(t_game *game)
 {
 	if (game->ray)
 		free (game->ray);
 }
 
-void ft_free_key(t_game *game)
+void	ft_free_key(t_game *game)
 {
 	if (game->key)
 		free (game->key);
 }
-
 
 void	ft_free_mn_map(t_game *game)
 {
@@ -35,12 +34,6 @@ void	ft_free_mn_map(t_game *game)
 			free(game->mn_map->addr);
 		free(game->mn_map);
 	}
-}
-
-void	ft_free_player(t_game *game)
-{
-	if (game->player)
-		free(game->player);
 }
 
 void	ft_free_graph(t_game *game)
@@ -64,7 +57,8 @@ void	ft_free_game(t_game *game)
 	if (game)
 	{
 		ft_free_graph(game);
-		ft_free_player(game);
+		if (game->player)
+			free(game->player);
 		ft_free_mn_map(game);
 		l_free_tab(game->map);
 		ft_free_key(game);
