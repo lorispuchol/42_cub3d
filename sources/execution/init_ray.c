@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/11 23:27:57 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 19:12:28 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void
 	else if ((ray->angle > 0 && ray->angle < M_PI_2)
 		|| (ray->angle > 3 * M_PI_2 && ray->angle < 2 * M_PI))
 	{
-		if (next_grid_ver < 0 || next_grid_ver > game->l_map)
+		if (next_grid_ver + 1 < 0 || next_grid_ver + 1 > game->l_map)
 		{
 			ray->dist_impact_ver = -1;
 			ray->if_wall_ver = -1;
@@ -71,7 +71,7 @@ void
 	}
 	else if ((ray->angle > 0 && ray->angle < M_PI))
 	{
-		if (next_grid_hor < 0 || next_grid_hor > game->h_map)
+		if (next_grid_hor + 1 < 0 || next_grid_hor + 1 > game->h_map)
 		{
 			ray->dist_impact_hor = -1;
 			ray->if_wall_hor = -1;
@@ -110,18 +110,18 @@ void	ft_init_ray(t_game *game)
 {
 	int			i;
 	long double	angle;
-	int			posx;
-	int			posy;
+	// int			posx;
+	// int			posy;
 
 	angle = game->player->dir - game->fov_2;
 	i = 0;
-	posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
-	posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
+	// posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
+	// posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
 	while (angle < game->player->dir + game->fov_2 && i < game->w_wi)
 	{	
-		posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
-		posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
-		ft_set_pix(game->mn_map, posx, posy, 0x0000AA00);
+		// posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
+		// posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
+		// ft_set_pix(game->mn_map, posx, posy, 0x0000AA00);
 		game->ray[i].angle = angle;
 		game->ray[i].index = i;
 		ft_raycast(game, &game->ray[i]);

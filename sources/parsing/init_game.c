@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/12 02:46:58 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 19:27:44 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_init_key(t_game *game)
 	game->key->up = 0;
 	game->key->lock_mouse = 0;
 	game->key->rot_left = 0;
+	game->key->hide_show_mouse = 1;
+	game->key->night_mode = 0;
 	game->key->rot_right = 0;
 }
 
