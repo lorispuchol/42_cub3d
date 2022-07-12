@@ -1,10 +1,10 @@
-NO ./sprites/my_wall3.xpm
-SO ./sprites/my_wall5.xpm                                      
-WE ./sprites/my_wall7.xpm
-EA ./sprites/my_wall8.xpm
+NO ./sprites/wall_test2.xpm
+SO ./sprites/wall_test3.xpm                                      
+WE ./sprites/wall_test.xpm
+EA ./sprites/wall_test4.xpm
  
-C 200,75, 0
-F 100,150,150
+C 180,250, 250
+F 120,130,130
 
 111111111111111
 10000111000001

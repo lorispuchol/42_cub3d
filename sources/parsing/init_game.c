@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/11 04:17:51 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 02:46:58 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init_player(t_game *game)
 	game->player->x = -1;
 	game->player->y = -1;
 	game->player->dir = -1;
+	game->player->tilt = 0;
 	game->player->speed = SPEED_INIT;
 	game->player->acc = 0;
 }
@@ -44,6 +45,7 @@ void	ft_init_key(t_game *game)
 	game->key->left = 0;
 	game->key->right = 0;
 	game->key->up = 0;
+	game->key->lock_mouse = 0;
 	game->key->rot_left = 0;
 	game->key->rot_right = 0;
 }
@@ -85,6 +87,8 @@ void	ft_init_game(t_game *game)
 	game->fov_2 = game->fov * 0.5;
 	game->angle_rays = game->fov / game->w_wi;
 	game->rot = M_PI_4 * ROT_SPEED / 10;
+	game->vert_sensi = VERTIC_SENSI;
+	game->hori_sensi = HORIZ_SENSI;
 	ft_init_rays(game);
 	ft_init_key(game);
 	ft_init_graph(game);

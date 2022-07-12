@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/11 04:27:43 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 02:48:12 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_init_mlx(t_game *g)
 	g->mlx_ptr = mlx_init();
 	g->mlx_window = mlx_new_window(g->mlx_ptr, g->w_wi, g->w_he, "cub3D");
 	ft_sprite_to_img(g);
-	ft_create_mini_map(g);
+	mlx_mouse_move(g->mlx_window, g->w_wi * 0.5, g->w_he * 0.5);
 	mlx_do_key_autorepeaton(g->mlx_ptr);
 	mlx_hook(g->mlx_window, 02, 1L << 0, ft_press_key, g);
 	mlx_hook(g->mlx_window, 03, 1L << 1, ft_release_key, g);

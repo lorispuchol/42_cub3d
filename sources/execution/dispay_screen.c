@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:59:17 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/11 04:44:29 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 02:09:21 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void	ft_display_screen(t_game *g)
 	back.tl.x = 0;
 	back.tl.y = 0;
 	back.br.x = g->w_wi;
-	back.br.y = g->w_he * 0.5 - 1;
+	back.br.y = g->w_he * 0.5 - 1
+		+ (int)(sinf(g->player->tilt) * g->w_he * 0.5);
 	ft_rectangle(g->screen, back, g->graph->ceiling);
 	back.tl.x = 0;
-	back.tl.y = g->w_he * 0.5;
+	back.tl.y = g->w_he * 0.5 + (int)(sinf(g->player->tilt) * g->w_he * 0.5);
 	back.br.x = g->w_wi;
-	back.br.y = g->w_he - 2;
+	back.br.y = g->w_he - 1;
 	ft_rectangle(g->screen, back, g->graph->floor);
 	ft_init_ray(g);
 	ft_print_ray(g);

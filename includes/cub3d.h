@@ -6,14 +6,14 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/11 23:17:16 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 02:48:56 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define HEIGHT 720
-# define WIDTH 1280
+# define HEIGHT 1080
+# define WIDTH 1920
 # define FOV 80
 # define SPEED_INIT 0.1
 # define FACTOR_SPEED_SIDE 0.6
@@ -30,6 +30,9 @@
 # define MNP_GRID 2
 # define LONG_DIST 0.05
 # define ROT_SPEED 1.4
+# define COEF_TILT_MAX 1
+# define VERTIC_SENSI 0.05
+# define HORIZ_SENSI 0.05
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -104,6 +107,9 @@ typedef struct s_key
 	int	right;
 	int	rot_left;
 	int	rot_right;
+	int	rot_bot;
+	int	rot_top;
+	int	lock_mouse;
 }				t_key;
 typedef struct s_graph
 {
@@ -124,6 +130,7 @@ typedef struct s_player
 	float		x;
 	float		y;
 	long double	dir;
+	long double	tilt;
 	float		speed;
 	float		acc;
 }				t_player;
@@ -148,6 +155,8 @@ typedef struct s_game
 	long double	angle_rays;
 	float		r_v;
 	long double	rot;
+	float		vert_sensi;
+	float		hori_sensi;
 	int			mn_map_pix_sqr;
 }				t_game;
 
@@ -218,6 +227,12 @@ void		ft_up(t_game *game);
 void		ft_down(t_game *game);
 void		ft_right(t_game *game);
 void		ft_left(t_game *game);
+
+// rotate_player
+void		ft_rotate_left(t_game *game);
+void		ft_rotate_right(t_game *game);
+void		ft_rotate_top(t_game *game);
+void		ft_rotate_bot(t_game *game);
 
 // player_action.c
 int			ft_press_key(int keycode, t_game *game);

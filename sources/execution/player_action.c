@@ -6,56 +6,42 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/11 04:35:44 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/12 02:47:37 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	ft_rotate_left(t_game *game)
+void	ft_mouse_directions(t_game *game)
 {
-	game->player->dir -= game->rot;
-	if (game->player->dir > 2 * M_PI)
-		game->player->dir -= 2 * M_PI;
-	if (game->player->dir < 0)
-		game->player->dir += 2 * M_PI;
-	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI
-		+ game->rot)
-		game->player->dir = M_PI;
-	if (game->player->dir > 0 - game->rot && game->player->dir < 0 + game->rot)
-		game->player->dir = 0;
-	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2
-		+ game->rot)
-		game->player->dir = M_PI_2;
-	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3
-		* M_PI_2 + game->rot)
-		game->player->dir = 3 * M_PI_2;
-}
+	int	x;
+	int	y;
 
-void	ft_rotate_right(t_game *game)
-{
-	game->player->dir += game->rot;
+	mlx_mouse_get_pos(game->mlx_window, &x, &y);
+	x -= game->w_wi * 0.5;
+	y -= game->w_he * 0.5;
+	game->player->dir += x * game->rot * game->hori_sensi;
 	if (game->player->dir > 2 * M_PI)
 		game->player->dir -= 2 * M_PI;
 	if (game->player->dir < 0)
 		game->player->dir += 2 * M_PI;
-	if (game->player->dir > M_PI - game->rot && game->player->dir < M_PI
-		+ game->rot)
-		game->player->dir = M_PI;
-	if (game->player->dir > 0 - game->rot && game->player->dir < 0 + game->rot)
-		game->player->dir = 0;
-	if (game->player->dir > M_PI_2 - game->rot && game->player->dir < M_PI_2
-		+ game->rot)
-		game->player->dir = M_PI_2;
-	if (game->player->dir > 3 * M_PI_2 - game->rot && game->player->dir < 3
-		* M_PI_2 + game->rot)
-		game->player->dir = 3 * M_PI_2;
+	game->player->tilt -= y * game->rot * game->vert_sensi;
+	if (game->player->tilt > M_PI_2 * COEF_TILT_MAX)
+		game->player->tilt = M_PI_2 * COEF_TILT_MAX;
+	if (game->player->tilt < -M_PI_2 * COEF_TILT_MAX)
+		game->player->tilt = -M_PI_2 * COEF_TILT_MAX;
+	mlx_mouse_hide();
+	mlx_mouse_move(game->mlx_window, game->w_wi * 0.5, game->w_he * 0.5);
 }
 
 int	ft_action_loop(t_game *game)
 {
 	if (game->key->down == 1 && game->key->up != 1)
 		ft_down(game);
+	if (game->key->rot_bot == 1 && game->key->rot_top != 1)
+		ft_rotate_bot(game);
+	if (game->key->rot_top == 1 && game->key->rot_bot != 1)
+		ft_rotate_top(game);
 	if (game->key->up == 1 && game->key->down != 1)
 		ft_up(game);
 	if (game->key->left == 1 && game->key->right != 1)
@@ -67,6 +53,10 @@ int	ft_action_loop(t_game *game)
 	if (game->key->rot_right == 1 && game->key->rot_left != 1)
 		ft_rotate_right(game);
 	ft_create_mini_map(game);
+	if (game->key->lock_mouse == 1)
+		mlx_mouse_show();
+	if (game->key->lock_mouse == 0)
+		ft_mouse_directions(game);
 	return (0);
 }
 
@@ -86,6 +76,14 @@ int	ft_press_key(int keycode, t_game *game)
 		game->key->rot_left = 1;
 	if (keycode == 124)
 		game->key->rot_right = 1;
+	if (keycode == 125)
+		game->key->rot_bot = 1;
+	if (keycode == 126)
+		game->key->rot_top = 1;
+	if (keycode == 12 && game->key->lock_mouse == 0)
+		game->key->lock_mouse = 1;
+	else if (keycode == 12 && game->key->lock_mouse == 1)
+		game->key->lock_mouse = 0;
 	return (0);
 }
 
@@ -103,5 +101,9 @@ int	ft_release_key(int keycode, t_game *game)
 		game->key->rot_left = 0;
 	if (keycode == 124)
 		game->key->rot_right = 0;
+	if (keycode == 125)
+		game->key->rot_bot = 0;
+	if (keycode == 126)
+		game->key->rot_top = 0;
 	return (0);
 }
