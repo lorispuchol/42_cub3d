@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dispay_screen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:59:17 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/13 01:46:43 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/13 15:38:53 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_night(t_game *g)
 	back.br.x = g->w_wi;
 	back.br.y = g->w_he - 1;
 	ft_rectangle(g->screen, back, g->graph->floor);
+	mlx_destroy_image(g->mlx_ptr, sky.img);
 }
 
 void	ft_sky_floor(t_game *g)
