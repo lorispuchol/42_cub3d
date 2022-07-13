@@ -36,7 +36,7 @@ LIBFT = ./libft/
 
 MINILIBX = ./minilibx/
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 %.o: %.c ./includes/cub3d.h libft/libft.a Makefile/
 		${CC} ${CFLAGS} -c $< -o $@

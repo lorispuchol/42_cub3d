@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/12 19:30:26 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/13 01:57:39 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@ void	ft_mouse_directions(t_game *game)
 	int	x;
 	int	y;
 
+	if (game->key->hide_show_mouse == 1)
+	{
+		mlx_mouse_hide();
+		mlx_mouse_move(game->mlx_window, game->w_wi * 0.5, game->w_he * 0.5);
+		game->key->hide_show_mouse = 0;
+	}
 	mlx_mouse_get_pos(game->mlx_window, &x, &y);
 	x -= game->w_wi * 0.5;
 	y -= game->w_he * 0.5;
@@ -30,11 +36,6 @@ void	ft_mouse_directions(t_game *game)
 		game->player->tilt = M_PI_2 * COEF_TILT_MAX;
 	if (game->player->tilt < -M_PI_2 * COEF_TILT_MAX)
 		game->player->tilt = -M_PI_2 * COEF_TILT_MAX;
-	if (game->key->hide_show_mouse == 1)
-	{
-		mlx_mouse_hide();
-		game->key->hide_show_mouse = 0;
-	}
 	mlx_mouse_move(game->mlx_window, game->w_wi * 0.5, game->w_he * 0.5);
 }
 
@@ -99,6 +100,10 @@ int	ft_press_key(int keycode, t_game *game)
 		game->key->night_mode = 1;
 	else if (keycode == 45 && game->key->night_mode == 1)
 		game->key->night_mode = 0;
+	if (keycode == 46 && game->key->mn_map == 0)
+		game->key->mn_map = 1;
+	else if (keycode == 46 && game->key->mn_map == 1)
+		game->key->mn_map = 0;
 	return (0);
 }
 

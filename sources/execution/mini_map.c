@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/12 17:05:26 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/13 02:00:01 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,27 @@ void	ft_create_mini_map(t_game *g)
 	t_rectangle	rect;
 	t_triangle	tri[2];
 
-	if (!g->mn_map->img)
-		g->mn_map->img = mlx_new_image(g->mlx_ptr, g->mn_map->width,
-				g->mn_map->height);
-	if (!g->mn_map->addr)
-		g->mn_map->addr = mlx_get_data_addr(g->mn_map->img, &g->mn_map->b_p_pix,
-				&g->mn_map->l_len, &g->mn_map->endian);
-	rect.tl.x = 0;
-	rect.tl.y = 0;
-	rect.br.x = g->mn_map->width;
-	rect.br.y = g->mn_map->height;
-	ft_rectangle(g->mn_map, rect, 0xFF000000);
-	tri[0] = ft_set_triangle(g, 1);
-	tri[1] = ft_set_triangle(g, 0);
-	ft_mn_map_wall(g);
-	ft_put_triangle(g->mn_map, tri[0], 0x00FF0000);
-	ft_put_triangle(g->mn_map, tri[1], 0x00FF0000);
+	if (g->key->mn_map == 1)
+	{
+		if (!g->mn_map->img)
+			g->mn_map->img = mlx_new_image(g->mlx_ptr, g->mn_map->width,
+					g->mn_map->height);
+		if (!g->mn_map->addr)
+			g->mn_map->addr = mlx_get_data_addr(g->mn_map->img, &g->mn_map->b_p_pix,
+					&g->mn_map->l_len, &g->mn_map->endian);
+		rect.tl.x = 0;
+		rect.tl.y = 0;
+		rect.br.x = g->mn_map->width;
+		rect.br.y = g->mn_map->height;
+		ft_rectangle(g->mn_map, rect, 0xFF000000);
+		tri[0] = ft_set_triangle(g, 1);
+		tri[1] = ft_set_triangle(g, 0);
+		ft_mn_map_wall(g);
+		ft_put_triangle(g->mn_map, tri[0], 0x00FF0000);
+		ft_put_triangle(g->mn_map, tri[1], 0x00FF0000);
+	}
 	ft_display_screen(g);
-	mlx_put_image_to_window(g->mlx_ptr,
-		g->mlx_window, g->mn_map->img, g->w_wi - g->mn_map->width - 10, 10);
+	if (g->key->mn_map == 1)
+		mlx_put_image_to_window(g->mlx_ptr,
+			g->mlx_window, g->mn_map->img, g->w_wi - g->mn_map->width - 10, 10);
 }

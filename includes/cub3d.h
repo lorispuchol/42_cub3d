@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/12 19:26:10 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/13 01:55:50 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# define HEIGHT 500
-# define WIDTH 1000
+# define HEIGHT 720
+# define WIDTH 1280
 # define FOV 80
 # define SPEED_INIT 0.08
 # define FACTOR_SPEED_SIDE 0.6
@@ -110,10 +110,10 @@ typedef struct s_key
 	int	rot_right;
 	int	rot_bot;
 	int	rot_top;
-	int night_mode;
+	int	night_mode;
 	int	lock_mouse;
+	int	mn_map;
 	int	hide_show_mouse;
-	
 }				t_key;
 typedef struct s_graph
 {
