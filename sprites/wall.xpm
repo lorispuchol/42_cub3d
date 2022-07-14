@@ -2,10 +2,10 @@
 static char *_807acd94bf64c2edbfc69ea42659eecVfj19R0QYRFlDubX[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 28 1 ",
-"  c #345606",
-". c #345607",
-"X c #345707",
-"o c #355707",
+"  c #FF345606",
+". c #FF345607",
+"X c #FF345707",
+"o c #FF355707",
 "O c #34902B",
 "+ c #34912B",
 "@ c #34912C",
@@ -15,7 +15,7 @@ static char *_807acd94bf64c2edbfc69ea42659eecVfj19R0QYRFlDubX[] = {
 "& c #11A168",
 "* c #80D05E",
 "= c #80D05F",
-"- c #80D15F",
+"- c #FF80D15F",
 "; c #81D15F",
 ": c #3CB188",
 "> c #3DB188",

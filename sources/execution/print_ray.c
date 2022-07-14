@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:11:36 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/12 18:37:46 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/13 23:08:30 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
