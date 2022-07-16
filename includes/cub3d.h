@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/13 23:15:04 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/15 00:40:10 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define HEIGHT 1080
 # define WIDTH 1920
 # define FOV 80
-# define SPEED_INIT 0.08
+# define SPEED_INIT 0.2
 # define FACTOR_SPEED_SIDE 0.6
 # define FACTOR_SPEED_BACK 0.4
 # define FACTOR_SPEED_SPRINT 2
