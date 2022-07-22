@@ -1,7 +1,7 @@
 NO ./sprites/wall_test2.xpm
 SO ./sprites/wall_test3.xpm                                      
 WE ./sprites/wall_test.xpm
-EA ./sprites/wall.xpm
+EA ./sprites/wall_test4.xpm
  
 C 180,250, 250
 F 120,130,130

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/12 16:05:41 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/20 21:33:07 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_sprite_to_img_2(t_game *g)
 			&size[0], &size[1]);
 	g->graph->sp_no->width = size[0];
 	g->graph->sp_no->height = size[1];
+	g->graph->sp_no->r_h = 0.4 * g->r_v / size[0];
 	g->graph->sp_no->addr = mlx_get_data_addr(g->graph->sp_no->img,
 			&g->graph->sp_no->b_p_pix, &g->graph->sp_no->l_len,
 			&g->graph->sp_no->endian);
@@ -27,6 +28,7 @@ void	ft_sprite_to_img_2(t_game *g)
 			&size[0], &size[1]);
 	g->graph->sp_so->width = size[0];
 	g->graph->sp_so->height = size[1];
+	g->graph->sp_so->r_h = 0.4 * g->r_v / size[0];
 	g->graph->sp_so->addr = mlx_get_data_addr(g->graph->sp_so->img,
 			&g->graph->sp_so->b_p_pix, &g->graph->sp_so->l_len,
 			&g->graph->sp_so->endian);
@@ -40,6 +42,7 @@ void	ft_sprite_to_img(t_game *g)
 			&size[0], &size[1]);
 	g->graph->sp_ea->width = size[0];
 	g->graph->sp_ea->height = size[1];
+	g->graph->sp_ea->r_h = 0.4 * g->r_v / size[0];
 	g->graph->sp_ea->addr = mlx_get_data_addr(g->graph->sp_ea->img,
 			&g->graph->sp_ea->b_p_pix, &g->graph->sp_ea->l_len,
 			&g->graph->sp_ea->endian);
@@ -47,6 +50,7 @@ void	ft_sprite_to_img(t_game *g)
 			&size[0], &size[1]);
 	g->graph->sp_we->width = size[0];
 	g->graph->sp_we->height = size[1];
+	g->graph->sp_we->r_h = 0.4 * g->r_v / size[0];
 	g->graph->sp_we->addr = mlx_get_data_addr(g->graph->sp_we->img,
 			&g->graph->sp_we->b_p_pix, &g->graph->sp_we->l_len,
 			&g->graph->sp_we->endian);

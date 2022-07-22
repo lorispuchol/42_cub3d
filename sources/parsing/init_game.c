@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/14 02:53:23 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/22 02:30:51 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void	ft_init_game(t_game *game)
 	game->fov_2 = game->fov * 0.5;
 	game->angle_rays = game->fov / game->w_wi;
 	game->rot = M_PI_4 * ROT_SPEED / 10;
+	game->r_v = (float)game->w_wi * 0.5 / tanf(game->fov_2);
+	// game->r_v = 1000;
 	game->vert_sensi = VERTIC_SENSI;
 	game->hori_sensi = HORIZ_SENSI;
 	ft_init_rays(game);
