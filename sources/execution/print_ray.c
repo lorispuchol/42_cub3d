@@ -6,12 +6,13 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 18:11:36 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/07/22 04:15:54 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/25 04:27:09 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 #include <math.h>
+#include <stdio.h>
 
 int	x_col(t_game *g, int x, t_data *sprite)
 {
@@ -74,21 +75,35 @@ void	ft_print_floor_texture2(t_game *g, int x, int y)
 	float	dist;
 	// float	tmp_dist;
 	// float	angle;
+	float	alpha;
+	float	beta;
 
 	if (g->key->night_mode == 0 || y >= g->w_he)
 		return ;
 	if (!g->graph->ground->img)
-		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/dirt.xpm", &g->graph->ground->width, &g->graph->ground->height);
+		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/wall.xpm", &g->graph->ground->width, &g->graph->ground->height);
 	if (!g->graph->ground->addr)
 		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img, &g->graph->ground->b_p_pix, &g->graph->ground->l_len, &g->graph->ground->endian);
-	d_dist = (g->ray[x].lil_dist - 1) / (g->w_he - y);
-	dist = g->ray[x].lil_dist;
+	// angle = atanf(g->r_v / (float)(y - g->w_he * 0.5));
+	alpha = atanf(g->w_he * 0.5 / g->r_v);
+	beta = atanf((y - g->w_he * 0.5) / g->r_v);
+	d_dist = (g->ray[x].lil_dist) / ((g->w_he - y));
+	dist = g->ray[x].lil_dist / cosf(beta);
+	if (g->ray[x].angle > g->player->dir - g->angle_rays && g->ray[x].angle < g->player->dir + g->angle_rays)
+	{
+		dprintf(2, "alpha == %f\n", alpha);
+		dprintf(2, "beta == %f\n", beta);
+		dprintf(2, "first dist == %f\n", dist);
+		dprintf(2, "last dist == %f\n", 0.5 / sinf(alpha));
+		dprintf(2, "lil dist == %f\n", g->ray[x].lil_dist);
+		dprintf(2, "calcul dist == %f\n", dist);
+	}
 	while (y < g->w_he)
 	{
-		// angle = fabsl(M_PI_2 * 5 - atanf(g->r_v / (float)(y - g->w_he * 0.5)));
+		// angle = atanf(g->r_v / (float)(y - g->w_he * 0.5));
 		// tmp_dist = dist / sinf(angle);
-		dx_player_world = g->player->x - floorf(g->player->x) + cosf(g->ray[x].angle) * dist ;
-		dy_player_world = g->player->y - floorf(g->player->y) + sinf(g->ray[x].angle) * dist ;
+		dx_player_world = g->player->x - floorf(g->player->x) + cosf(g->ray[x].angle) * dist;
+		dy_player_world = g->player->y - floorf(g->player->y) + sinf(g->ray[x].angle) * dist;
 		color[0] = dx_player_world * (float)g->graph->ground->width;
 		color[1] = dy_player_world * (float)g->graph->ground->height;
 		while (color[1] >= g->graph->ground->height)
@@ -103,7 +118,50 @@ void	ft_print_floor_texture2(t_game *g, int x, int y)
 		y++;
 		dist = dist - d_dist;
 	}
+	// if (g->ray[x].angle > g->player->dir - g->angle_rays && g->ray[x].angle < g->player->dir + g->angle_rays)
+	// {
+	// 	dprintf(2, "angle final == %f\n", angle);
+	// 	exit(0);
+	// }
 }
+
+// void	ft_floor(t_game *g, int x, int y)
+// {
+// 	float	raydir_xy0[2];
+// 	float	raydir_xy1[2];
+// 	int		p;
+// 	float	posz;
+// 	float	rowdist;
+// 	float	floor_step_xy[2];
+// 	float	floor_xy[2];
+// 	int		cell_xy[2];
+// 	int		t_xy[2];
+
+// 	if (!g->graph->ground->img)
+// 		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/real_true_wall.xpm", &g->graph->ground->width, &g->graph->ground->height);
+// 	if (!g->graph->ground->addr)
+// 		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img, &g->graph->ground->b_p_pix, &g->graph->ground->l_len, &g->graph->ground->endian);
+// 	raydir_xy0[0] = cosf(g->player->dir) - cosf(g->player->dir + M_PI_2);
+// 	raydir_xy0[1] = sinf(g->player->dir) - sinf(g->player->dir + M_PI_2);
+// 	raydir_xy1[0] = cosf(g->player->dir) + cosf(g->player->dir + M_PI_2);
+// 	raydir_xy1[1] = sinf(g->player->dir) + sinf(g->player->dir + M_PI_2);
+// 	posz = g->w_he * 0.5;
+// 	while (y < g->w_he)
+// 	{
+// 		p = y - g->w_he * 0.5;
+// 		rowdist = posz / p;
+// 		floor_step_xy[0] = rowdist * (raydir_xy1[0] - raydir_xy0[0]) / g->w_wi;
+// 		floor_step_xy[1] = rowdist * (raydir_xy1[1] - raydir_xy0[1]) / g->w_wi;
+// 		floor_xy[0] = (g->player->x + rowdist * raydir_xy0[0]) + x * floor_step_xy[0];
+// 		floor_xy[1] = g->player->y + rowdist * raydir_xy0[1] + x * floor_step_xy[1];
+// 		cell_xy[0] = (int)floor_xy[0];
+// 		cell_xy[1] = (int)floor_xy[1];
+// 		t_xy[0] = (int)(g->graph->ground->width * (floor_xy[0] - cell_xy[0])) & (g->graph->ground->width - 1);
+// 		t_xy[1] = (int)(g->graph->ground->height * (floor_xy[1] - cell_xy[1])) & (g->graph->ground->height - 1);
+// 		ft_set_pix(g->screen, x, y, ft_get_color(g->graph->ground, t_xy[0], t_xy[1]));
+// 		y++;
+// 	}
+// }
 
 void	print_sprite_ray(t_game *g, int x, int height_wall, t_data *sp)
 {
@@ -111,7 +169,7 @@ void	print_sprite_ray(t_game *g, int x, int height_wall, t_data *sp)
 	int	ycol;
 	int	true_y;
 
-	height_wall = height_wall * sp->r_h;
+	// height_wall = height_wall * sp->r_h;
 	y[0] = g->w_he * 0.5 - height_wall * 0.5
 		+ (int)(sinf(g->player->tilt) * g->w_he * 0.5);
 	true_y = 0;
@@ -132,8 +190,9 @@ void	print_sprite_ray(t_game *g, int x, int height_wall, t_data *sp)
 		y[0]++;
 		true_y++;
 	}
+	// ft_floor(g, x, y[0]);
 	// ft_print_floor_texture(g, x, y[0]);
-	ft_print_floor_texture2(g, x, y[0]);
+	// ft_print_floor_texture2(g, x, y[0]);
 }
 
 void	ft_print_ray(t_game *game)
@@ -145,9 +204,10 @@ void	ft_print_ray(t_game *game)
 	i = -1;
 	while (++i < game->w_wi)
 	{
-		good_dist = cosf(fabs((double)game->ray[i].angle
+		good_dist = cosf(fabsl((double)game->ray[i].angle
 					- (double)game->player->dir)) * game->ray[i].lil_dist;
-		height_wall = (int)((float)game->w_he / (good_dist));
+		// good_dist = good_dist - good_dist * (game->ray[i].lil_dist / (game->r_v * cosf(-game->ray[i].angle + game->player->dir)));
+		height_wall = (int)((float)game->w_he / (good_dist ));
 		// game->ray[i].lil_dist = good_dist;
 		if (game->ray[i].wall == SP_EAST)
 			print_sprite_ray(game, i, height_wall, game->graph->sp_ea);

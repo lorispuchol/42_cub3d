@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/12 19:12:28 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/07/25 03:45:31 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,12 @@ void	ft_init_ray(t_game *game)
 		game->ray[i].angle = angle;
 		game->ray[i].index = i;
 		ft_raycast(game, &game->ray[i]);
-		angle += game->angle_rays;
+		if (i < game->w_wi * 0.5)
+			angle = game->player->dir - atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
+		else if (i > game->w_wi * 0.5)
+			angle = game->player->dir + atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
+		else
+		 	angle = game->player->dir;
 		i++;
 	}
 }
