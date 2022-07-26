@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/25 03:45:31 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/26 01:20:28 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,27 +110,26 @@ void	ft_init_ray(t_game *game)
 {
 	int			i;
 	long double	angle;
-	// int			posx;
-	// int			posy;
+	int			posx;
+	int			posy;
 
 	angle = game->player->dir - game->fov_2;
 	i = 0;
-	// posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
-	// posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
-	while (angle < game->player->dir + game->fov_2 && i < game->w_wi)
+	while (i < game->w_wi)
 	{	
-		// posx = cosf(angle) * 100 + 0.5 * game->mn_map->width;
-		// posy = sinf(angle) * 100 + 0.5 * game->mn_map->height;
-		// ft_set_pix(game->mn_map, posx, posy, 0x0000AA00);
 		game->ray[i].angle = angle;
 		game->ray[i].index = i;
 		ft_raycast(game, &game->ray[i]);
-		if (i < game->w_wi * 0.5)
+		if (game->key->mn_map == 1 && SHOW_IMPACT_MN_MAP)
+		{
+			posx = cosf(angle) * game->ray[i].lil_dist * MNM_PIX_SQR + 0.5 * game->mn_map->width;
+			posy = sinf(angle) * game->ray[i].lil_dist * MNM_PIX_SQR + 0.5 * game->mn_map->height;
+			ft_set_pix(game->mn_map, posx, posy, 0x00FF0000);
+		}
+		if (i <= game->w_wi * 0.5)
 			angle = game->player->dir - atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
 		else if (i > game->w_wi * 0.5)
 			angle = game->player->dir + atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
-		else
-		 	angle = game->player->dir;
 		i++;
 	}
 }

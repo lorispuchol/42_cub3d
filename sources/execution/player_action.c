@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/13 23:38:37 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/26 02:34:54 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,10 @@ int	ft_press_key(int keycode, t_game *game)
 			mlx_destroy_image(game->mlx_ptr, game->graph->sky->img);
 		game->graph->sky->img = NULL;
 		game->graph->sky->addr = NULL;
+		if (game->graph->ground->img)
+			mlx_destroy_image(game->mlx_ptr, game->graph->ground->img);
+		game->graph->ground->img = NULL;
+		game->graph->ground->addr = NULL;
 		game->key->night_mode = 0;
 	}
 	if (keycode == 46 && game->key->mn_map == 0)

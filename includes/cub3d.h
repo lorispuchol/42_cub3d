@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/25 01:10:01 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/26 02:52:02 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define COEF_DISPLAY_TILT 1
 # define VERTIC_SENSI 0.05
 # define HORIZ_SENSI 0.05
+# define SHOW_IMPACT_MN_MAP 1
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -157,9 +158,8 @@ typedef struct s_game
 	t_data		*screen;
 	int			w_he;
 	int			w_wi;
-	float		fov;
-	float		fov_2;
-	long double	angle_rays;
+	long double	fov;
+	long double	fov_2;
 	float		r_v;
 	long double	rot;
 	float		vert_sensi;
@@ -208,6 +208,7 @@ void		ft_init_game(t_game *game);
 // init_images.c
 void		ft_init_mn_map(t_game *game);
 void		ft_init_screen(t_game *game);
+void		ft_init_fog(t_game *game);
 
 // check_map_closed.c
 void		ft_check_open_map(t_game *game, int x, int y);
@@ -287,5 +288,12 @@ void		fill_ray_hor(t_ray *ray, t_game *game,
 				int next_grid_hor, float x_hor);
 void		fill_ray_ver(t_ray *ray, t_game *game,
 				int next_grid_ver, float y_ver);
+
+// colors_fct.c
+int			get_t(int trgb);
+int			get_r(int trgb);
+int			get_g(int trgb);
+int			get_b(int trgb);
+int			create_trgb(int t, int r, int g, int b);
 
 #endif

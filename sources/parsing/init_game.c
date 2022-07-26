@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/25 02:59:28 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/07/26 02:33:47 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,13 @@ void	ft_init_game(t_game *game)
 	game->mlx_window = NULL;
 	game->w_wi = WIDTH;
 	game->w_he = HEIGHT;
-	game->fov = FOV * 2 * M_PI / 360;
+	if (FOV <= 60)
+		game->fov = 60 * 2 * M_PI / (long double)360;
+	else if (FOV >= 140)
+		game->fov = 140 * 2 * M_PI / (long double)360;
+	else
+		game->fov = FOV * 2 * M_PI / (long double)360;
 	game->fov_2 = game->fov * 0.5;
-	game->angle_rays = game->fov / game->w_wi;
 	game->rot = M_PI_4 * ROT_SPEED / 10;
 	game->r_v = (float)game->w_wi * 0.5 / tanf(game->fov_2);
 	game->vert_sensi = VERTIC_SENSI;
