@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 22:59:17 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/26 04:50:51 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 16:36:19 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 #include <stdint.h>
 #include <stdio.h>
 
-int	ft_fog_floor(t_game *g, int color, int x, int y)
-{
-	int		trgb[4];
-	float	fog;
+// int	ft_fog_floor(t_game *g, int color, int x, int y)
+// {
+// 	int		trgb[4];
+// 	float	fog;
 
 
-	x = 0;
-	fog = (float)( -y *  + g->w_he) / ((float)g->w_he * 0.5 + (int)(sinf(g->player->tilt) * g->w_he * 0.5));
-	if (fog < 0)
-		fog = 0;
-	if (fog > 1)
-		fog = 1;
-	trgb[0] = (1 - fog) * get_t(color) + fog * 25;
-	trgb[1] = (1 - fog) * get_r(color) + fog * 25;
-	trgb[2] = (1 - fog) * get_g(color) + fog * 25;
-	trgb[3] = (1 - fog) * get_b(color) + fog * 25;
-	return (create_trgb(trgb[0], trgb[1], trgb[2], trgb[3]));
-}
+// 	x = 0;
+// 	fog = (float)( -y *  + g->w_he) / ((float)g->w_he * 0.5 + (int)(sinf(g->player->tilt) * g->w_he * 0.5));
+// 	if (fog < 0)
+// 		fog = 0;
+// 	if (fog > 1)
+// 		fog = 1;
+// 	trgb[0] = (1 - fog) * get_t(color) + fog * 25;
+// 	trgb[1] = (1 - fog) * get_r(color) + fog * 25;
+// 	trgb[2] = (1 - fog) * get_g(color) + fog * 25;
+// 	trgb[3] = (1 - fog) * get_b(color) + fog * 25;
+// 	return (create_trgb(trgb[0], trgb[1], trgb[2], trgb[3]));
+// }
 
 void	ft_floor(t_game *g)
 {
@@ -49,7 +49,7 @@ void	ft_floor(t_game *g)
 	int		y_true;
 
 	if (!g->graph->ground->img)
-		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/dirt_2.xpm", &g->graph->ground->width, &g->graph->ground->height);
+		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/stone_floor.xpm", &g->graph->ground->width, &g->graph->ground->height);
 	if (!g->graph->ground->addr)
 		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img, &g->graph->ground->b_p_pix, &g->graph->ground->l_len, &g->graph->ground->endian);
 	xy[0] = 0;
@@ -85,7 +85,7 @@ void	ft_floor(t_game *g)
 				t_xy[0] += g->graph->ground->width;
 			floor_xy[0] += floor_step_xy[0];
 			floor_xy[1] += floor_step_xy[1];
-			ft_set_pix(g->screen, xy[0], y_true, ft_fog_floor(g, ft_get_color(g->graph->ground, t_xy[0], t_xy[1]), xy[0], y_true));
+			ft_set_pix(g->screen, xy[0], y_true, ft_get_color(g->graph->ground, t_xy[0], t_xy[1]));
 			xy[0]++;
 		}
 		xy[1]++;
@@ -100,7 +100,7 @@ void	ft_night(t_game *g)
 	int			offset;
 
 	if (!g->graph->sky->img)
-		g->graph->sky->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/moon.xpm", &g->graph->sky->width, &g->graph->sky->height);
+		g->graph->sky->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/full_sun.xpm", &g->graph->sky->width, &g->graph->sky->height);
 	if (!g->graph->sky->addr)
 		g->graph->sky->addr = mlx_get_data_addr(g->graph->sky->img, &g->graph->sky->b_p_pix, &g->graph->sky->l_len, &g->graph->sky->endian);
 	offset = (g->player->dir * g->graph->sky->width) / (M_PI * 2);
