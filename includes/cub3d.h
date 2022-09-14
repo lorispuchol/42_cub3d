@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 20:12:09 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/09/14 20:19:04 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -311,5 +311,8 @@ int			create_trgb(int t, int r, int g, int b);
 void		ft_floor2(t_game *g, long double fr_xy[2],
 				long double stp_xy[2], int xy[3]);
 void		floor1(t_game *g, int xy[3], long double raydir_xy0[4]);
+
+// init_ray2.c
+void		ft_init_ray2(t_game *g, int i, long double angle);
 
 #endif

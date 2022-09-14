@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 18:05:10 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 20:14:04 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,31 +106,24 @@ void	ft_reset_rays(t_game *game)
 	}
 }
 
-void	ft_init_ray(t_game *game)
+void	ft_init_ray(t_game *g)
 {
 	int			i;
 	long double	angle;
-	int			posx;
-	int			posy;
 
-	angle = game->player->dir - game->fov_2;
+	angle = g->player->dir - g->fov_2;
 	i = 0;
-	while (i < game->w_wi)
+	while (i < g->w_wi)
 	{	
-		game->ray[i].angle = angle;
-		game->ray[i].index = i;
-		ft_raycast(game, &game->ray[i]);
-		if (game->key->mn_map == 1 && SHOW_IMPACT_MN_MAP)
-		{
-			posx = cosf(angle) * game->ray[i].lil_dist * MNM_PIX_SQR + 0.5 * game->mn_map->width;
-			posy = sinf(angle) * game->ray[i].lil_dist * MNM_PIX_SQR + 0.5 * game->mn_map->height;
-			if (posx > 10 && posx < game->mn_map->width - 10 && posy > 10 && posy < game->mn_map->height - 10)
-			ft_set_pix(game->mn_map, posx, posy, 0x88FF0000);
-		}
-		if (i <= game->w_wi * 0.5)
-			angle = game->player->dir - atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
-		else if (i > game->w_wi * 0.5)
-			angle = game->player->dir + atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
+		g->ray[i].angle = angle;
+		g->ray[i].index = i;
+		ft_raycast(g, &g->ray[i]);
+		if (g->key->mn_map == 1 && SHOW_IMPACT_MN_MAP)
+			ft_init_ray2(g, i, angle);
+		if (i <= g->w_wi * 0.5)
+			angle = g->player->dir - atanf((fabs(g->w_wi * 0.5 - i)) / g->r_v);
+		else if (i > g->w_wi * 0.5)
+			angle = g->player->dir + atanf((fabs(g->w_wi * 0.5 - i)) / g->r_v);
 		i++;
 	}
 }

@@ -13,8 +13,9 @@ SRCS = 	./sources/cub3d.c 							\
 		./sources/execution/geometry.c 				\
 		./sources/execution/geometry_utils.c 		\
 		./sources/execution/init_ray.c 				\
+		./sources/execution/init_ray2.c 			\
 		./sources/execution/player_action.c			\
-		./sources/execution/player_action_2.c			\
+		./sources/execution/player_action_2.c		\
 		./sources/execution/rotate_player.c			\
 		./sources/execution/mouvement.c				\
 		./sources/execution/raycast.c				\
