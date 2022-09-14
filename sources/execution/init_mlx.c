@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/25 00:00:45 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 19:24:08 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_sprite_to_img_2(t_game *g)
 			&size[0], &size[1]);
 	g->graph->sp_so->width = size[0];
 	g->graph->sp_so->height = size[1];
-	g->graph->sp_so->r_h =  0.5 * g->r_v / size[0];
+	g->graph->sp_so->r_h = 0.5 * g->r_v / size[0];
 	g->graph->sp_so->addr = mlx_get_data_addr(g->graph->sp_so->img,
 			&g->graph->sp_so->b_p_pix, &g->graph->sp_so->l_len,
 			&g->graph->sp_so->endian);

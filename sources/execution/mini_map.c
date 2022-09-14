@@ -6,7 +6,7 @@
 /*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 18:36:19 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/14 19:24:59 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	ft_create_mini_map(t_game *g)
 			g->mn_map->img = mlx_new_image(g->mlx_ptr, g->mn_map->width,
 					g->mn_map->height);
 		if (!g->mn_map->addr)
-			g->mn_map->addr = mlx_get_data_addr(g->mn_map->img, &g->mn_map->b_p_pix,
+			g->mn_map->addr = mlx_get_data_addr(g->mn_map->img,
+					&g->mn_map->b_p_pix,
 					&g->mn_map->l_len, &g->mn_map->endian);
 		rect.tl.x = 0;
 		rect.tl.y = 0;
