@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 19:15:51 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 20:12:09 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,13 +220,14 @@ void		ft_init_mlx(t_game *game);
 
 // mini_map.c
 int			ft_get_color(t_data *data, int x, int y);
-void		ft_create_mini_map(t_game *g);
+void		ft_create_mini_map(t_game *g, t_rectangle rect);
 void		ft_set_pix(t_data *data, int x, int y, int color);
 void		ft_wall_boundary_x(t_game *g, int x, t_rectangle *rect);
 void		ft_wall_boundary_y(t_game *g, int y, t_rectangle *rect);
 
 // mini_map_boundaries.c
 void		mn_map_boundaries(t_game *g);
+void		ft_create_mini_map_2(t_game *g);
 
 // geometrie.c
 void		ft_vertical_line(t_data *img,
@@ -249,7 +250,13 @@ void		ft_rotate_bot(t_game *game);
 // player_action.c
 int			ft_press_key(int keycode, t_game *game);
 int			ft_release_key(int keycode, t_game *game);
-int			ft_action_loop(t_game *game);
+int			ft_action_loop(t_game *game, t_rectangle rect);
+
+// player_action_2.c
+int			ft_action_loop_2(t_game *game);
+void		ft_mouse_directions(t_game *game);
+
+
 
 // minimap_utils.c
 t_triangle	ft_set_triangle(t_game *g, int side);

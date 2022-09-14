@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 19:11:12 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/14 20:12:21 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_mouse_directions(t_game *game)
 	mlx_mouse_move(game->mlx_window, game->w_wi * 0.5, game->w_he * 0.5);
 }
 
-int	ft_action_loop(t_game *game)
+int	ft_action_loop(t_game *game, t_rectangle rect)
 {
 	mlx_clear_window(game->mlx_ptr, game->mlx_window);
 	if (game->key->down == 1 && game->key->up != 1)
@@ -58,15 +58,8 @@ int	ft_action_loop(t_game *game)
 		ft_rotate_left(game);
 	if (game->key->rot_right == 1 && game->key->rot_left != 1)
 		ft_rotate_right(game);
-	ft_create_mini_map(game);
-	if (game->key->lock_mouse == 1)
-	{
-		if (game->key->hide_show_mouse == 0)
-			game->key->hide_show_mouse = mlx_mouse_show() * 0 + 1;
-	}
-	else if (game->key->lock_mouse == 0)
-		ft_mouse_directions(game);
-	return (0);
+	ft_create_mini_map(game, rect);
+	return (ft_action_loop_2(game));
 }
 
 int	ft_press_key_2(int keycode, t_game *game)

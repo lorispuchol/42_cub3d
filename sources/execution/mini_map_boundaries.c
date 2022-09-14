@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map_boundaries.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 18:36:50 by lorispuchol       #+#    #+#             */
-/*   Updated: 2022/09/14 19:23:48 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/14 20:02:31 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	ft_create_mini_map_2(t_game *g)
+{
+	ft_display_screen(g);
+	if (g->key->mn_map == 1)
+		mlx_put_image_to_window(g->mlx_ptr,
+			g->mlx_window, g->mn_map->img, g->w_wi - g->mn_map->width - 10, 10);
+}
 
 void	mn_map_boundaries(t_game *g)
 {

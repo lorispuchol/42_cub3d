@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 19:24:59 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/14 20:04:38 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ void
 		rect->br.y = g->mn_map->height;
 }
 
-void	ft_create_mini_map(t_game *g)
+void	ft_create_mini_map(t_game *g, t_rectangle rect)
 {
-	t_rectangle	rect;
 	t_triangle	tri[2];
 
 	if (g->key->mn_map == 1)
@@ -98,8 +97,5 @@ void	ft_create_mini_map(t_game *g)
 		ft_put_triangle(g->mn_map, tri[1], 0x00FF0000);
 		mn_map_boundaries(g);
 	}
-	ft_display_screen(g);
-	if (g->key->mn_map == 1)
-		mlx_put_image_to_window(g->mlx_ptr,
-			g->mlx_window, g->mn_map->img, g->w_wi - g->mn_map->width - 10, 10);
+	ft_create_mini_map_2(g);
 }
