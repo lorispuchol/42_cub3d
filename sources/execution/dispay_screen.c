@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:38:54 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 16:39:33 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 17:04:41 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,26 @@
 
 void	ft_floor(t_game *g)
 {
-	int		xy[2];
+	int			xy[2];
 	long double	raydir_xy0[2];
 	long double	raydir_xy1[2];
-	int		p;
+	int			p;
 	long double	posz;
 	long double	rowdist;
 	long double	floor_step_xy[2];
 	long double	floor_xy[2];
-	int		cell_xy[2];
-	int		t_xy[2];
-	int		y_true;
+	int			cell_xy[2];
+	int			t_xy[2];
+	int			y_true;
 
 	if (!g->graph->ground->img)
-		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/stone_floor.xpm", &g->graph->ground->width, &g->graph->ground->height);
+		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr,
+				"./sprites/stone_floor.xpm", &g->graph->ground->width,
+				&g->graph->ground->height);
 	if (!g->graph->ground->addr)
-		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img, &g->graph->ground->b_p_pix, &g->graph->ground->l_len, &g->graph->ground->endian);
+		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img,
+				&g->graph->ground->b_p_pix, &g->graph->ground->l_len,
+				&g->graph->ground->endian);
 	xy[0] = 0;
 	xy[1] = g->w_he * 0.5 + 1;
 	y_true = g->w_he * 0.5 + (int)(sinf(g->player->tilt) * g->w_he * 0.5);
@@ -54,8 +58,10 @@ void	ft_floor(t_game *g)
 		{
 			cell_xy[0] = (int)floor_xy[0];
 			cell_xy[1] = (int)floor_xy[1];
-			t_xy[0] = (int)(g->graph->ground->width * (floor_xy[0] - cell_xy[0]));
-			t_xy[1] = (int)(g->graph->ground->height * (floor_xy[1] - cell_xy[1]));
+			t_xy[0] = (int)(g->graph->ground->width
+					* (floor_xy[0] - cell_xy[0]));
+			t_xy[1] = (int)(g->graph->ground->height
+					* (floor_xy[1] - cell_xy[1]));
 			while (t_xy[1] >= g->graph->ground->height)
 				t_xy[1] -= g->graph->ground->height;
 			while (t_xy[1] < 0)
@@ -66,8 +72,8 @@ void	ft_floor(t_game *g)
 				t_xy[0] += g->graph->ground->width;
 			floor_xy[0] += floor_step_xy[0];
 			floor_xy[1] += floor_step_xy[1];
-			ft_set_pix(g->screen, xy[0], y_true, ft_get_color(g->graph->ground, t_xy[0], t_xy[1]));
-
+			ft_set_pix(g->screen, xy[0], y_true,
+				ft_get_color(g->graph->ground, t_xy[0], t_xy[1]));
 			xy[0]++;
 		}
 		xy[1]++;
@@ -82,21 +88,30 @@ void	ft_night(t_game *g)
 	int			offset;
 
 	if (!g->graph->sky->img)
-		g->graph->sky->img = mlx_xpm_file_to_image(g->mlx_ptr, "./sprites/full_sun.xpm", &g->graph->sky->width, &g->graph->sky->height);
+		g->graph->sky->img = mlx_xpm_file_to_image(g->mlx_ptr,
+				"./sprites/full_sun.xpm", &g->graph->sky->width,
+				&g->graph->sky->height);
 	if (!g->graph->sky->addr)
-		g->graph->sky->addr = mlx_get_data_addr(g->graph->sky->img, &g->graph->sky->b_p_pix, &g->graph->sky->l_len, &g->graph->sky->endian);
+		g->graph->sky->addr = mlx_get_data_addr(g->graph->sky->img,
+				&g->graph->sky->b_p_pix, &g->graph->sky->l_len,
+				&g->graph->sky->endian);
 	offset = (g->player->dir * g->graph->sky->width) / (M_PI * 2);
 	xy[1] = -1;
-	while (++xy[1] < g->w_he * 0.5 + (int)(sinf(g->player->tilt) * g->w_he * 0.5) - 1)
+	while (++xy[1] < g->w_he * 0.5
+		+ (int)(sinf(g->player->tilt) * g->w_he * 0.5) - 1)
 	{
 		xy[0] = -1;
-		color[1] = g->graph->sky->height * (float)(g->w_he - g->w_he * 0.5 - (int)(sinf(g->player->tilt) * g->w_he * 0.5) + xy[1]) / (float)g->w_he;
+		color[1] = g->graph->sky->height * (float)(g->w_he - g->w_he * 0.5
+				- (int)(sinf(g->player->tilt) * g->w_he * 0.5)
+				+ xy[1]) / (float)g->w_he;
 		while (++xy[0] < g->w_wi)
 		{
-			color[0] = ((float)xy[0] * g->fov / ((float)g->w_wi * 2 * M_PI)) * g->graph->sky->width + offset;
+			color[0] = ((float)xy[0] * g->fov / ((float)g->w_wi * 2 * M_PI))
+				* g->graph->sky->width + offset;
 			if (color[0] >= g->graph->sky->width)
-				color[0] -=  g->graph->sky->width;
-			ft_set_pix(g->screen, xy[0], xy[1], ft_get_color(g->graph->sky, color[0], color[1]));
+				color[0] -= g->graph->sky->width;
+			ft_set_pix(g->screen, xy[0], xy[1],
+				ft_get_color(g->graph->sky, color[0], color[1]));
 		}
 	}
 	ft_floor(g);

@@ -6,11 +6,39 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 14:29:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/13 02:00:01 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:01:33 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	mn_map_boundaries(t_game *g)
+{
+	t_rectangle	rect;
+	int			width;
+
+	width = 10;
+	rect.tl.y = 0;
+	rect.tl.x = 0;
+	rect.br.y = width;
+	rect.br.x = g->mn_map->width;
+	ft_rectangle(g->mn_map, rect, 0xAA7dffbd);
+	rect.tl.y = 0;
+	rect.tl.x = 0;
+	rect.br.y = g->mn_map->height;
+	rect.br.x = width;
+	ft_rectangle(g->mn_map, rect, 0xAA7dffbd);
+	rect.tl.y = g->mn_map->height - width;
+	rect.tl.x = 0;
+	rect.br.y = g->mn_map->height;
+	rect.br.x = g->mn_map->width;
+	ft_rectangle(g->mn_map, rect, 0xAA7dffbd);
+	rect.tl.y = 0;
+	rect.tl.x = g->mn_map->width - width;
+	rect.br.y = g->mn_map->height;
+	rect.br.x = g->mn_map->width;
+	ft_rectangle(g->mn_map, rect, 0xAA7dffbd);
+}
 
 void	ft_set_pix(t_data *data, int x, int y, int color)
 {
@@ -95,6 +123,7 @@ void	ft_create_mini_map(t_game *g)
 		ft_mn_map_wall(g);
 		ft_put_triangle(g->mn_map, tri[0], 0x00FF0000);
 		ft_put_triangle(g->mn_map, tri[1], 0x00FF0000);
+		mn_map_boundaries(g);
 	}
 	ft_display_screen(g);
 	if (g->key->mn_map == 1)

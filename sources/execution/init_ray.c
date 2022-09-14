@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:35:34 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/26 01:20:28 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:05:10 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ void	ft_init_ray(t_game *game)
 		{
 			posx = cosf(angle) * game->ray[i].lil_dist * MNM_PIX_SQR + 0.5 * game->mn_map->width;
 			posy = sinf(angle) * game->ray[i].lil_dist * MNM_PIX_SQR + 0.5 * game->mn_map->height;
-			ft_set_pix(game->mn_map, posx, posy, 0x00FF0000);
+			if (posx > 10 && posx < game->mn_map->width - 10 && posy > 10 && posy < game->mn_map->height - 10)
+			ft_set_pix(game->mn_map, posx, posy, 0x88FF0000);
 		}
 		if (i <= game->w_wi * 0.5)
 			angle = game->player->dir - atanf((fabs(game->w_wi * 0.5 - i)) / game->r_v);
