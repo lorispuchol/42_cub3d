@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 19:33:48 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/07/26 02:33:47 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:49:58 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	ft_init_game(t_game *game)
 	game->mlx_window = NULL;
 	game->w_wi = WIDTH;
 	game->w_he = HEIGHT;
+	game->w_he_2 = game->w_he * 0.5;
 	if (FOV <= 60)
 		game->fov = 60 * 2 * M_PI / (long double)360;
 	else if (FOV >= 140)

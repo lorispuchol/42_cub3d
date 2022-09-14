@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 18:37:54 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/14 19:15:51 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct s_game
 	t_data		*mn_map;
 	t_data		*screen;
 	int			w_he;
+	int			w_he_2;
 	int			w_wi;
 	long double	fov;
 	long double	fov_2;
@@ -298,5 +299,10 @@ int			get_r(int trgb);
 int			get_g(int trgb);
 int			get_b(int trgb);
 int			create_trgb(int t, int r, int g, int b);
+
+// display_screen2.c
+void		ft_floor2(t_game *g, long double fr_xy[2],
+				long double stp_xy[2], int xy[3]);
+void		floor1(t_game *g, int xy[3], long double raydir_xy0[4]);
 
 #endif

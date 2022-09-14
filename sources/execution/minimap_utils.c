@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 20:12:42 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 18:04:06 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:16:12 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	ft_cnd_wall(t_game	*g, int x[2], int y[2])
 	{
 		ft_wall_boundary_x(g, x[1], &rect);
 		ft_wall_boundary_y(g, y[1], &rect);
-		ft_rectangle(g->mn_map, rect, 0x33AAAAAA);
+		ft_rectangle(g->mn_map, rect, 0x22AAAAAA);
 	}
 	if (g->map[y[0]][x[0]] == '0')
 	{
 		ft_wall_boundary_x(g, x[1], &rect);
 		ft_wall_boundary_y(g, y[1], &rect);
-		ft_rectangle(g->mn_map, rect, 0x33FFFFFF);
+		ft_rectangle(g->mn_map, rect, 0x22FFFFFF);
 	}
 }
 
