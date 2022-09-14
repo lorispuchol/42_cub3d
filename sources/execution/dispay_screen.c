@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 22:59:17 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 16:36:19 by kmammeri         ###   ########lyon.fr   */
+/*   Created: 2022/09/14 16:38:54 by kmammeri          #+#    #+#             */
+/*   Updated: 2022/09/14 16:39:33 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,6 @@
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
-
-// int	ft_fog_floor(t_game *g, int color, int x, int y)
-// {
-// 	int		trgb[4];
-// 	float	fog;
-
-
-// 	x = 0;
-// 	fog = (float)( -y *  + g->w_he) / ((float)g->w_he * 0.5 + (int)(sinf(g->player->tilt) * g->w_he * 0.5));
-// 	if (fog < 0)
-// 		fog = 0;
-// 	if (fog > 1)
-// 		fog = 1;
-// 	trgb[0] = (1 - fog) * get_t(color) + fog * 25;
-// 	trgb[1] = (1 - fog) * get_r(color) + fog * 25;
-// 	trgb[2] = (1 - fog) * get_g(color) + fog * 25;
-// 	trgb[3] = (1 - fog) * get_b(color) + fog * 25;
-// 	return (create_trgb(trgb[0], trgb[1], trgb[2], trgb[3]));
-// }
 
 void	ft_floor(t_game *g)
 {
@@ -86,6 +67,7 @@ void	ft_floor(t_game *g)
 			floor_xy[0] += floor_step_xy[0];
 			floor_xy[1] += floor_step_xy[1];
 			ft_set_pix(g->screen, xy[0], y_true, ft_get_color(g->graph->ground, t_xy[0], t_xy[1]));
+
 			xy[0]++;
 		}
 		xy[1]++;
