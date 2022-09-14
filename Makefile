@@ -6,6 +6,7 @@ SRCS = 	./sources/cub3d.c 						\
 		./sources/execution/dispay_screen.c 	\
 		./sources/execution/print_ray.c		 	\
 		./sources/execution/mini_map.c 			\
+		./sources/execution/mini_map_2.c 		\
 		./sources/execution/minimap_utils.c 	\
 		./sources/execution/colors_fct.c 		\
 		./sources/execution/geometry.c 			\

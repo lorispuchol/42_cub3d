@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 14:32:43 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:37:54 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,9 @@ void		ft_create_mini_map(t_game *g);
 void		ft_set_pix(t_data *data, int x, int y, int color);
 void		ft_wall_boundary_x(t_game *g, int x, t_rectangle *rect);
 void		ft_wall_boundary_y(t_game *g, int y, t_rectangle *rect);
+
+// mini_map_boundaries.c
+void		mn_map_boundaries(t_game *g);
 
 // geometrie.c
 void		ft_vertical_line(t_data *img,
