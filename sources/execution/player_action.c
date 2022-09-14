@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/07/26 02:34:54 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 19:11:12 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,39 @@ int	ft_action_loop(t_game *game)
 	if (game->key->lock_mouse == 1)
 	{
 		if (game->key->hide_show_mouse == 0)
-		{
-			mlx_mouse_show();
-			game->key->hide_show_mouse = 1;
-		}
+			game->key->hide_show_mouse = mlx_mouse_show() * 0 + 1;
 	}
 	else if (game->key->lock_mouse == 0)
 		ft_mouse_directions(game);
+	return (0);
+}
+
+int	ft_press_key_2(int keycode, t_game *game)
+{
+	if (keycode == 45 && game->key->night_mode == 0)
+		game->key->night_mode = 1;
+	else if (keycode == 45 && game->key->night_mode == 1)
+	{
+		if (game->graph->sky->img)
+			mlx_destroy_image(game->mlx_ptr, game->graph->sky->img);
+		game->graph->sky->img = NULL;
+		game->graph->sky->addr = NULL;
+		if (game->graph->ground->img)
+			mlx_destroy_image(game->mlx_ptr, game->graph->ground->img);
+		game->graph->ground->img = NULL;
+		game->graph->ground->addr = NULL;
+		game->key->night_mode = 0;
+	}
+	if (keycode == 46 && game->key->mn_map == 0)
+		game->key->mn_map = 1;
+	else if (keycode == 46 && game->key->mn_map == 1)
+	{
+		if (game->mn_map->img)
+			mlx_destroy_image(game->mlx_ptr, game->mn_map->img);
+		game->mn_map->img = NULL;
+		game->mn_map->addr = NULL;
+		game->key->mn_map = 0;
+	}
 	return (0);
 }
 
@@ -96,31 +122,7 @@ int	ft_press_key(int keycode, t_game *game)
 		game->key->lock_mouse = 1;
 	else if (keycode == 12 && game->key->lock_mouse != 0)
 		game->key->lock_mouse = 0;
-	if (keycode == 45 && game->key->night_mode == 0)
-		game->key->night_mode = 1;
-	else if (keycode == 45 && game->key->night_mode == 1)
-	{
-		if (game->graph->sky->img)
-			mlx_destroy_image(game->mlx_ptr, game->graph->sky->img);
-		game->graph->sky->img = NULL;
-		game->graph->sky->addr = NULL;
-		if (game->graph->ground->img)
-			mlx_destroy_image(game->mlx_ptr, game->graph->ground->img);
-		game->graph->ground->img = NULL;
-		game->graph->ground->addr = NULL;
-		game->key->night_mode = 0;
-	}
-	if (keycode == 46 && game->key->mn_map == 0)
-		game->key->mn_map = 1;
-	else if (keycode == 46 && game->key->mn_map == 1)
-	{
-		if (game->mn_map->img)
-			mlx_destroy_image(game->mlx_ptr, game->mn_map->img);
-		game->mn_map->img = NULL;
-		game->mn_map->addr = NULL;
-		game->key->mn_map = 0;
-	}
-	return (0);
+	return (ft_press_key_2(keycode, game));
 }
 
 int	ft_release_key(int keycode, t_game *game)
