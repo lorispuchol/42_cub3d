@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 20:19:04 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/15 23:55:08 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define VERTIC_SENSI 0.05
 # define HORIZ_SENSI 0.05
 # define SHOW_IMPACT_MN_MAP 1
+# define TIME_ANIME 2
+# define NB_FRAME_ANIMATION 34
 
 # include "../libft/libft.h"
 # include "../minilibx/mlx.h"
@@ -116,6 +118,7 @@ typedef struct s_key
 	int	lock_mouse;
 	int	mn_map;
 	int	hide_show_mouse;
+	int	animated_sprite;
 }				t_key;
 typedef struct s_graph
 {
@@ -166,6 +169,8 @@ typedef struct s_game
 	float		vert_sensi;
 	float		hori_sensi;
 	int			mn_map_pix_sqr;
+	int			timer;
+	int			frame;
 }				t_game;
 
 // free.c
@@ -205,6 +210,7 @@ void		ft_check_map(t_game *game);
 
 // init_game.c
 void		ft_init_game(t_game *game);
+void		ft_sprite_to_img(t_game *g);
 
 // init_images.c
 void		ft_init_mn_map(t_game *game);
@@ -254,9 +260,8 @@ int			ft_action_loop(t_game *game, t_rectangle rect);
 
 // player_action_2.c
 int			ft_action_loop_2(t_game *game);
+void		ft_press_key_3(t_game *game, int keycode);
 void		ft_mouse_directions(t_game *game);
-
-
 
 // minimap_utils.c
 t_triangle	ft_set_triangle(t_game *g, int side);

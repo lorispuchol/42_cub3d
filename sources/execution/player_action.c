@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 20:12:21 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/09/14 20:52:44 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,7 @@ int	ft_press_key_2(int keycode, t_game *game)
 		game->graph->ground->addr = NULL;
 		game->key->night_mode = 0;
 	}
-	if (keycode == 46 && game->key->mn_map == 0)
-		game->key->mn_map = 1;
-	else if (keycode == 46 && game->key->mn_map == 1)
-	{
-		if (game->mn_map->img)
-			mlx_destroy_image(game->mlx_ptr, game->mn_map->img);
-		game->mn_map->img = NULL;
-		game->mn_map->addr = NULL;
-		game->key->mn_map = 0;
-	}
+	ft_press_key_3(game, keycode);
 	return (0);
 }
 

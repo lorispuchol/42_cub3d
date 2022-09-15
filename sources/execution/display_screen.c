@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dispay_screen.c                                    :+:      :+:    :+:   */
+/*   display_screen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:38:54 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 19:07:26 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/15 23:51:51 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,17 @@ void	ft_sky_floor(t_game *g)
 	}
 }
 
+void	ft_reticle(t_game	*g)
+{
+	t_rectangle rect;
+
+	rect.tl.x = g->w_wi * 0.5;
+	rect.tl.y = g->w_he_2 - 20;
+	rect.br.x = g->w_wi * 0.5 + 1;
+	rect.br.y = g->w_he_2 - 15;
+	ft_rectangle(g->screen->img, rect, 0x00ffffff);
+}
+
 void	ft_display_screen(t_game *g)
 {	
 	if (!g->screen->img)
@@ -119,5 +130,7 @@ void	ft_display_screen(t_game *g)
 	ft_init_ray(g);
 	ft_print_ray(g);
 	ft_reset_rays(g);
+	if (g->key->lock_mouse)
+		ft_reticle(g);
 	mlx_put_image_to_window(g->mlx_ptr, g->mlx_window, g->screen->img, 0, 0);
 }
