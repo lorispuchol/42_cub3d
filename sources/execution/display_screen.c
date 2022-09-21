@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_screen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:38:54 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 15:26:55 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/21 15:50:14 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 

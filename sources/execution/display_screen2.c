@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_screen2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:02:55 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 15:27:06 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/21 15:51:34 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ void
 void	floor1(t_game *g, int xy[3], long double raydir_xy0[4])
 {
 	if (!g->graph->ground->img)
+	{
+		ft_check_texture(g, "./sprites/stone_floor.xpm");
 		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr,
 				"./sprites/stone_floor.xpm", &g->graph->ground->width,
 				&g->graph->ground->height);
+	}
 	if (!g->graph->ground->addr)
 		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img,
 				&g->graph->ground->b_p_pix, &g->graph->ground->l_len,

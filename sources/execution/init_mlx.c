@@ -3,19 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 19:24:08 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/21 15:52:08 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+#include <sys/fcntl.h>
+
+void	ft_check_texture(t_game *game, char *texture)
+{
+	int	fd;
+
+	fd = open(texture, O_RDONLY);
+	if (fd < 0)
+		ft_print_error("Error:\nUnable to read texture\n", game);
+	close(fd);
+}
 
 void	ft_sprite_to_img_2(t_game *g)
 {
 	int	size[2];
 
+	ft_check_texture(g, g->graph->north);
 	g->graph->sp_no->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->north,
 			&size[0], &size[1]);
 	g->graph->sp_no->width = size[0];
@@ -24,6 +36,7 @@ void	ft_sprite_to_img_2(t_game *g)
 	g->graph->sp_no->addr = mlx_get_data_addr(g->graph->sp_no->img,
 			&g->graph->sp_no->b_p_pix, &g->graph->sp_no->l_len,
 			&g->graph->sp_no->endian);
+	ft_check_texture(g, g->graph->south);
 	g->graph->sp_so->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->south,
 			&size[0], &size[1]);
 	g->graph->sp_so->width = size[0];
@@ -38,6 +51,7 @@ void	ft_sprite_to_img(t_game *g)
 {
 	int	size[2];
 
+	ft_check_texture(g, g->graph->east);
 	g->graph->sp_ea->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->east,
 			&size[0], &size[1]);
 	g->graph->sp_ea->width = size[0];
@@ -46,6 +60,7 @@ void	ft_sprite_to_img(t_game *g)
 	g->graph->sp_ea->addr = mlx_get_data_addr(g->graph->sp_ea->img,
 			&g->graph->sp_ea->b_p_pix, &g->graph->sp_ea->l_len,
 			&g->graph->sp_ea->endian);
+	ft_check_texture(g, g->graph->west);
 	g->graph->sp_we->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->west,
 			&size[0], &size[1]);
 	g->graph->sp_we->width = size[0];

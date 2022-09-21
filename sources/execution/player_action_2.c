@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:39:43 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/09/21 15:45:05 by lorispuchol      ###   ########.fr       */
+/*   Updated: 2022/09/21 15:58:28 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_img_walls(t_game *g)
 	}
 	if (!g->graph->sp_ea->img || !g->graph->sp_we->img
 		|| !g->graph->sp_no->img || !g->graph->sp_so->img)
-		ft_print_error("Error :\nUnable to read wall texture\n", g);
+		ft_print_error("Error:\nUnable to read wall texture\n", g);
 }
 
 void	ft_get_walls(t_game *g, int fd, char *str)
