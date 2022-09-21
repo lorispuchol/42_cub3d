@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/14 20:52:44 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/21 14:12:48 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ int	ft_press_key_2(int keycode, t_game *game)
 		game->graph->ground->img = NULL;
 		game->graph->ground->addr = NULL;
 		game->key->night_mode = 0;
+		if (game->key->animated_sprite && game->graph->sp_ea->img && game->graph->sp_we->img && game->graph->sp_no->img && game->graph->sp_so->img)
+		{
+			mlx_destroy_image(game->mlx_ptr, game->graph->sp_ea->img);
+			mlx_destroy_image(game->mlx_ptr, game->graph->sp_no->img);
+			mlx_destroy_image(game->mlx_ptr, game->graph->sp_so->img);
+			mlx_destroy_image(game->mlx_ptr, game->graph->sp_we->img);
+			ft_sprite_to_img(game);
+		}
 	}
 	ft_press_key_3(game, keycode);
 	return (0);
