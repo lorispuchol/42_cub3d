@@ -43,7 +43,7 @@ MINILIBX = ./minilibx/
 
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
-%.o: %.c ./includes/cub3d.h libft/libft.a Makefile/
+%.o: %.c ./includes/cub3d.h  get_next_line/get_next_line.h libft/libft.a Makefile/
 		${CC} ${CFLAGS} -c $< -o $@
 
 all:	libft ${NAME}
