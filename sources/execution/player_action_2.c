@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:39:43 by lpuchol           #+#    #+#             */
-/*   Updated: 2022/09/21 13:30:21 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/21 14:27:38 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_destroy_walls(t_game *game)
 void	ft_img_walls(t_game *g)
 {
 	ft_sprite_to_img(g);
-	if (!g->key->animated_sprite)
+	if (!g->key->animated_sprite || !g->graph->ground->img)
 	{
 		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr,
 			"./sprites/stone_floor.xpm", &g->graph->ground->width,
@@ -99,12 +99,14 @@ void	ft_animated_walls(t_game *g)
 				&g->graph->ground->endian);
 		free(str);
 		if (!g->graph->sp_ea->img || !g->graph->sp_we->img
-			|| !g->graph->sp_no->img || !g->graph->sp_so->img)
+			|| !g->graph->sp_no->img || !g->graph->sp_so->img || !g->graph->ground->img)
 			ft_img_walls(g);
 	}
 	else
 	{
 		close(fd);
+		g->graph->ground->img = NULL;
+		free(str);
 		ft_img_walls(g);
 	}
 }
