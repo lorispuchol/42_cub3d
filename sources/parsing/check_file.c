@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 15:53:31 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/06/14 19:34:59 by lpuchol          ###   ########.fr       */
+/*   Updated: 2022/09/21 19:05:01 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,12 @@ int	empty_line(char *line)
 	return (EXIT_SUCCESS);
 }
 
-void	ft_get_data(int fd, t_game *game)
+void	ft_get_data(int fd, t_game *game, int index, char *line)
 {
-	int		index;
-	char	*line;
-
 	index = 0;
 	line = get_next_line(fd);
+	if (!line)
+		ft_print_error("Error\nFile map is empty\n", game);
 	while (index < 6 && line)
 	{
 		if (empty_line(line) == EXIT_FAILURE)
@@ -74,12 +73,16 @@ void	ft_get_data(int fd, t_game *game)
 
 void	check_valid_map(char *file, t_game *game)
 {
-	int	fd;
+	int		fd;
+	int		folder;
 
+	folder = open(file, O_DIRECTORY);
+	if (folder >= 0)
+		ft_print_error("Error\nFile map is a folder\n", game);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_print_error("Error\nImpossible to open file\n", game);
-	ft_get_data(fd, game);
+	ft_get_data(fd, game, 0, NULL);
 }
 
 void	ft_parsing(int argc, char **argv, t_game *game)
