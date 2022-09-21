@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 13:06:47 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/21 15:46:00 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,11 @@ int			ft_action_loop_2(t_game *game);
 void		ft_press_key_3(t_game *game, int keycode);
 void		ft_mouse_directions(t_game *game);
 
+// player_action_3.c
+void		ft_destroy(t_game *g);
+void		ft_destroy_walls(t_game *game);
+void		ft_new_image(t_game *g, t_data *sp_wall, char *str);
+
 // minimap_utils.c
 t_triangle	ft_set_triangle(t_game *g, int side);
 void		ft_mn_map_wall(t_game *g);
@@ -316,6 +321,8 @@ int			create_trgb(int t, int r, int g, int b);
 void		ft_floor2(t_game *g, long double fr_xy[2],
 				long double stp_xy[2], int xy[3]);
 void		floor1(t_game *g, int xy[3], long double raydir_xy0[4]);
+void		ft_night1(t_game *g);
+
 
 // init_ray2.c
 void		ft_init_ray2(t_game *g, int i, long double angle);

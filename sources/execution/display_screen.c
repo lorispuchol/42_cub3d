@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_screen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 16:38:54 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/15 23:51:51 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/21 15:26:55 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,6 @@ void	ft_floor(t_game *g)
 		xy[1]++;
 		xy[2]++;
 	}
-}
-
-void	ft_night1(t_game *g)
-{
-	if (!g->graph->sky->img)
-		g->graph->sky->img = mlx_xpm_file_to_image(g->mlx_ptr,
-				"./sprites/full_sun.xpm", &g->graph->sky->width,
-				&g->graph->sky->height);
-	if (!g->graph->sky->addr)
-		g->graph->sky->addr = mlx_get_data_addr(g->graph->sky->img,
-				&g->graph->sky->b_p_pix, &g->graph->sky->l_len,
-				&g->graph->sky->endian);
 }
 
 void	ft_night(t_game *g)
@@ -109,7 +97,7 @@ void	ft_sky_floor(t_game *g)
 
 void	ft_reticle(t_game	*g)
 {
-	t_rectangle rect;
+	t_rectangle	rect;
 
 	rect.tl.x = g->w_wi * 0.5;
 	rect.tl.y = g->w_he_2 - 20;

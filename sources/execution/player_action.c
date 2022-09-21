@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lorispuchol <lorispuchol@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 20:28:19 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 14:12:48 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/21 15:43:14 by lorispuchol      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,31 +62,24 @@ int	ft_action_loop(t_game *game, t_rectangle rect)
 	return (ft_action_loop_2(game));
 }
 
-int	ft_press_key_2(int keycode, t_game *game)
+int	ft_press_key_2(int keycode, t_game *g)
 {
-	if (keycode == 45 && game->key->night_mode == 0)
-		game->key->night_mode = 1;
-	else if (keycode == 45 && game->key->night_mode == 1)
+	if (keycode == 45 && g->key->night_mode == 0)
+		g->key->night_mode = 1;
+	else if (keycode == 45 && g->key->night_mode == 1)
 	{
-		if (game->graph->sky->img)
-			mlx_destroy_image(game->mlx_ptr, game->graph->sky->img);
-		game->graph->sky->img = NULL;
-		game->graph->sky->addr = NULL;
-		if (game->graph->ground->img)
-			mlx_destroy_image(game->mlx_ptr, game->graph->ground->img);
-		game->graph->ground->img = NULL;
-		game->graph->ground->addr = NULL;
-		game->key->night_mode = 0;
-		if (game->key->animated_sprite && game->graph->sp_ea->img && game->graph->sp_we->img && game->graph->sp_no->img && game->graph->sp_so->img)
-		{
-			mlx_destroy_image(game->mlx_ptr, game->graph->sp_ea->img);
-			mlx_destroy_image(game->mlx_ptr, game->graph->sp_no->img);
-			mlx_destroy_image(game->mlx_ptr, game->graph->sp_so->img);
-			mlx_destroy_image(game->mlx_ptr, game->graph->sp_we->img);
-			ft_sprite_to_img(game);
-		}
+		if (g->graph->sky->img)
+			mlx_destroy_image(g->mlx_ptr, g->graph->sky->img);
+		g->graph->sky->img = NULL;
+		g->graph->sky->addr = NULL;
+		if (g->graph->ground->img)
+			mlx_destroy_image(g->mlx_ptr, g->graph->ground->img);
+		g->graph->ground->img = NULL;
+		g->graph->ground->addr = NULL;
+		g->key->night_mode = 0;
+		ft_destroy(g);
 	}
-	ft_press_key_3(game, keycode);
+	ft_press_key_3(g, keycode);
 	return (0);
 }
 
