@@ -6,7 +6,7 @@
 /*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/15 23:55:08 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/21 13:06:47 by kmammeri         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define VERTIC_SENSI 0.05
 # define HORIZ_SENSI 0.05
 # define SHOW_IMPACT_MN_MAP 1
-# define TIME_ANIME 2
+# define TIME_ANIME 1
 # define NB_FRAME_ANIMATION 34
 
 # include "../libft/libft.h"
