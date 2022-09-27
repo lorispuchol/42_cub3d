@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_screen2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:02:55 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 15:51:34 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/27 19:25:36 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	floor1(t_game *g, int xy[3], long double raydir_xy0[4])
 		g->graph->ground->img = mlx_xpm_file_to_image(g->mlx_ptr,
 				"./sprites/stone_floor.xpm", &g->graph->ground->width,
 				&g->graph->ground->height);
+		ft_sprite_corrupted(g->graph->ground, g);
 	}
 	if (!g->graph->ground->addr)
 		g->graph->ground->addr = mlx_get_data_addr(g->graph->ground->img,
@@ -70,6 +71,7 @@ void	ft_night1(t_game *g)
 		g->graph->sky->img = mlx_xpm_file_to_image(g->mlx_ptr,
 				"./sprites/full_sun.xpm", &g->graph->sky->width,
 				&g->graph->sky->height);
+	ft_sprite_corrupted(g->graph->sky, g);
 	if (!g->graph->sky->addr)
 		g->graph->sky->addr = mlx_get_data_addr(g->graph->sky->img,
 				&g->graph->sky->b_p_pix, &g->graph->sky->l_len,

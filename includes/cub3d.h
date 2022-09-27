@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 13:08:21 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 15:58:32 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/27 19:16:55 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,6 +224,7 @@ void		ft_square_map(t_game *game);
 // init_mlx.c
 void		ft_init_mlx(t_game *game);
 void		ft_check_texture(t_game *game, char *texture);
+void		ft_sprite_corrupted(t_data *sprite, t_game *g);
 
 // mini_map.c
 int			ft_get_color(t_data *data, int x, int y);

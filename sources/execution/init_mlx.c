@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmammeri <kmammeri@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: lpuchol <lpuchol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 23:57:22 by kmammeri          #+#    #+#             */
-/*   Updated: 2022/09/21 15:52:08 by kmammeri         ###   ########lyon.fr   */
+/*   Updated: 2022/09/27 19:14:02 by lpuchol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ void	ft_check_texture(t_game *game, char *texture)
 	close(fd);
 }
 
+void	ft_sprite_corrupted(t_data *sprite, t_game *g)
+{
+	if (!sprite->img)
+		ft_print_error("Error:\nCorrupted sprite\n", g);
+}
+
 void	ft_sprite_to_img_2(t_game *g)
 {
 	int	size[2];
@@ -30,6 +36,7 @@ void	ft_sprite_to_img_2(t_game *g)
 	ft_check_texture(g, g->graph->north);
 	g->graph->sp_no->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->north,
 			&size[0], &size[1]);
+	ft_sprite_corrupted(g->graph->sp_no, g);
 	g->graph->sp_no->width = size[0];
 	g->graph->sp_no->height = size[1];
 	g->graph->sp_no->r_h = 0.5 * g->r_v / size[0];
@@ -39,6 +46,7 @@ void	ft_sprite_to_img_2(t_game *g)
 	ft_check_texture(g, g->graph->south);
 	g->graph->sp_so->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->south,
 			&size[0], &size[1]);
+	ft_sprite_corrupted(g->graph->sp_so, g);
 	g->graph->sp_so->width = size[0];
 	g->graph->sp_so->height = size[1];
 	g->graph->sp_so->r_h = 0.5 * g->r_v / size[0];
@@ -54,6 +62,7 @@ void	ft_sprite_to_img(t_game *g)
 	ft_check_texture(g, g->graph->east);
 	g->graph->sp_ea->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->east,
 			&size[0], &size[1]);
+	ft_sprite_corrupted(g->graph->sp_ea, g);
 	g->graph->sp_ea->width = size[0];
 	g->graph->sp_ea->height = size[1];
 	g->graph->sp_ea->r_h = 0.5 * g->r_v / size[0];
@@ -63,6 +72,7 @@ void	ft_sprite_to_img(t_game *g)
 	ft_check_texture(g, g->graph->west);
 	g->graph->sp_we->img = mlx_xpm_file_to_image(g->mlx_ptr, g->graph->west,
 			&size[0], &size[1]);
+	ft_sprite_corrupted(g->graph->sp_we, g);
 	g->graph->sp_we->width = size[0];
 	g->graph->sp_we->height = size[1];
 	g->graph->sp_we->r_h = 0.5 * g->r_v / size[0];
